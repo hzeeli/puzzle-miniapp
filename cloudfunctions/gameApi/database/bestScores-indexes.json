@@ -1,0 +1,38 @@
+{
+  "CreateIndexes": [
+    {
+      "IndexName": "owner_player",
+      "MgoKeySchema": {
+        "MgoIsUnique": false,
+        "MgoIndexKeys": [
+          { "Name": "owner", "Direction": "1" },
+          { "Name": "playerId", "Direction": "1" }
+        ]
+      }
+    },
+    {
+      "IndexName": "owner_level",
+      "MgoKeySchema": {
+        "MgoIsUnique": false,
+        "MgoIndexKeys": [
+          { "Name": "owner", "Direction": "1" },
+          { "Name": "levelId", "Direction": "1" },
+          { "Name": "levelVersion", "Direction": "1" }
+        ]
+      }
+    },
+    {
+      "IndexName": "level_ranking",
+      "MgoKeySchema": {
+        "MgoIsUnique": false,
+        "MgoIndexKeys": [
+          { "Name": "levelId", "Direction": "1" },
+          { "Name": "levelVersion", "Direction": "1" },
+          { "Name": "durationMs", "Direction": "1" },
+          { "Name": "achievedAt", "Direction": "1" },
+          { "Name": "playerId", "Direction": "1" }
+        ]
+      }
+    }
+  ]
+}

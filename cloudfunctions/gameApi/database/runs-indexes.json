@@ -1,0 +1,23 @@
+{
+  "CreateIndexes": [
+    {
+      "IndexName": "owner_player",
+      "MgoKeySchema": {
+        "MgoIsUnique": false,
+        "MgoIndexKeys": [
+          { "Name": "owner", "Direction": "1" },
+          { "Name": "playerId", "Direction": "1" }
+        ]
+      }
+    },
+    {
+      "IndexName": "started_at",
+      "MgoKeySchema": {
+        "MgoIsUnique": false,
+        "MgoIndexKeys": [
+          { "Name": "startedAt", "Direction": "1" }
+        ]
+      }
+    }
+  ]
+}

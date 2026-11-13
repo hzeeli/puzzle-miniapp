@@ -1,0 +1,25 @@
+{
+  "description": "一拼成画：生活照片融合拼图",
+  "appid": "wxc2add44d840ca728",
+  "projectname": "一拼成画",
+  "compileType": "game",
+  "miniprogramRoot": "game/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "libVersion": "3.17.6",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "minified": true,
+    "newFeature": true,
+    "compileHotReLoad": false
+  },
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "src"
+      }
+    ],
+    "include": []
+  }
+}

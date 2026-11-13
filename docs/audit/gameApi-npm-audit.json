@@ -1,0 +1,117 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@cloudbase/database": {
+      "name": "@cloudbase/database",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "lodash.set"
+      ],
+      "effects": [
+        "@cloudbase/node-sdk"
+      ],
+      "range": "0.9.0 - 0.9.21 || 1.0.0-beta - 1.4.3",
+      "nodes": [
+        "node_modules/@cloudbase/database"
+      ],
+      "fixAvailable": {
+        "name": "wx-server-sdk",
+        "version": "1.8.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@cloudbase/node-sdk": {
+      "name": "@cloudbase/node-sdk",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@cloudbase/database"
+      ],
+      "effects": [
+        "wx-server-sdk"
+      ],
+      "range": "<=1.1.0 || 2.0.0-beta - 3.18.7",
+      "nodes": [
+        "node_modules/@cloudbase/node-sdk"
+      ],
+      "fixAvailable": {
+        "name": "wx-server-sdk",
+        "version": "1.8.3",
+        "isSemVerMajor": true
+      }
+    },
+    "lodash.set": {
+      "name": "lodash.set",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1106906,
+          "name": "lodash.set",
+          "dependency": "lodash.set",
+          "title": "Prototype Pollution in lodash",
+          "url": "https://github.com/advisories/GHSA-p6mc-m468-83gw",
+          "severity": "high",
+          "cwe": [
+            "CWE-770",
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:H"
+          },
+          "range": ">=3.7.0 <=4.3.2"
+        }
+      ],
+      "effects": [
+        "@cloudbase/database"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/lodash.set"
+      ],
+      "fixAvailable": {
+        "name": "wx-server-sdk",
+        "version": "1.8.3",
+        "isSemVerMajor": true
+      }
+    },
+    "wx-server-sdk": {
+      "name": "wx-server-sdk",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@cloudbase/node-sdk"
+      ],
+      "effects": [],
+      "range": "1.9.0-beta.0 - 4.0.3-beta.1",
+      "nodes": [
+        "node_modules/wx-server-sdk"
+      ],
+      "fixAvailable": {
+        "name": "wx-server-sdk",
+        "version": "1.8.3",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 4,
+      "critical": 0,
+      "total": 4
+    },
+    "dependencies": {
+      "prod": 101,
+      "dev": 0,
+      "optional": 0,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 100
+    }
+  }
+}

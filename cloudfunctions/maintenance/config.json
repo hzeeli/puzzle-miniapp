@@ -1,0 +1,10 @@
+{
+  "permissions": { "openapi": [] },
+  "triggers": [
+    {
+      "name": "purgeExpiredRuns",
+      "type": "timer",
+      "config": "0 20 3 * * * *"
+    }
+  ]
+}

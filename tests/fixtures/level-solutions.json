@@ -1,0 +1,828 @@
+[
+  {
+    "levelId": 1,
+    "version": 3,
+    "seed": 260929,
+    "metrics": {
+      "verifiedMoves": 2,
+      "groupMoves": 0,
+      "horizontalGroupMoves": 0,
+      "verticalGroupMoves": 0,
+      "splitMoves": 0,
+      "refillEvents": 0,
+      "availability": [
+        4,
+        2,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 7,
+        "to": 5
+      },
+      {
+        "from": 15,
+        "to": 13
+      }
+    ]
+  },
+  {
+    "levelId": 2,
+    "version": 3,
+    "seed": 3488937,
+    "metrics": {
+      "verifiedMoves": 5,
+      "groupMoves": 3,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 1,
+      "splitMoves": 0,
+      "refillEvents": 0,
+      "availability": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 13,
+        "to": 0
+      },
+      {
+        "from": 8,
+        "to": 5
+      },
+      {
+        "from": 14,
+        "to": 13
+      },
+      {
+        "from": 11,
+        "to": 2
+      },
+      {
+        "from": 12,
+        "to": 9
+      }
+    ]
+  },
+  {
+    "levelId": 3,
+    "version": 3,
+    "seed": 508449,
+    "metrics": {
+      "verifiedMoves": 8,
+      "groupMoves": 3,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 0,
+      "splitMoves": 0,
+      "refillEvents": 0,
+      "availability": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 14,
+        "to": 13
+      },
+      {
+        "from": 10,
+        "to": 1
+      },
+      {
+        "from": 9,
+        "to": 4
+      },
+      {
+        "from": 10,
+        "to": 13
+      },
+      {
+        "from": 15,
+        "to": 9
+      },
+      {
+        "from": 7,
+        "to": 6
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 15,
+        "to": 7
+      }
+    ]
+  },
+  {
+    "levelId": 4,
+    "version": 3,
+    "seed": 822265,
+    "metrics": {
+      "verifiedMoves": 14,
+      "groupMoves": 3,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 1,
+      "splitMoves": 0,
+      "refillEvents": 4,
+      "availability": [
+        4,
+        3,
+        4,
+        3,
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 8,
+        "to": 10
+      },
+      {
+        "from": 13,
+        "to": 10
+      },
+      {
+        "from": 0,
+        "to": 9
+      },
+      {
+        "from": 9,
+        "to": 1
+      },
+      {
+        "from": 9,
+        "to": 13
+      },
+      {
+        "from": 11,
+        "to": 6
+      },
+      {
+        "from": 15,
+        "to": 2
+      },
+      {
+        "from": 14,
+        "to": 7
+      },
+      {
+        "from": 15,
+        "to": 6
+      },
+      {
+        "from": 1,
+        "to": 10
+      },
+      {
+        "from": 13,
+        "to": 6
+      },
+      {
+        "from": 0,
+        "to": 5
+      },
+      {
+        "from": 8,
+        "to": 0
+      },
+      {
+        "from": 12,
+        "to": 1
+      }
+    ]
+  },
+  {
+    "levelId": 5,
+    "version": 3,
+    "seed": 961863,
+    "metrics": {
+      "verifiedMoves": 16,
+      "groupMoves": 4,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 3,
+      "splitMoves": 0,
+      "refillEvents": 6,
+      "availability": [
+        3,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 8,
+        "to": 7
+      },
+      {
+        "from": 9,
+        "to": 3
+      },
+      {
+        "from": 8,
+        "to": 0
+      },
+      {
+        "from": 13,
+        "to": 1
+      },
+      {
+        "from": 9,
+        "to": 8
+      },
+      {
+        "from": 15,
+        "to": 12
+      },
+      {
+        "from": 4,
+        "to": 10
+      },
+      {
+        "from": 8,
+        "to": 11
+      },
+      {
+        "from": 13,
+        "to": 4
+      },
+      {
+        "from": 7,
+        "to": 10
+      },
+      {
+        "from": 12,
+        "to": 11
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 15,
+        "to": 9
+      },
+      {
+        "from": 0,
+        "to": 5
+      },
+      {
+        "from": 8,
+        "to": 9
+      },
+      {
+        "from": 12,
+        "to": 8
+      }
+    ]
+  },
+  {
+    "levelId": 6,
+    "version": 3,
+    "seed": 824296,
+    "metrics": {
+      "verifiedMoves": 17,
+      "groupMoves": 2,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 1,
+      "splitMoves": 0,
+      "refillEvents": 7,
+      "availability": [
+        3,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 4,
+        "to": 10
+      },
+      {
+        "from": 7,
+        "to": 14
+      },
+      {
+        "from": 11,
+        "to": 9
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 13,
+        "to": 6
+      },
+      {
+        "from": 10,
+        "to": 3
+      },
+      {
+        "from": 13,
+        "to": 2
+      },
+      {
+        "from": 14,
+        "to": 6
+      },
+      {
+        "from": 12,
+        "to": 11
+      },
+      {
+        "from": 7,
+        "to": 4
+      },
+      {
+        "from": 11,
+        "to": 9
+      },
+      {
+        "from": 15,
+        "to": 5
+      },
+      {
+        "from": 8,
+        "to": 0
+      },
+      {
+        "from": 12,
+        "to": 1
+      },
+      {
+        "from": 15,
+        "to": 5
+      },
+      {
+        "from": 0,
+        "to": 5
+      },
+      {
+        "from": 12,
+        "to": 4
+      }
+    ]
+  },
+  {
+    "levelId": 7,
+    "version": 3,
+    "seed": 900542,
+    "metrics": {
+      "verifiedMoves": 18,
+      "groupMoves": 4,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 1,
+      "splitMoves": 0,
+      "refillEvents": 4,
+      "availability": [
+        2,
+        3,
+        2,
+        3,
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 6,
+        "to": 0
+      },
+      {
+        "from": 8,
+        "to": 4
+      },
+      {
+        "from": 0,
+        "to": 5
+      },
+      {
+        "from": 5,
+        "to": 4
+      },
+      {
+        "from": 3,
+        "to": 12
+      },
+      {
+        "from": 3,
+        "to": 13
+      },
+      {
+        "from": 6,
+        "to": 1
+      },
+      {
+        "from": 11,
+        "to": 5
+      },
+      {
+        "from": 1,
+        "to": 10
+      },
+      {
+        "from": 13,
+        "to": 5
+      },
+      {
+        "from": 9,
+        "to": 15
+      },
+      {
+        "from": 14,
+        "to": 13
+      },
+      {
+        "from": 7,
+        "to": 6
+      },
+      {
+        "from": 11,
+        "to": 7
+      },
+      {
+        "from": 15,
+        "to": 2
+      },
+      {
+        "from": 4,
+        "to": 1
+      },
+      {
+        "from": 8,
+        "to": 4
+      },
+      {
+        "from": 12,
+        "to": 5
+      }
+    ]
+  },
+  {
+    "levelId": 8,
+    "version": 3,
+    "seed": 1024302,
+    "metrics": {
+      "verifiedMoves": 20,
+      "groupMoves": 5,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 4,
+      "splitMoves": 0,
+      "refillEvents": 5,
+      "availability": [
+        2,
+        3,
+        4,
+        3,
+        3,
+        2,
+        2,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 8,
+        "to": 2
+      },
+      {
+        "from": 10,
+        "to": 6
+      },
+      {
+        "from": 15,
+        "to": 3
+      },
+      {
+        "from": 3,
+        "to": 0
+      },
+      {
+        "from": 5,
+        "to": 11
+      },
+      {
+        "from": 7,
+        "to": 5
+      },
+      {
+        "from": 15,
+        "to": 4
+      },
+      {
+        "from": 8,
+        "to": 9
+      },
+      {
+        "from": 10,
+        "to": 13
+      },
+      {
+        "from": 15,
+        "to": 14
+      },
+      {
+        "from": 10,
+        "to": 9
+      },
+      {
+        "from": 15,
+        "to": 5
+      },
+      {
+        "from": 11,
+        "to": 8
+      },
+      {
+        "from": 9,
+        "to": 13
+      },
+      {
+        "from": 0,
+        "to": 12
+      },
+      {
+        "from": 0,
+        "to": 13
+      },
+      {
+        "from": 4,
+        "to": 9
+      },
+      {
+        "from": 7,
+        "to": 0
+      },
+      {
+        "from": 3,
+        "to": 5
+      },
+      {
+        "from": 15,
+        "to": 1
+      }
+    ]
+  },
+  {
+    "levelId": 9,
+    "version": 3,
+    "seed": 1607364,
+    "metrics": {
+      "verifiedMoves": 22,
+      "groupMoves": 0,
+      "horizontalGroupMoves": 0,
+      "verticalGroupMoves": 0,
+      "splitMoves": 0,
+      "refillEvents": 6,
+      "availability": [
+        1,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 4,
+        "to": 5
+      },
+      {
+        "from": 8,
+        "to": 1
+      },
+      {
+        "from": 9,
+        "to": 4
+      },
+      {
+        "from": 11,
+        "to": 5
+      },
+      {
+        "from": 14,
+        "to": 9
+      },
+      {
+        "from": 3,
+        "to": 8
+      },
+      {
+        "from": 11,
+        "to": 9
+      },
+      {
+        "from": 15,
+        "to": 12
+      },
+      {
+        "from": 4,
+        "to": 2
+      },
+      {
+        "from": 8,
+        "to": 7
+      },
+      {
+        "from": 12,
+        "to": 6
+      },
+      {
+        "from": 6,
+        "to": 15
+      },
+      {
+        "from": 8,
+        "to": 11
+      },
+      {
+        "from": 10,
+        "to": 14
+      },
+      {
+        "from": 5,
+        "to": 4
+      },
+      {
+        "from": 5,
+        "to": 13
+      },
+      {
+        "from": 12,
+        "to": 9
+      },
+      {
+        "from": 14,
+        "to": 12
+      },
+      {
+        "from": 15,
+        "to": 8
+      },
+      {
+        "from": 2,
+        "to": 11
+      },
+      {
+        "from": 10,
+        "to": 7
+      },
+      {
+        "from": 14,
+        "to": 10
+      }
+    ]
+  },
+  {
+    "levelId": 10,
+    "version": 3,
+    "seed": 2269616,
+    "metrics": {
+      "verifiedMoves": 23,
+      "groupMoves": 3,
+      "horizontalGroupMoves": 2,
+      "verticalGroupMoves": 1,
+      "splitMoves": 0,
+      "refillEvents": 6,
+      "availability": [
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 0,
+        "to": 6
+      },
+      {
+        "from": 3,
+        "to": 9
+      },
+      {
+        "from": 11,
+        "to": 5
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 6,
+        "to": 1
+      },
+      {
+        "from": 15,
+        "to": 6
+      },
+      {
+        "from": 3,
+        "to": 9
+      },
+      {
+        "from": 9,
+        "to": 6
+      },
+      {
+        "from": 13,
+        "to": 2
+      },
+      {
+        "from": 9,
+        "to": 5
+      },
+      {
+        "from": 10,
+        "to": 1
+      },
+      {
+        "from": 13,
+        "to": 2
+      },
+      {
+        "from": 13,
+        "to": 5
+      },
+      {
+        "from": 15,
+        "to": 6
+      },
+      {
+        "from": 11,
+        "to": 14
+      },
+      {
+        "from": 12,
+        "to": 15
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 0,
+        "to": 9
+      },
+      {
+        "from": 4,
+        "to": 5
+      },
+      {
+        "from": 12,
+        "to": 4
+      },
+      {
+        "from": 4,
+        "to": 1
+      },
+      {
+        "from": 0,
+        "to": 4
+      },
+      {
+        "from": 12,
+        "to": 0
+      }
+    ]
+  }
+]

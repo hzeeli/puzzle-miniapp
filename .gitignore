@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+project.private.config.json
+.env*
+!.env.example
+artifacts/
+coverage/
+*.log
+cloudfunctions/gameApi/shared/
