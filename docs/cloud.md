@@ -197,7 +197,7 @@ UI 调用 `app.createWechatProfileButton({x,y,w,h})`，坐标为390逻辑坐标�
 1. 为 `runs` 建立 `started_at` 升序索引，配置已包含在 `gameApi/database/runs-indexes.json`。
 2. 部署 `cloudfunctions/maintenance`，使用云端安装依赖；建议超时设为 60 秒。
 3. 在函数权限控制中应用 `cloudfunctions/maintenance/function-permissions.json`。该文件面向本项目的两个函数，默认拒绝客户端调用，仅允许已登录用户调用 `gameApi`；如果环境中另有函数，先合并现有规则，不能覆盖其他业务。函数级权限不限制定时触发器。[CloudBase 函数访问控制](https://docs.cloudbase.net/cloud-function/security-rules)
-4. 将 `maintenance/config.json` 中的触发器**部署并启用**。在微信开发者工具中对云函数执行「上传触发器」，或在云开发控制台配置。仅上传函数代码不会证明触发器已安装。[官方触发器配置](https://docs.cloudbase.net/cloud-function/timer-trigger)
+4. 将 `maintenance/config.json` 中的触发器**部署并启用**。在微信开发者工具中对云函数执行「上传触发器」，并在控制台的「微信云开发触发器」区域核对。标准云函数触发器的来源上下文不同，不能直接替代本项目的微信触发器。仅上传函数代码不会证明触发器已安装。[官方触发器配置](https://docs.cloudbase.net/cloud-function/timer-trigger)
 5. 核查触发器名称 `purgeExpiredRuns`、类型 `timer`、七字段表达式 `0 20 3 * * * *`，并确认状态启用。微信定时器使用 UTC+8，代表每天 03:20。
 6. 验证真实定时触发日志返回 `ok:true`；从客户端调用应由平台拒绝，或返回 `FORBIDDEN`，且不改变数据库。使用专门测试会话验证过期删除和近期保留，不能拿真实玩家成绩做试删。
 

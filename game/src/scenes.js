@@ -1,7 +1,7 @@
 const U=require('./ui'),B=require('./board');
 const {levels,getLevel}=require('../../shared/levels');
 const P=U.palette;
-const COVER_FOCUS=[.29,.43,.5,.3,.34,.5,.29,.3,.36,.5];
+const PHOTO_FOCUS={'photo-01':.29,'photo-02':.3,'photo-03':.5,'photo-05':.5,'photo-06':.43,'photo-07':.36,'photo-08':.3,'photo-09':.34,'photo-11':.29,'photo-12':.5};
 const LEVEL_COVERS=['photo-01','photo-06','photo-05','photo-02','photo-09','photo-03','photo-11','photo-08','photo-07','photo-12'];
 function coverPhoto(level){return LEVEL_COVERS[level.id-1];}
 const completed=app=>new Set([...Object.keys(app.data.best||{}),...Object.keys(app.cloudBest||{})]);
@@ -53,12 +53,12 @@ function home(app,c){
 function levelList(app,c){
   nav(app,c,'选择关卡');const top=app.top+66,bottom=app.h-app.bottom-8,cardW=169,cardH=126,pitch=140,done=completed(app),next=recommended(app);
   app.maxScroll=Math.max(0,pitch*5-(bottom-top));c.save();c.beginPath();c.rect(0,top-4,390,bottom-top+4);c.clip();app.clip={top,bottom};
-  levels.forEach((level,i)=>{const x=17+i%2*187,y=top+Math.floor(i/2)*pitch-app.scroll;if(level.id===next.id){c.save();c.shadowColor='#ffe5a6';c.shadowBlur=12;U.box(c,x-4,y-4,cardW+8,cardH+8,'#ffe8b3',12);c.restore();}U.frame(c,app.assets.get(coverPhoto(level)),x,y,cardW,cardH,0,{flat:true,focusY:COVER_FOCUS[i]});U.surface(c,x+6,y+6,31,31);U.title(c,String(level.id).padStart(2,'0'),x+21.5,y+22,15);if(done.has(String(level.id))){U.medal(c,1,x+cardW-15,y+cardH-15,13);U.box(c,x+cardW-26,y+cardH-26,22,22,'#4f934b',11);U.symbol(c,'check',x+cardW-15,y+cardH-15,18);}app.hit('level-'+level.id,x-2,y-2,cardW+4,cardH+4,()=>app.chooseLevel(level.id));});app.clip=null;c.restore();
+  levels.forEach((level,i)=>{const x=17+i%2*187,y=top+Math.floor(i/2)*pitch-app.scroll;if(level.id===next.id){c.save();c.shadowColor='#ffe5a6';c.shadowBlur=12;U.box(c,x-4,y-4,cardW+8,cardH+8,'#ffe8b3',12);c.restore();}U.frame(c,app.assets.get(coverPhoto(level)),x,y,cardW,cardH,0,{flat:true,focusY:PHOTO_FOCUS[coverPhoto(level)]});U.surface(c,x+6,y+6,31,31);U.title(c,String(level.id).padStart(2,'0'),x+21.5,y+22,15);if(done.has(String(level.id))){U.medal(c,1,x+cardW-15,y+cardH-15,13);U.box(c,x+cardW-26,y+cardH-26,22,22,'#4f934b',11);U.symbol(c,'check',x+cardW-15,y+cardH-15,18);}app.hit('level-'+level.id,x-2,y-2,cardW+4,cardH+4,()=>app.chooseLevel(level.id));});app.clip=null;c.restore();
 }
 function intro(app,c){
   const level=app.selectedLevel,bottom=app.h-app.bottom,buttonY=bottom-119;nav(app,c,'第 '+level.id+' 关');
   const top=app.top+92,areaH=buttonY-top-89,cols=level.photoIds.length<=4?2:4,rows=Math.ceil(level.photoIds.length/cols),w=cols===2?143:83,h=Math.min(cols===2?196:220,(areaH-15*(rows-1))/rows),left=(390-(w+7)*cols+7)/2;
-  level.photoIds.forEach((id,i)=>{const col=i%cols,row=Math.floor(i/cols),angle=(col-(cols-1)/2)*.045,yy=top+row*(h+11)+Math.abs(col-(cols-1)/2)*5;U.frame(c,app.assets.get(id),left+col*(w+7),yy,w,h,angle);});
+  level.photoIds.forEach((id,i)=>{const col=i%cols,row=Math.floor(i/cols),angle=(col-(cols-1)/2)*.045,yy=top+row*(h+11)+Math.abs(col-(cols-1)/2)*5;U.frame(c,app.assets.get(id),left+col*(w+7),yy,w,h,angle,{focusY:PHOTO_FOCUS[id]});});
   U.surface(c,151,buttonY-49,100,33);U.atlas(c,app,'album',133,buttonY-57,47);U.title(c,level.photoIds.length+' 张',211,buttonY-32,21);
   U.button(c,app,'start-level','开始',52,buttonY,286,70,()=>app.startLevel(level.id),{size:31});cloudControl(app,c,195,bottom-24,38);
 }
@@ -111,7 +111,7 @@ function profile(app,c){
 }
 function photosModal(app,c,m){
   const top=app.top+55,bottom=app.h-app.bottom-65,ids=m.photoIds,cols=ids.length<=4?2:4,rows=Math.ceil(ids.length/cols),w=cols===2?133:80,h=Math.min(w*1.5,(bottom-top-12*(rows-1))/rows),left=(390-(w+8)*cols+8)/2;
-  ids.forEach((id,i)=>U.frame(c,app.assets.get(id),left+i%cols*(w+8),top+Math.floor(i/cols)*(h+12),w,h));U.control(c,app,'photos-close','back',195,app.h-app.bottom-31,46,()=>app.modal=null);
+  ids.forEach((id,i)=>U.frame(c,app.assets.get(id),left+i%cols*(w+8),top+Math.floor(i/cols)*(h+12),w,h,0,{focusY:PHOTO_FOCUS[id]}));U.control(c,app,'photos-close','back',195,app.h-app.bottom-31,46,()=>app.modal=null);
 }
 function modal(app,c){
   const m=app.modal;if(!m)return;app.hits=[];app.maxScroll=0;c.fillStyle='rgba(5,39,63,.7)';c.fillRect(0,0,390,app.h);if(m.type==='photos'){photosModal(app,c,m);return;}
@@ -123,8 +123,8 @@ function modal(app,c){
   if(m.type==='delete'){title='删除记录？';body='删除你的云端档案、成绩与榜单记录，并清理本机进度。此操作无法撤销。';}
   U.title(c,title,195,y+39,25,P.brown);U.wrap(c,body,46,y+85,298,15,P.ink,23);
   if(m.type==='privacy'||m.type==='privacy-info'){
-    const linkY=y+(m.type==='privacy'?217:281);U.text(c,m.privacyOpening?'正在打开…':m.privacyError?'重试打开隐私指引':'查看隐私保护指引',195,linkY,12,'#1c6d94','center',700);if(!m.privacyOpening)app.hit('privacy-contract',43,linkY-15,304,32,()=>app.openPrivacy());if(m.privacyError)U.text(c,'打开失败，请重试',195,linkY+24,10,'#a05b32','center');
-    if(m.type==='privacy'){U.button(c,app,'privacy-agree','同意并开启',55,y+264,280,52,()=>{app.modal=null;m.resolve(true);},{size:21});U.text(c,'先本地游玩',195,y+343,12,'#8c6b40','center');app.hit('privacy-decline',56,y+325,278,35,()=>{app.modal=null;m.resolve(false);});}
+    const linkY=y+(m.type==='privacy'?217:281);U.text(c,m.privacyOpening?'正在打开…':m.privacyError?'重试打开隐私指引':'查看隐私保护指引',195,linkY,16,'#1c6d94','center',700);if(!m.privacyOpening)app.hit('privacy-contract',43,linkY-15,304,32,()=>app.openPrivacy());if(m.privacyError)U.text(c,'打开失败，请重试',195,linkY+24,15,'#a05b32','center');
+    if(m.type==='privacy'){U.button(c,app,'privacy-agree','同意并开启',55,y+264,280,52,()=>{app.modal=null;m.resolve(true);},{size:21});U.text(c,'先本地游玩',195,y+343,16,'#8c6b40','center');app.hit('privacy-decline',56,y+325,278,35,()=>{app.modal=null;m.resolve(false);});}
     else U.button(c,app,'privacy-close','关闭',55,y+329,280,51,()=>app.modal=null,{size:22});
   }else if(m.type==='pause'){U.button(c,app,'resume-game','继续',56,y+158,278,54,()=>app.modal=null,{size:26});U.control(c,app,'restart-game','replay',86,y+275,45,()=>app.startLevel(app.game.level.id));U.control(c,app,'pause-hint','hint',159,y+275,45,()=>{app.modal=null;app.hint();});U.control(c,app,'pause-levels','album',232,y+275,45,()=>{app.saveRun();openLevels(app);});U.control(c,app,'exit-game','home',305,y+275,45,()=>{app.saveRun();app.navigate('home');});}
   else if(m.type==='network'){U.button(c,app,'network-retry','重试',56,y+179,278,52,()=>{app.modal=null;m.retry();},{size:24});U.text(c,'先本地游玩',195,y+276,13,'#8c6b40','center');app.hit('network-local',56,y+253,278,42,()=>{app.modal=null;m.local();});}
