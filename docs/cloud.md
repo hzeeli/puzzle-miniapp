@@ -145,6 +145,8 @@ wx.cloud.callFunction({ name: 'gameApi', data: { action, payload } })
 
 输入仅需 `{ cloudID }`，返回 `{ publicProfile }`。不接受客户端明文昵称、头像 URL 或身份作为微信资料依据。
 
+客户端先使用官方按钮授权。回调成功且含CloudID时直接同步；成功但没有CloudID时，在核对微信登录态及已授权状态后，调用一次`wx.getUserInfo({ withCredentials:true })`补取凭证。拒绝授权不会补取，补取失败不会提交明文资料；页面保留具体错误并允许重新准备授权。[官方按钮回调](https://developers.weixin.qq.com/minigame/dev/api/open-api/user-info/UserInfoButton.onTap.html)、[已授权资料获取](https://developers.weixin.qq.com/minigame/dev/api/open-api/user-info/wx.getUserInfo.html)
+
 云端通过 `cloud.getOpenData({ list: [cloudID] })` 获取微信开放数据，校验其中的 openId 与当前可信 OPENID 一致、水印 appid 一致、时间戳处于五分钟有效范围。只保存 nickName 与 avatarUrl 对应的公开资料，不保存 CloudID、性别、地区或解密后的完整原文。[官方开放数据获取](https://developers.weixin.qq.com/minigame/dev/guide/open-ability/signature.html)
 
 头像仅接受 `wx.qlogo.cn` / `thirdwx.qlogo.cn` 的 mmopen/mmhead 路径，统一为 HTTPS，拒绝用户信息段、非标准端口、伪子域及其他外链；没有头像的合法微信用户允许空头像。不会复制图片到云存储。微信用户修改头像后旧 URL 可能失效，重新获取微信资料会刷新 URL。[官方 UserInfo 说明](https://developers.weixin.qq.com/minigame/dev/api/open-api/user-info/UserInfo.html)

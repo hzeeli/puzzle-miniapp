@@ -383,10 +383,33 @@ test('官方按钮矩形从逻辑坐标映射到屏幕，未就绪或弹窗时�
 });
 
 test('用户拒绝微信头像昵称不发送资料到云端，原生按钮不可用时不会中断页面',async()=>{
-  const s=fixture();s.app.wechatProfileReady=true;
+  const s=fixture();s.app.wechatProfileReady=true;let reads=0;s.platform.prepareWechatUserInfo=async()=>{reads++;return{cloudID:'不得读取'};};
   assert.equal(await s.app.syncWechatProfile({errMsg:'getUserInfo:fail auth deny',userInfo:{nickName:'不得采用'}}),false);assert.equal(s.calls.length,0);assert.notEqual(s.app.data.profile.nickname,'不得采用');
+  assert.equal(reads,0);s.app.wechatProfileReady=true;
   s.platform.createWechatUserInfoButton=()=>{throw new Error('原生组件暂不可用');};
   assert.equal(s.app.createWechatProfileButton({x:0,y:0,w:100,h:40}),null);assert.equal(s.app.wechatProfileReady,false);assert.match(s.app.wechatProfileError,/暂不可用/);
+});
+
+test('官方按钮成功但未携带CloudID时只补取一次已授权凭证',async()=>{
+  const s=fixture();let reads=0;s.platform.prepareWechatUserInfo=async()=>{reads++;return{cloudID:'fresh-credential'};};
+  s.setCloud(async()=>({publicProfile:{id:'player-a',nickname:'可信微信昵称',profileSource:'wechat',avatarUrl:''}}));
+  assert.equal(await s.app.syncWechatProfile({errMsg:'getUserInfo:ok',userInfo:{nickName:'不采用明文'}}),true);
+  assert.equal(reads,1);assert.deepEqual(s.calls,[{action:'syncWechatProfile',payload:{cloudID:'fresh-credential'}}]);
+  assert.equal(s.app.data.profile.nickname,'可信微信昵称');assert.equal(s.app.wechatProfileError,null);
+});
+
+test('成功授权后仍未获得凭证时不误报用户拒绝，不发送明文资料且允许重新准备',async()=>{
+  const s=fixture();s.app.wechatProfileReady=true;let reads=0;s.platform.prepareWechatUserInfo=async()=>{reads++;return null;};
+  assert.equal(await s.app.syncWechatProfile({errMsg:'getUserInfo:ok',userInfo:{nickName:'不采用明文'}}),false);
+  assert.equal(reads,1);assert.equal(s.calls.length,0);assert.match(s.app.wechatProfileError,/凭证/);
+  assert.equal(s.app.wechatProfileReady,false);assert.equal(s.app.wechatProfileLoading,false);
+});
+
+test('补取凭证期间删除档案，迟到凭证不能重建资料或发起同步',async()=>{
+  const s=fixture(),late=deferred();s.platform.prepareWechatUserInfo=()=>late.promise;s.setCloud(async()=>({deleted:true}));
+  const syncing=s.app.syncWechatProfile({errMsg:'getUserInfo:ok'});assert.equal(s.app.wechatProfileLoading,true);
+  await s.app.deleteAccount();late.resolve({cloudID:'late-credential'});assert.equal(await syncing,false);
+  assert.deepEqual(s.calls.map(c=>c.action),['deleteAccount']);assert.equal(s.app.profile,null);
 });
 
 test('删除后迟到的微信资料同步不能恢复头像昵称或缓存',async()=>{

@@ -57,10 +57,18 @@ class App {
   }
   async syncWechatProfile(result){
     if(this.wechatProfileLoading||this.deleting||!this.profile)return false;
-    if(!result||typeof result.cloudID!=='string'||!result.cloudID||(result.errMsg&&!result.errMsg.includes(':ok'))){this.wechatProfileError='未授权微信头像昵称，仍可正常游玩';this.notify(this.wechatProfileError);return false;}
+    if(!result||(result.errMsg&&!result.errMsg.includes(':ok'))){this.wechatProfileReady=false;this.wechatProfileError=result&&/deny|cancel/i.test(result.errMsg)?'未授权微信头像昵称，仍可正常游玩':'微信授权未完成，请重新获取';this.notify(this.wechatProfileError);return false;}
     const epoch=this.accountEpoch;this.wechatProfileLoading=true;this.wechatProfileError=null;
-    try{return await this.storeWechatProfile(result.cloudID,epoch);}
-    catch(error){if(epoch===this.accountEpoch){this.wechatProfileError=error.message;this.notify(error.message);}return false;}
+    try{
+      let cloudID=result.cloudID;
+      if(typeof cloudID!=='string'||!cloudID){
+        if(!result.errMsg||!result.errMsg.includes(':ok'))throw new Error('微信未返回资料凭证，请重新获取');
+        const info=await platform.prepareWechatUserInfo();if(epoch!==this.accountEpoch)return false;
+        cloudID=info&&info.cloudID;if(typeof cloudID!=='string'||!cloudID)throw new Error('微信未返回资料凭证，请重新获取');
+      }
+      return await this.storeWechatProfile(cloudID,epoch);
+    }
+    catch(error){if(epoch===this.accountEpoch){this.wechatProfileReady=false;this.wechatProfileError=error.message;this.notify(error.message);}return false;}
     finally{if(epoch===this.accountEpoch)this.wechatProfileLoading=false;}
   }
   async storeWechatProfile(cloudID,epoch){
