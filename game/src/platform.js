@@ -73,6 +73,14 @@ async function openPrivacy() {
   if(!wx.openPrivacyContract)throw new Error('当前微信版本暂不支持打开隐私指引，请升级微信');
   return new Promise((resolve,reject)=>wx.openPrivacyContract({success:resolve,fail:()=>reject(new Error('隐私指引暂未打开，请点击链接重试'))}));
 }
+function userInfoFailure(result) {
+  const errno=result?Number(result.errno):NaN;
+  const setup=[112,1025,1026].includes(errno),denied=!setup&&result&&/deny|cancel/i.test(result.errMsg||'');
+  const error=new Error(setup?'微信资料服务暂未就绪，请稍后重试':denied?'未授权微信头像昵称，仍可正常游玩':'暂时无法获取微信资料，请重试');
+  error.code=setup?'WECHAT_PRIVACY_SETUP_REQUIRED':denied?'WECHAT_USERINFO_NOT_AUTHORIZED':'WECHAT_USERINFO_UNAVAILABLE';
+  if(Number.isInteger(errno))error.errno=errno;
+  return error;
+}
 async function prepareWechatUserInfo() {
   if(!native||!wx.createUserInfoButton||!wx.getSetting||!wx.getUserInfo||!wx.login)throw new Error('请在支持此功能的微信版本中获取头像昵称');
   initializeCloud();
@@ -82,7 +90,7 @@ async function prepareWechatUserInfo() {
   if(!setting.authSetting||setting.authSetting['scope.userInfo']!==true)return null;
   return new Promise((resolve,reject)=>wx.getUserInfo({withCredentials:true,lang:'zh_CN',success:res=>{
     if(typeof res.cloudID==='string'&&res.cloudID)resolve({cloudID:res.cloudID});else reject(new Error('微信资料凭证暂未就绪，请重新获取'));
-  },fail:()=>reject(new Error('暂时无法获取微信头像昵称，请重新授权'))}));
+  },fail:error=>reject(userInfoFailure(error))}));
 }
 function createWechatUserInfoButton(rect,onTap) {
   if(!native||!wx.createUserInfoButton)throw new Error('当前微信版本暂不支持用户信息按钮');
@@ -97,4 +105,4 @@ function createAudio(src,volume,loop=false) {
   if(native){const a=wx.createInnerAudioContext();a.src=src;a.volume=volume;a.loop=loop;return a;}
   const a=new Audio(src);a.volume=volume;a.loop=loop;return {play:()=>a.play().catch(()=>{}),stop:()=>{a.pause();a.currentTime=0;},pause:()=>a.pause(),destroy:()=>{a.pause();a.src='';}};
 }
-module.exports={native,windowInfo,createCanvas,loadImage,read,write,bindInput,onResize,onVisibility,vibrate,callCloud,cloudReady,setPrivacyHandler,authorizePrivacy,openPrivacy,prepareWechatUserInfo,createWechatUserInfoButton,isWechatAvatarUrl,createAudio};
+module.exports={native,windowInfo,createCanvas,loadImage,read,write,bindInput,onResize,onVisibility,vibrate,callCloud,cloudReady,setPrivacyHandler,authorizePrivacy,openPrivacy,userInfoFailure,prepareWechatUserInfo,createWechatUserInfoButton,isWechatAvatarUrl,createAudio};

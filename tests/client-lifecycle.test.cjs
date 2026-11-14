@@ -6,6 +6,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const config=require('../game/src/config');
+const {userInfoFailure}=require('../game/src/platform');
 const plain=value=>JSON.parse(JSON.stringify(value));
 const flush=()=>new Promise(setImmediate);
 function deferred(){let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return{promise,resolve,reject};}
@@ -14,7 +15,7 @@ function fixture(){
   const calls=[],writes=[],notices=[];let invoke=async()=>({});let counter=0,now=100000;
   const levels=Array.from({length:10},(_,i)=>({id:i+1,version:1,photoIds:[]}));
   const rules={createState:()=>({solved:false}),replay:(level,moves)=>({ok:true,solved:moves.length===2,state:{solved:moves.length===2}}),isSolved:state=>!!state.solved,findHint:()=>null};
-  const platform={native:true,cloudReady:()=>true,callCloud:(action,payload)=>{calls.push({action,payload:plain(payload)});return invoke(action,payload);},write:value=>{writes.push(plain(value));return true;},authorizePrivacy:async()=>{},isWechatAvatarUrl:()=>false};
+  const platform={native:true,cloudReady:()=>true,callCloud:(action,payload)=>{calls.push({action,payload:plain(payload)});return invoke(action,payload);},write:value=>{writes.push(plain(value));return true;},authorizePrivacy:async()=>{},isWechatAvatarUrl:()=>false,userInfoFailure};
   const context={module:{exports:{}},require:name=>{
     if(name==='./platform')return platform;
     if(name==='./config')return config;
@@ -347,6 +348,26 @@ test('未授权用户不静默获取资料，有效登录态不重复login；缺
   assert.equal(await s.platform.prepareWechatUserInfo(),null);assert.equal(logins,0);assert.equal(reads,0);
   s.wx.getSetting=options=>options.success({authSetting:{'scope.userInfo':true}});s.wx.getUserInfo=options=>options.success({userInfo:{nickName:'明文昵称',avatarUrl:'https://evil.test/avatar'}});
   await assert.rejects(s.platform.prepareWechatUserInfo(),/凭证/);
+});
+
+test('微信隐私接入错误保留errno，不误报为用户拒绝或泄露原始诊断内容',async()=>{
+  const s=platformFixture();s.wx.createUserInfoButton=()=>{};
+  s.wx.checkSession=options=>options.success();s.wx.login=()=>{};
+  s.wx.getSetting=options=>options.success({authSetting:{'scope.userInfo':true}});
+  for(const errno of [112,1025,1026]){
+    s.wx.getUserInfo=options=>options.fail({errno,errMsg:'getUserInfo:fail please go to mp to announce your privacy usage private-token'});
+    await assert.rejects(s.platform.prepareWechatUserInfo(),error=>{
+      assert.equal(error.code,'WECHAT_PRIVACY_SETUP_REQUIRED');assert.equal(error.errno,errno);
+      assert.doesNotMatch(error.message,/未授权|重新授权|private-token/);return true;
+    });
+  }
+});
+
+test('原生按钮的隐私配置错误优先于auth deny文字，不读取或提交微信资料',async()=>{
+  const s=fixture();let reads=0;s.app.wechatProfileReady=true;s.platform.prepareWechatUserInfo=async()=>{reads++;};
+  assert.equal(await s.app.syncWechatProfile({errMsg:'getUserInfo:fail auth deny',errno:1026}),false);
+  assert.match(s.app.wechatProfileError,/暂未就绪/);assert.doesNotMatch(s.app.wechatProfileError,/未授权/);
+  assert.equal(reads,0);assert.equal(s.calls.length,0);assert.equal(s.app.wechatProfileReady,false);
 });
 
 test('官方原生按钮使用透明覆盖层和凭证模式，销毁后不会继续回调或显示',()=>{

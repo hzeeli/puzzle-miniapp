@@ -57,7 +57,7 @@ class App {
   }
   async syncWechatProfile(result){
     if(this.wechatProfileLoading||this.deleting||!this.profile)return false;
-    if(!result||(result.errMsg&&!result.errMsg.includes(':ok'))){this.wechatProfileReady=false;this.wechatProfileError=result&&/deny|cancel/i.test(result.errMsg)?'未授权微信头像昵称，仍可正常游玩':'微信授权未完成，请重新获取';this.notify(this.wechatProfileError);return false;}
+    if(!result||(result.errMsg&&!result.errMsg.includes(':ok'))){this.wechatProfileReady=false;this.wechatProfileError=platform.userInfoFailure(result).message;this.notify(this.wechatProfileError);return false;}
     const epoch=this.accountEpoch;this.wechatProfileLoading=true;this.wechatProfileError=null;
     try{
       let cloudID=result.cloudID;
