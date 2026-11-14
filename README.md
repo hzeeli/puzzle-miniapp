@@ -45,6 +45,7 @@ npm run serve -- 4174
 - [十关设计与可解性](docs/levels.md)
 - [云接口、权限与部署](docs/cloud.md)
 - [素材来源与生成提示词](docs/art-manifest.json)
+- [客户端启动兼容性](docs/compatibility.md)
 - [依赖审计与限制](docs/dependency-audit.md)
 - [交付计划与验证状态](docs/plan.md)
 

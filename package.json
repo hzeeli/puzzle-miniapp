@@ -1,6 +1,6 @@
 {
   "name": "yipin-chenghua",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "一拼成画微信小游戏",
   "scripts": {
@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "esbuild": "0.25.12"
+  },
+  "dependencies": {
+    "unicode-segmenter": "0.17.3"
   }
 }

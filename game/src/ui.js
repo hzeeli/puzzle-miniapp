@@ -1,12 +1,7 @@
+const {collectGraphemes}=require('unicode-segmenter/grapheme');
 const palette={ink:'#164d6b',muted:'#d1e6ed',cream:'#fff4d8',gold:'#f2c777',brown:'#95571e',blue:'#267ba7',deep:'#155879'};
 const CONTROL_NAMES=['back','pause','hint','album','trophy','settings','replay','home','cloud'];
-const segmenter=typeof Intl!=='undefined'&&Intl.Segmenter?new Intl.Segmenter('zh',{granularity:'grapheme'}):null;
-function textParts(value){
-  const text=String(value||'');if(segmenter)return Array.from(segmenter.segment(text),item=>item.segment);
-  const parts=[];let regional=false;
-  for(const ch of Array.from(text)){const n=ch.codePointAt(0),join=ch==='\u200d'||/\p{Mark}/u.test(ch)||n===0xfe0f||n===0xfe0e||n>=0x1f3fb&&n<=0x1f3ff||n>=0xe0020&&n<=0xe007f,flag=n>=0x1f1e6&&n<=0x1f1ff;if(parts.length&&(join||parts[parts.length-1].endsWith('\u200d')||flag&&regional))parts[parts.length-1]+=ch;else parts.push(ch);regional=flag&&!regional;}
-  return parts;
-}
+function textParts(value){return collectGraphemes(String(value||''));}
 function ellipsis(c,value,width,size,weight=700){c.font=weight+' '+size+'px "PingFang SC","Microsoft YaHei",sans-serif';const text=String(value||'');if(c.measureText(text).width<=width)return text;const parts=textParts(text);let low=0,high=parts.length;while(low<high){const mid=Math.ceil((low+high)/2);if(c.measureText(parts.slice(0,mid).join('')+'…').width<=width)low=mid;else high=mid-1;}return parts.slice(0,low).join('')+'…';}
 function rounded(c,x,y,w,h,r){r=Math.max(0,Math.min(r,w/2,h/2));c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();}
 function box(c,x,y,w,h,color,r=12,stroke){rounded(c,x,y,w,h,r);c.fillStyle=color;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=1;c.stroke();}}
