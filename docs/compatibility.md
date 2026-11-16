@@ -17,6 +17,6 @@
 
 ## 隐私接口准入
 
-模拟器原生getUserInfo实测返回errno1026，明确要求到后台声明隐私用途；会话有效且scope.userInfo尚未出现。needAuthorization为false也可能代表未声明任何类型，不能作为配置完成的证明。昵称头像需要先按小游戏规范在后台声明。[官方小游戏隐私指南](https://developers.weixin.qq.com/minigame/dev/guide/open-ability/privacy.html)
+2026-11-14声明前，模拟器原生getUserInfo返回errno1026，要求到后台声明隐私用途；会话有效且scope.userInfo尚未出现。2026-11-16用户提交声明后，getPrivacySetting返回正式指引名称与needAuthorization:true，openPrivacyContract成功；完成实际授权后scope.userInfo为true、needAuthorization为false，云端资料来源为wechat，头像加载及重启回读成功。needAuthorization为false本身不能证明已配置，因为它也可能代表未声明任何类型。[官方小游戏隐私指南](https://developers.weixin.qq.com/minigame/dev/guide/open-ability/privacy.html)
 
 1.0.3将112、1025、1026归为隐私接入配置错误，保留errno并显示服务暂未就绪，不再通过auth deny文字把这些错误归为用户未授权；不会输出原始诊断内容或继续读取资料。两个新增回归先在旧代码失败，修复后通过，完整测试为166项。该修改不替代后台声明。
