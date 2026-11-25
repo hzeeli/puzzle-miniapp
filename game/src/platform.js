@@ -13,8 +13,21 @@ function windowInfo() {
 }
 function createCanvas() { return native ? wx.createCanvas() : document.getElementById('game'); }
 function loadImage(src) { return new Promise((resolve,reject)=>{const image=native?wx.createImage():new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(new Error('图片加载失败：'+src));image.src=src;}); }
-function read() {try {return native?wx.getStorageSync(config.storageKey)||{}:JSON.parse(localStorage.getItem(config.storageKey)||'{}');}catch(e){return {};}}
-function write(value) {try {if(native)wx.setStorageSync(config.storageKey,value);else localStorage.setItem(config.storageKey,JSON.stringify(value));return true;}catch(e){return false;}}
+function read() {
+  try {
+    const stored=native?JSON.stringify(wx.getStorageSync(config.storageKey)||{}):localStorage.getItem(config.storageKey);
+    return JSON.parse(stored||'{}');
+  }catch(e){return {};}
+}
+function write(value) {
+  try {
+    // 微信可能保留传入对象的引用，每次存储都提交独立快照。
+    const snapshot=JSON.stringify(value);
+    if(native)wx.setStorageSync(config.storageKey,JSON.parse(snapshot));
+    else localStorage.setItem(config.storageKey,snapshot);
+    return true;
+  }catch(e){return false;}
+}
 function bindInput(canvas, handlers) {
   let pointer=null;
   const release=()=>{pointer=null;};
@@ -36,6 +49,10 @@ function bindInput(canvas, handlers) {
 }
 function onResize(fn) {if(native&&wx.onWindowResize)wx.onWindowResize(fn);else if(!native)window.addEventListener('resize',fn);}
 function onVisibility(fn) {if(native){wx.onHide(()=>fn(false));wx.onShow(()=>fn(true));}else document.addEventListener('visibilitychange',()=>fn(!document.hidden));}
+function onReconnect(fn){
+  if(native&&wx.onNetworkStatusChange)wx.onNetworkStatusChange(event=>{if(event.isConnected)fn();});
+  else if(!native)window.addEventListener('online',fn);
+}
 function vibrate() {if(native&&wx.vibrateShort)wx.vibrateShort({type:'light'});}
 function cloudReady() {return native&&!!wx.cloud&&!!config.cloudEnv;}
 let cloudInitialized=false;
@@ -105,4 +122,4 @@ function createAudio(src,volume,loop=false) {
   if(native){const a=wx.createInnerAudioContext();a.src=src;a.volume=volume;a.loop=loop;return a;}
   const a=new Audio(src);a.volume=volume;a.loop=loop;return {play:()=>a.play().catch(()=>{}),stop:()=>{a.pause();a.currentTime=0;},pause:()=>a.pause(),destroy:()=>{a.pause();a.src='';}};
 }
-module.exports={native,windowInfo,createCanvas,loadImage,read,write,bindInput,onResize,onVisibility,vibrate,callCloud,cloudReady,setPrivacyHandler,authorizePrivacy,openPrivacy,userInfoFailure,prepareWechatUserInfo,createWechatUserInfoButton,isWechatAvatarUrl,createAudio};
+module.exports={native,windowInfo,createCanvas,loadImage,read,write,bindInput,onResize,onVisibility,onReconnect,vibrate,callCloud,cloudReady,setPrivacyHandler,authorizePrivacy,openPrivacy,userInfoFailure,prepareWechatUserInfo,createWechatUserInfoButton,isWechatAvatarUrl,createAudio};

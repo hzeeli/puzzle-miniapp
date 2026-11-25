@@ -1,15 +1,19 @@
 [
   {
     "id": 1,
-    "version": 3,
+    "version": 4,
+    "chapter": 1,
     "title": "午后初见",
-    "description": "把小狗、海边、蛋糕和花朵接完整，留住四个美好片刻。",
+    "description": "交换两片，给午后的照片拼上最后一角。",
     "photoIds": [
       "photo-01",
       "photo-05",
       "photo-06",
       "photo-09"
     ],
+    "featuredPhotoId": "photo-01",
+    "goldMoves": 3,
+    "parMoves": 5,
     "board": [
       0,
       1,
@@ -34,9 +38,10 @@
       [],
       []
     ],
+    "hiddenTokens": [],
+    "pinnedTokens": [],
     "difficulty": {
       "rank": 1,
-      "focus": "单片置换、双图完成与即时反馈",
       "shuffleSwaps": 2,
       "initialEdges": 8,
       "initialAvailablePhotos": 4,
@@ -46,15 +51,19 @@
   },
   {
     "id": 2,
-    "version": 3,
+    "version": 4,
+    "chapter": 1,
     "title": "甜甜的早晨",
-    "description": "把横着和竖着连好的图片一起移动，拼出四个日常片刻。",
+    "description": "连好的相纸可以一起移动。",
     "photoIds": [
       "photo-01",
       "photo-05",
       "photo-06",
       "photo-09"
     ],
+    "featuredPhotoId": "photo-06",
+    "goldMoves": 7,
+    "parMoves": 10,
     "board": [
       6,
       1,
@@ -79,9 +88,10 @@
       [],
       []
     ],
+    "hiddenTokens": [],
+    "pinnedTokens": [],
     "difficulty": {
       "rank": 2,
-      "focus": "横向、纵向连块的整体移动",
       "shuffleSwaps": 4,
       "initialEdges": 6,
       "initialAvailablePhotos": 4,
@@ -91,15 +101,19 @@
   },
   {
     "id": 3,
-    "version": 3,
+    "version": 4,
+    "chapter": 1,
     "title": "窗外好天气",
-    "description": "试着把连好的两片一起搬到新位置。",
+    "description": "沿着窗框和叶脉，整理散开的四张照片。",
     "photoIds": [
       "photo-01",
       "photo-02",
       "photo-05",
       "photo-08"
     ],
+    "featuredPhotoId": "photo-02",
+    "goldMoves": 11,
+    "parMoves": 15,
     "board": [
       12,
       1,
@@ -124,9 +138,10 @@
       [],
       []
     ],
+    "hiddenTokens": [],
+    "pinnedTokens": [],
     "difficulty": {
       "rank": 3,
-      "focus": "满棋盘交换与整体移动",
       "shuffleSwaps": 8,
       "initialEdges": 2,
       "initialAvailablePhotos": 4,
@@ -136,9 +151,10 @@
   },
   {
     "id": 4,
-    "version": 3,
+    "version": 4,
+    "chapter": 1,
     "title": "一日小旅行",
-    "description": "完成一张照片，新风景就会从上方来到。",
+    "description": "拼好一张照片，上方的胶卷会送来新的碎片。",
     "photoIds": [
       "photo-01",
       "photo-02",
@@ -149,6 +165,9 @@
       "photo-08",
       "photo-09"
     ],
+    "featuredPhotoId": "photo-05",
+    "goldMoves": 18,
+    "parMoves": 24,
     "board": [
       1,
       15,
@@ -193,9 +212,10 @@
         29
       ]
     ],
+    "hiddenTokens": [],
+    "pinnedTokens": [],
     "difficulty": {
       "rank": 4,
-      "focus": "独立牌堆与下落补片",
       "shuffleSwaps": 9,
       "initialEdges": 3,
       "initialAvailablePhotos": 4,
@@ -205,78 +225,63 @@
   },
   {
     "id": 5,
-    "version": 3,
-    "title": "花园来信",
-    "description": "先沿着完整的线索拼图，给尚未到来的碎片留个位置。",
+    "version": 4,
+    "chapter": 2,
+    "title": "显影的信",
+    "description": "移动暗片，或在它旁边接合相纸，让画面显影。",
     "photoIds": [
-      "photo-01",
-      "photo-05",
-      "photo-07",
       "photo-02",
+      "photo-07",
       "photo-04",
-      "photo-08",
-      "photo-12",
-      "photo-09"
+      "photo-05"
     ],
+    "featuredPhotoId": "photo-07",
+    "goldMoves": 8,
+    "parMoves": 12,
     "board": [
-      22,
+      7,
+      1,
       11,
-      4,
-      8,
-      2,
+      5,
+      13,
       3,
       6,
-      0,
-      7,
-      5,
+      12,
+      8,
       9,
-      18,
-      25,
-      1,
-      13,
-      10
+      2,
+      0,
+      10,
+      4,
+      14,
+      15
     ],
     "queues": [
-      [
-        15,
-        14,
-        12,
-        30,
-        31,
-        28,
-        29
-      ],
-      [
-        16,
-        19,
-        17
-      ],
-      [
-        21,
-        20,
-        23
-      ],
-      [
-        27,
-        26,
-        24
-      ]
+      [],
+      [],
+      [],
+      []
     ],
+    "hiddenTokens": [
+      11,
+      12
+    ],
+    "pinnedTokens": [],
     "difficulty": {
       "rank": 5,
-      "focus": "在多张未齐照片中寻找完整线索",
-      "shuffleSwaps": 12,
-      "initialEdges": 2,
-      "initialAvailablePhotos": 3,
-      "reserveCount": 16,
-      "verifiedMoves": 16
+      "shuffleSwaps": 5,
+      "initialEdges": 4,
+      "initialAvailablePhotos": 4,
+      "reserveCount": 0,
+      "verifiedMoves": 6
     }
   },
   {
     "id": 6,
-    "version": 3,
+    "version": 4,
+    "chapter": 2,
     "title": "慢慢喝杯咖啡",
-    "description": "两份早餐有相似的颜色，杯子和盘子的弧线会帮你。",
+    "description": "拼好杯沿，让旁边的暗片一起见光。",
     "photoIds": [
       "photo-03",
       "photo-10",
@@ -287,6 +292,9 @@
       "photo-07",
       "photo-12"
     ],
+    "featuredPhotoId": "photo-03",
+    "goldMoves": 22,
+    "parMoves": 29,
     "board": [
       26,
       13,
@@ -331,9 +339,14 @@
         24
       ]
     ],
+    "hiddenTokens": [
+      3,
+      9,
+      11
+    ],
+    "pinnedTokens": [],
     "difficulty": {
       "rank": 6,
-      "focus": "相近早餐题材与局部轮廓辨认",
       "shuffleSwaps": 16,
       "initialEdges": 2,
       "initialAvailablePhotos": 3,
@@ -343,9 +356,151 @@
   },
   {
     "id": 7,
-    "version": 3,
+    "version": 4,
+    "chapter": 2,
+    "title": "花园来信",
+    "description": "沿着花瓣和山脊，冲印花园的明信片。",
+    "photoIds": [
+      "photo-09",
+      "photo-02",
+      "photo-07",
+      "photo-05",
+      "photo-04",
+      "photo-08",
+      "photo-12",
+      "photo-01"
+    ],
+    "featuredPhotoId": "photo-09",
+    "goldMoves": 20,
+    "parMoves": 26,
+    "board": [
+      0,
+      1,
+      4,
+      3,
+      2,
+      5,
+      22,
+      15,
+      8,
+      10,
+      19,
+      11,
+      6,
+      7,
+      9,
+      26
+    ],
+    "queues": [
+      [
+        12,
+        13,
+        14,
+        31,
+        29,
+        28,
+        30
+      ],
+      [
+        17,
+        16,
+        18
+      ],
+      [
+        21,
+        23,
+        20
+      ],
+      [
+        24,
+        27,
+        25
+      ]
+    ],
+    "hiddenTokens": [
+      5,
+      3
+    ],
+    "pinnedTokens": [],
+    "difficulty": {
+      "rank": 7,
+      "shuffleSwaps": 9,
+      "initialEdges": 3,
+      "initialAvailablePhotos": 3,
+      "reserveCount": 16,
+      "verifiedMoves": 15
+    }
+  },
+  {
+    "id": 8,
+    "version": 4,
+    "chapter": 2,
+    "title": "黄金定位",
+    "description": "钉住的角无法移动，把同图的其余三片拼到它身边。",
+    "photoIds": [
+      "photo-04",
+      "photo-05",
+      "photo-02",
+      "photo-12",
+      "photo-08",
+      "photo-09"
+    ],
+    "featuredPhotoId": "photo-04",
+    "goldMoves": 15,
+    "parMoves": 20,
+    "board": [
+      9,
+      1,
+      4,
+      5,
+      0,
+      3,
+      10,
+      8,
+      15,
+      2,
+      12,
+      13,
+      6,
+      11,
+      14,
+      7
+    ],
+    "queues": [
+      [
+        17,
+        19,
+        18,
+        16
+      ],
+      [
+        21,
+        22,
+        20,
+        23
+      ],
+      [],
+      []
+    ],
+    "hiddenTokens": [],
+    "pinnedTokens": [
+      10
+    ],
+    "difficulty": {
+      "rank": 8,
+      "shuffleSwaps": 9,
+      "initialEdges": 4,
+      "initialAvailablePhotos": 4,
+      "reserveCount": 8,
+      "verifiedMoves": 11
+    }
+  },
+  {
+    "id": 9,
+    "version": 4,
+    "chapter": 3,
     "title": "猫咪的午睡",
-    "description": "同一抹橘色里藏着两位小伙伴，留意毛色和椅背。",
+    "description": "先辨认猫咪的毛色，再为钉住的相纸补齐四角。",
     "photoIds": [
       "photo-08",
       "photo-11",
@@ -356,53 +511,62 @@
       "photo-02",
       "photo-12"
     ],
+    "featuredPhotoId": "photo-08",
+    "goldMoves": 24,
+    "parMoves": 32,
     "board": [
-      4,
-      1,
-      5,
-      14,
-      19,
-      3,
-      0,
-      16,
+      12,
       2,
-      9,
-      11,
-      6,
+      7,
+      0,
+      8,
+      4,
+      5,
       15,
-      23,
       20,
-      7
+      11,
+      19,
+      6,
+      16,
+      23,
+      3,
+      1
     ],
     "queues": [
       [
         10,
-        8,
-        27,
+        9,
+        24,
         26,
-        25,
-        24
+        27,
+        25
       ],
       [
-        12,
+        14,
         13,
-        28,
-        30,
         29,
-        31
+        31,
+        28,
+        30
       ],
       [
         18,
         17
       ],
       [
-        22,
-        21
+        21,
+        22
       ]
     ],
+    "hiddenTokens": [
+      20,
+      19
+    ],
+    "pinnedTokens": [
+      5
+    ],
     "difficulty": {
-      "rank": 7,
-      "focus": "相似背景、连块拆分与重组",
+      "rank": 9,
       "shuffleSwaps": 20,
       "initialEdges": 1,
       "initialAvailablePhotos": 2,
@@ -411,50 +575,211 @@
     }
   },
   {
-    "id": 8,
-    "version": 3,
+    "id": 10,
+    "version": 4,
+    "chapter": 3,
     "title": "窗边的光",
-    "description": "看清花叶、窗框和桌面的延伸，耐心整理交错的画面。",
+    "description": "围着定位钉拼图，借窗框的接缝照亮暗片。",
     "photoIds": [
+      "photo-10",
       "photo-03",
       "photo-09",
-      "photo-10",
       "photo-06",
       "photo-08",
       "photo-11",
       "photo-05",
       "photo-12"
     ],
+    "featuredPhotoId": "photo-10",
+    "goldMoves": 26,
+    "parMoves": 35,
     "board": [
-      15,
-      21,
-      2,
-      0,
-      1,
-      3,
-      10,
-      7,
-      4,
-      19,
-      6,
+      11,
       23,
-      13,
-      9,
+      12,
+      5,
+      17,
       16,
-      5
+      0,
+      7,
+      10,
+      2,
+      6,
+      14,
+      3,
+      4,
+      1,
+      20
     ],
     "queues": [
       [
-        11,
         8,
-        27,
+        9,
+        24,
+        26,
+        25,
+        27
+      ],
+      [
+        15,
+        13,
+        31,
+        28,
+        29,
+        30
+      ],
+      [
+        19,
+        18
+      ],
+      [
+        21,
+        22
+      ]
+    ],
+    "hiddenTokens": [
+      10,
+      16,
+      4
+    ],
+    "pinnedTokens": [
+      0
+    ],
+    "difficulty": {
+      "rank": 10,
+      "shuffleSwaps": 24,
+      "initialEdges": 1,
+      "initialAvailablePhotos": 2,
+      "reserveCount": 16,
+      "verifiedMoves": 20
+    }
+  },
+  {
+    "id": 11,
+    "version": 4,
+    "chapter": 3,
+    "title": "暗房双锚",
+    "description": "两张相纸各有一枚钉，选一侧开始装帧。",
+    "photoIds": [
+      "photo-11",
+      "photo-08",
+      "photo-03",
+      "photo-10",
+      "photo-09",
+      "photo-06",
+      "photo-12",
+      "photo-07"
+    ],
+    "featuredPhotoId": "photo-11",
+    "goldMoves": 28,
+    "parMoves": 37,
+    "board": [
+      9,
+      19,
+      16,
+      3,
+      5,
+      14,
+      6,
+      22,
+      7,
+      13,
+      4,
+      10,
+      1,
+      21,
+      2,
+      0
+    ],
+    "queues": [
+      [
+        8,
+        11,
         24,
         25,
+        27,
         26
       ],
       [
         12,
-        14,
+        15,
+        31,
+        28,
+        30,
+        29
+      ],
+      [
+        18,
+        17
+      ],
+      [
+        20,
+        23
+      ]
+    ],
+    "hiddenTokens": [],
+    "pinnedTokens": [
+      6,
+      2
+    ],
+    "difficulty": {
+      "rank": 11,
+      "shuffleSwaps": 28,
+      "initialEdges": 1,
+      "initialAvailablePhotos": 2,
+      "reserveCount": 16,
+      "verifiedMoves": 21
+    }
+  },
+  {
+    "id": 12,
+    "version": 4,
+    "chapter": 3,
+    "title": "拾光终章",
+    "description": "点亮暗片、解开双钉，完成最后一卷。",
+    "photoIds": [
+      "photo-12",
+      "photo-03",
+      "photo-06",
+      "photo-09",
+      "photo-08",
+      "photo-11",
+      "photo-10",
+      "photo-01"
+    ],
+    "featuredPhotoId": "photo-12",
+    "goldMoves": 31,
+    "parMoves": 42,
+    "board": [
+      3,
+      11,
+      0,
+      16,
+      19,
+      20,
+      15,
+      21,
+      14,
+      8,
+      5,
+      6,
+      4,
+      2,
+      1,
+      7
+    ],
+    "queues": [
+      [
+        9,
+        10,
+        24,
+        27,
+        26,
+        25
+      ],
+      [
+        12,
+        13,
         29,
         28,
         30,
@@ -465,154 +790,25 @@
         17
       ],
       [
-        22,
-        20
-      ]
-    ],
-    "difficulty": {
-      "rank": 8,
-      "focus": "多组相近色调与跨区搬移",
-      "shuffleSwaps": 24,
-      "initialEdges": 0,
-      "initialAvailablePhotos": 2,
-      "reserveCount": 16,
-      "verifiedMoves": 20
-    }
-  },
-  {
-    "id": 9,
-    "version": 3,
-    "title": "细节收藏家",
-    "description": "从四散的小线索开始，让下一张照片慢慢显现。",
-    "photoIds": [
-      "photo-08",
-      "photo-11",
-      "photo-03",
-      "photo-10",
-      "photo-09",
-      "photo-06",
-      "photo-12",
-      "photo-07"
-    ],
-    "board": [
-      0,
-      6,
-      19,
-      8,
-      3,
-      12,
-      17,
-      13,
-      1,
-      2,
-      14,
-      5,
-      18,
-      11,
-      7,
-      10
-    ],
-    "queues": [
-      [
-        4,
-        21,
-        22,
         23,
-        20
-      ],
-      [
-        9,
-        26,
-        25,
-        27,
-        24
-      ],
-      [
-        15,
-        30,
-        29,
-        28,
-        31
-      ],
-      [
-        16
-      ]
-    ],
-    "difficulty": {
-      "rank": 9,
-      "focus": "仅一张初始齐片照片与后续预拼",
-      "shuffleSwaps": 28,
-      "initialEdges": 0,
-      "initialAvailablePhotos": 1,
-      "reserveCount": 16,
-      "verifiedMoves": 22
-    }
-  },
-  {
-    "id": 10,
-    "version": 3,
-    "title": "一拼成画",
-    "description": "花、早餐和猫咪交织在一起，完成最后一页生活相册。",
-    "photoIds": [
-      "photo-10",
-      "photo-03",
-      "photo-06",
-      "photo-09",
-      "photo-08",
-      "photo-11",
-      "photo-12",
-      "photo-01"
-    ],
-    "board": [
-      1,
-      13,
-      8,
-      2,
-      6,
-      16,
-      5,
-      9,
-      4,
-      14,
-      19,
-      0,
-      3,
-      12,
-      17,
-      11
-    ],
-    "queues": [
-      [
-        7,
-        20,
-        23,
-        21,
         22
-      ],
-      [
-        10,
-        25,
-        24,
-        27,
-        26
-      ],
-      [
-        15,
-        28,
-        30,
-        29,
-        31
-      ],
-      [
-        18
       ]
     ],
+    "hiddenTokens": [
+      6,
+      19,
+      8,
+      1
+    ],
+    "pinnedTokens": [
+      7,
+      0
+    ],
     "difficulty": {
-      "rank": 10,
-      "focus": "少量线索、相似构图与连续整理",
+      "rank": 12,
       "shuffleSwaps": 34,
       "initialEdges": 0,
-      "initialAvailablePhotos": 1,
+      "initialAvailablePhotos": 2,
       "reserveCount": 16,
       "verifiedMoves": 23
     }

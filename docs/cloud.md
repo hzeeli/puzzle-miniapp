@@ -6,7 +6,21 @@
 
 配置环境：名称 `cloud1`，环境 ID `cloud1-d7gu7tyfpdb64e613`。部署前使用当前登录账号查询该环境并确认关联的 AppID。环境 ID 不是密钥。客户端通过 `wx.cloud.init({ env: 'cloud1-d7gu7tyfpdb64e613' })` 统一初始化；云函数使用 `cloud.DYNAMIC_CURRENT_ENV`。
 
-`gameApi` 使用 `wx-server-sdk` **4.0.2**（npm 官方注册表核实并锁定）。构建步骤将仓库 `shared/` 复制到 `cloudfunctions/gameApi/shared/`，共享规则和关卡只有一个源文件版本。不要手工修改复制目录。
+`gameApi` 使用 `wx-server-sdk` **4.0.2**（npm 官方注册表核实并锁定）。小游戏与云函数共用仓库根目录的 `shared/`。构建将当前规则与 v3、v4 两册固定关卡复制进 `cloudfunctions/gameApi/shared/`。所有规则和关卡变更均在源目录进行。
+
+### 部署顺序
+
+1. 在项目根目录运行下列命令。目录比较应无差异，云函数包须包含 `shared/journey.js`、`shared/story-replay.js`、模板和固定关卡数据、共享规则与资料策略。
+
+   ```sh
+   npm run check:levels
+   npm test
+   npm run build
+   diff -qr shared cloudfunctions/gameApi/shared
+   ```
+
+2. 先将本次构建的 `gameApi` 部署至对应云环境，保留三集合中的现有数据、索引、权限与维护定时器。现有 v3/v4 客户端保留原接口，新主线使用下面三项动作。
+3. 在微信模拟器调用 `storyBootstrap`、`submitStoryClear` 和 `storyLeaderboard`，核对同一微信账号提交、重复提交、读回名次。使用现有 v3/v4 入口作兼容性复验。
 
 开发者工具应开启 CLI / HTTP 服务端口。以下 `cli` 代表 macOS 上 `/Applications/wechatwebdevtools.app/Contents/MacOS/cli`：
 
@@ -16,7 +30,7 @@ cli cloud functions list --env cloud1-d7gu7tyfpdb64e613 --project PROJECT_PATH
 cli cloud functions deploy --env cloud1-d7gu7tyfpdb64e613 --names gameApi --remote-npm-install --project PROJECT_PATH
 ```
 
-部署前先运行项目构建，使函数目录内包含 `shared/rules.js`、`shared/levels.js`、`shared/profile-options.js`。使用云端安装依赖，不上传本地 `node_modules`。不要把本地测试结果称为云端部署验证。[微信 CLI 文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+部署使用云端安装依赖。本地构建、规则重放和模拟器离线测试的结果应与部署后的云端实测分别记录。[微信 CLI 文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
 
 ## 数据库初始化与权限
 
@@ -88,27 +102,48 @@ wx.cloud.callFunction({ name: 'gameApi', data: { action, payload } })
 
 网络层 `callFunction` 失败与业务 `ok:false` 需要分别处理；禁止展示假同步成功。按接口返回的业务错误 code 处理。匿名档案的默认昵称及头像标识由 bootstrap 从 `shared/profile-options.js` 生成。
 
+### 连续闯关总榜
+
+新版总榜展示每位玩家经云端重放的最高连续通关号。前十按关数降序，同关按云端首次确认时间升序，再按公开玩家 ID 字典序排列。离线成绩恢复联网时以首次确认的服务端时间参与同关排序。本地最佳用时独立保存。
+
+| 动作 | 请求 | 响应 |
+|---|---|---|
+| `storyBootstrap` | `{consentVersion}` | `{rankingVersion:1, publicProfile, highestLevel}`。沿用既有微信身份及资料，首次进度为 0 |
+| `submitStoryClear` | `{playerId, level, sessionVersion, moves, toolHistory?}` | `{highestLevel}`。登录档案 ID 取自最近一次 bootstrap |
+| `storyLeaderboard` | `{}` | `{rankingVersion:1, entries, own}`。空榜为 `[]`，本人尚无云端成绩时 `own:null` |
+
+`entries` 的行格式为 `{rank,id,nickname,nicknameId,avatarId,avatarUrl,profileSource,level,achievedAt,isSelf}`。`own` 为 `{rank,level,achievedAt}`，可以查询本人排在十名以外的名次。游客自动分配匿名昵称，玩家主动申请微信资料时继续使用 CloudID 的内容安全审核链路。
+
+客户端完成每一关时在本机保存 `level`、编排版号、移动序列及道具使用位置，直到服务器确认。新编排为 `sessionVersion:3`；仍在进行的旧 60 站主线使用 1。服务端从可信关号与编排版号构造完整棋盘，只接受从第 1 关起无缺口的下一关。移动最多 2,000 步，道具历史最多 5 项，校验每种道具的单局次数、使用顺序及动作合法性。保存在旧版设备上的纯计时/星级摘要只能证明本地显示进度。服务器须取得可重放的完整操作才能增加榜单进度。
+
+同一关的并发或迟到重传返回已提交的最高关，不刷新达成时间。`PREVIOUS_REQUIRED` 表示通关条目间存在缺口；客户端按 `highestLevel + 1` 对账。`PROFILE_CHANGED` 表示提交期间微信档案已重新建立。`INVALID_MOVES` 或 `UNSOLVED_RUN` 拒绝无效证据或未通关局面。服务端使用真实身份，不读取客户端传入的用时、棋盘、星数或排行榜名次。
+
+**存储与兼容**　`players.storyScore` 保存本人的 `{level,achievedAt,key}`，`bestScores` 仅为该人保留一个主线榜行。榜行主键以大写 `S` 开头，后接定宽反序关号、服务端时间和玩家 ID，使用集合内置的唯一主键索引顺序读取前十或计数本人前序行。榜单升级、旧行清除和个人进度在同一事务中提交。v3/v4 竞速行继续使用十六进制散列主键和原索引。删号事务同步移除主线榜行，其他玩家的名次随即更新。
+
+### 旧版固定关卡接口
+
 ### bootstrap
 
-输入 `{ consentVersion: CONSENT_VERSION }`，版本由 `shared/profile-options.js` 统一定义。仅在用户主动同意当前数据说明、微信隐私授权也通过后调用。
+输入 `{ consentVersion, levelVersion? }`。`consentVersion` 来自 `shared/profile-options.js`，只在业务隐私说明与微信隐私授权通过后使用。下面三个请求（`bootstrap`、`startRun`、`leaderboard`）省略 `levelVersion` 时均采用 3；新版发数字 4。其他版号返回 `LEVEL_CHANGED`。
 
-返回 `{ publicProfile, unlockedLevel, bestScores, activeRun, serverNow }`。
+返回公开资料、`levelVersion`、`unlockedLevel`、`bestScores`、`activeRun` 和 `serverNow`。请求 v4 时另返回 `legacyBestScores`。
 
-- `publicProfile`：`{ id, nickname, nicknameId, avatarId, avatarUrl, profileSource }`，`id` 是随机公开 ID。`profileSource` 为 `wechat` 时昵称与头像来自已验证的微信开放数据；`guest` 为访客资料，不得标为微信昵称。
-- `bestScores`：当前每关版本的 `{ levelId, levelVersion, durationMs, achievedAt }` 数组。
-- `activeRun`：有效活跃挑战的概要，或 `null`。
-- `unlockedLevel`：最高完成关卡的下一关建议，最大10；它不是锁关权限，全部10关都可选择。
+- `publicProfile` 为 `{ id, nickname, nicknameId, avatarId, avatarUrl, profileSource }`。两册共享微信身份与公开资料。`profileSource` 为 `wechat` 时使用已验证的微信昵称和头像，访客为 `guest`。
+- `bestScores` 为所请求版本的 `{ levelId, levelVersion, durationMs, achievedAt }` 数组。`legacyBestScores` 单独列出 v3 旧成绩，供新版恢复经典相册照片。
+- `activeRun` 为该版本的有效活跃挑战或 `null`。`unlockedLevel` 是该版本的建议下一关。经典册最大 10，新册最大 12，两册内所有关卡均可直接挑战。
+
+旧云的 `bootstrap` 响应没有顶层 `levelVersion`。新版此时按 v3 云处理，微信资料与旧局同步仍可使用。开新册挑战时提供「本地游玩」与重试，收到版号不符的开局或榜单响应时会提示云版本问题。云函数升级后，开局重试会重新连接并确认版本。
 
 公开结果不包含原始 OpenID、UnionID、IP 或私有身份键。重复 bootstrap 保持同一档案。
 
 ### startRun
 
-输入 `{ levelId, requestId }`。`levelId` 为1至10的整数，`requestId` 是8至96位字母、数字、下划线或短横线。每次**新挑战**创建新 requestId；重试**同一请求**继续使用原 requestId。
+输入 `{ levelId, requestId, levelVersion? }`。经典册的 `levelId` 为 1–10，新册为 1–12，均为整数，`requestId` 是8至96位字母、数字、下划线或短横线。每次**新挑战**创建新 requestId；重试**同一请求**继续使用原 requestId。
 
 返回 `{ runId, levelId, levelVersion, startedAt, serverNow, status }`。
 
-- 同一用户同一 requestId 始终定位同一会话，不因重试重新计时；不能把原 requestId 用于另一关。
-- 新 requestId 会在同一事务中废弃旧活跃挑战，最多一局活跃。
+- 同一用户同一 requestId 始终定位同一会话。将它用于不同关卡或不同版本会返回 `REQUEST_CONFLICT`。
+- 新 requestId 会在同一事务中废弃该版本的上一局活跃挑战。每个用户在每个版本最多保留一局活跃挑战，v3 与 v4 可以各续玩一局。
 - 重试已经废弃或完成的 requestId 会返回其原始概要和真实 `status`，不会重新激活；客户端若要重玩需生成新 requestId。
 - 两次不同开始请求间隔不足800ms会返回可重试的 `TOO_MANY_REQUESTS`。
 
@@ -116,7 +151,7 @@ wx.cloud.callFunction({ name: 'gameApi', data: { action, payload } })
 
 输入 `{ runId }`。返回与 startRun 相同的概要。
 
-校验当前身份、会话归属、活跃状态、关卡版本及24小时有效期。过期或被另一局替代时明确报错；前端可保留本地局面用于练习，但不能把它伪装成仍可排名的云端会话。
+服务端依会话最初记录的 `levelVersion` 选择经典或新册规则，校验当前身份、会话归属、对应版本的活跃状态及 24 小时有效期。过期或被另一局替代时明确报错；前端可保留本地局面用于练习，但不能把它伪装成仍可排名的云端会话。
 
 ### finishRun
 
@@ -125,7 +160,7 @@ wx.cloud.callFunction({ name: 'gameApi', data: { action, payload } })
 返回 `{ durationMs, isPersonalBest, rank, unlockedLevel, bestMs }`。
 
 - 服务端取可信身份与服务器墙钟，忽略客户端身份、成功标记和耗时字段。
-- 用共享规则重放初始局面、交换、融合、消除、下落和补牌，必须真正完成全部目标。
+- 按会话保存的版号载入固定棋面，重放初始局面、交换、融合、消除、下落与补牌。新册还校验显影与定位钉，必须完成该版本关卡的全部目标。
 - 会话和个人最好成绩在事务中同时更新，已结算会话只返回原始结算结果。
 - `durationMs` / `isPersonalBest` / `bestMs` 保持该次结算时的幂等结果；`rank` 是查询时该用户**当前个人最佳**的名次，其他玩家刷新成绩后可以变化。
 - 服务器计时从 startRun 接收开始，到 finishRun 接收结束，含途中切后台、暂停与网络传输。开始前应已加载本关素材。界面需明确“排名计时持续进行”，不能从服务端耗时中扣减无法验证的客户端暂停。
@@ -135,11 +170,17 @@ wx.cloud.callFunction({ name: 'gameApi', data: { action, payload } })
 
 ### leaderboard
 
-输入 `{ levelId }`。
+输入 `{ levelId, levelVersion? }`。
 
-返回 `{ entries, ownBest, serverNow }`。`entries` 最多10条；每条为 `{ rank, id, nickname, nicknameId, avatarId, avatarUrl, profileSource, durationMs, achievedAt, isSelf }`。`ownBest` 为当前版本个人成绩与名次，或 `null`。
+返回 `{ levelVersion, entries, ownBest, serverNow }`。`entries` 最多10条；每条为 `{ rank, id, nickname, nicknameId, avatarId, avatarUrl, profileSource, durationMs, achievedAt, isSelf }`。`ownBest` 为当前版本个人成绩与名次，或 `null`。
 
-按耗时升序、达成时间升序、公开 ID 升序稳定排序；同一玩家同一关仅一条。旧关卡版本的成绩不混入当前榜单。榜单中的头像昵称实时读取已审核的公开资料，微信资料同步后会反映到榜单。
+按耗时升序、达成时间升序、公开 ID 升序稳定排序；同一玩家、同一关、同一版本仅一条。旧关卡版本的成绩不混入当前榜单。榜单中的头像昵称实时读取已审核的公开资料，微信资料同步后会反映到榜单。
+
+### 旧版客户端的续玩与相册迁移
+
+本机沿用 `yipin-chenghua-v2` 存储键。`schemaVersion: 2` 首次迁移保留微信同意状态、个人资料、原有音效设置和 `run` / `pendingResult` 操作日志。经典用时写入 `legacyBestV3` 并解锁对应照片，新册的用时与最高星级分别记录在 `best` 和 `stars`。
+
+续玩按本地日志保存的版号载入原关卡。经典进行中局可以继续，经典待同步终局用原 `runId` 补交。每次移动都将已成图的照片记入本地相册。新册结算星级按实际步数计算并保留个人最高；金框归属于已完成的新册典藏照。离线冷启动仍可查看已完成云局的本地结算，联网后可重新提交原日志。换设备后可由云端最佳成绩恢复对应关卡的完整照片，本机步数星章和单张局中收录没有独立云端字段。
 
 ### syncWechatProfile
 
@@ -174,7 +215,7 @@ UI 调用 `app.createWechatProfileButton({x,y,w,h})`，坐标为390逻辑坐标�
 
 输入 `{ confirm: true }`。必须由前端明确二次确认后调用。返回 `{ deleted: true }`。
 
-先事务性标记用户为删除中并移除当前版本榜单成绩，阻止并发新写；再按私有身份与公开档案 ID 共同匹配，清理该档案的会话和所有历史成绩；最后检查删除令牌并移除档案，包括保存的微信昵称、头像 URL 与审核时间。条件删除在数据库中执行，不先取文档 ID 再无条件删除。中断后可安全重试；并发的旧删除请求不会清理同一微信身份随后新建的档案记录。删除过程中 bootstrap、startRun、finishRun 和 syncWechatProfile 均拒绝新写入。调用成功后客户端清理本地身份、会话、历史成绩、两个隐私同意标记、微信头像内存缓存和原生授权按钮，不再自动重建云端档案。
+先事务性标记用户为删除中并移除 v3 与 v4 两册的榜单成绩，阻止并发新写；再按私有身份与公开档案 ID 共同匹配，清理该档案的会话和所有历史成绩；最后检查删除令牌并移除档案，包括保存的微信昵称、头像 URL 与审核时间。条件删除在数据库中执行，不先取文档 ID 再无条件删除。中断后可安全重试；并发的旧删除请求不会清理同一微信身份随后新建的档案记录。删除过程中 bootstrap、startRun、finishRun 和 syncWechatProfile 均拒绝新写入。调用成功后客户端清理本地身份、会话、两册历史成绩、星级、相册、金框、两个隐私同意标记、微信头像内存缓存和原生授权按钮，不再自动重建云端档案。
 
 ## 安全与生产验证
 
@@ -182,7 +223,7 @@ UI 调用 `app.createWechatProfileButton({x,y,w,h})`，坐标为390逻辑坐标�
 
 事务使用 `wx-server-sdk` 的 `runTransaction`，自动处理写冲突；事务内以 doc 定位，不使用 where 查询。纯规则复放在事务前完成，缩短锁持有时间；提交事务中再次验证会话状态与所有权。[微信事务文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database/transaction.html)
 
-本地 `tests/cloud.test.cjs` 使用可注入时钟和具有事务提交/回滚语义的内存仓库，验证身份、参数、幂等、并发、非法操作、计时、稳定排名、关卡版本、受控资料及删除重试。真实共享规则与十关参考解覆盖完整结算，缺失末步和伪造终局均被拒；并发删除后重建档案、文档 ID 被新档案复用也有回归检查。运行 `node --test tests/cloud.test.cjs` 获取当前结果；内存测试不替代真实云服务验收。
+本地 `tests/cloud.test.cjs` 使用可注入时钟和具有事务提交/回滚语义的内存仓库，验证身份、参数、幂等、并发、非法操作、计时、稳定排名、关卡版本、受控资料及删除重试。真实共享规则与十二关参考解覆盖新册完整结算，经典与新册第八关使用各自的真实操作日志分别入榜，缺失末步和伪造终局均被拒；并发删除后重建档案、文档 ID 被新档案复用也有回归检查。运行 `node --test tests/cloud.test.cjs` 获取当前结果；内存测试不替代真实云服务验收。
 
 部署后必须使用至少两个真实身份验证：能启动/恢复/完成挑战；云数据库可看到可信写入；重试不重复记分；另一个玩家不能代提交；前端直写被拒；索引就绪后前10排序正确；删除后仅该用户资料消失；切后台、弱网及重新进入按真实状态恢复。
 

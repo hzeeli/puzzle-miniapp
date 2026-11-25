@@ -134,3 +134,60 @@ test('八图回归布局可以按独立保存的操作序列完成', () => {
   const out=R.replay(level,steps);
   assert.equal(out.ok,true);assert.equal(out.solved,true);assert.equal(out.state.completed.length,8);
 });
+
+test('暗片独立占格，主动移动当步显影并可立即完成整图', () => {
+  const s = state([[0,0],[1,1],[4,2],[7,3]],1);
+  s.hidden = [3];
+  assert.equal(R.joined([2,3],0,1,s.hidden),false);
+  const out = R.applyMove(s,7,5);
+  assert.deepEqual(out.events.map(e => e.type),['move','reveal','complete']);
+  assert.deepEqual(out.events[1].tokens,[3]);
+  assert.deepEqual(out.events[0].after.hidden,[3]);
+  assert.equal(out.state.moves,1);
+  assert.ok(R.isSolved(out.state));
+});
+
+test('新接缝四邻的暗片顺带显影，既有接缝与对角线不触发', () => {
+  const s = state([[0,0],[2,1],[4,2],[5,3],[10,8],[15,9]]);
+  s.hidden = [3,8];
+  const moved = R.applyMove(s,2,1);
+  assert.deepEqual(moved.events.find(e => e.type === 'reveal').tokens,[3]);
+  assert.deepEqual(moved.state.hidden,[8]);
+  assert.deepEqual(R.applyMove(s,15,14).state.hidden,[3,8]);
+});
+
+test('定位钉阻止拖组和任意成员覆盖，拼完整图后释放', () => {
+  const s = state([[0,0],[1,1],[4,2],[10,3],[15,8]]);
+  s.pinned = [0];
+  for (const [from,to] of [[1,2],[4,8],[15,0]]) {
+    assert.equal(R.moveReason(s,from,to),'PINNED_BLOCKED');
+    const result=R.applyMove(s,from,to);
+    assert.equal(result.reason,'PINNED_BLOCKED');
+    assert.equal(result.state,s);
+  }
+  const result=R.applyMove(s,10,5), completed=result.events.find(e=>e.type==='complete');
+  assert.deepEqual(completed.unpinnedTokens,[0]);
+  assert.deepEqual(result.state.pinned,[]);
+  assert.deepEqual(completed.before.pinned,[0]);
+});
+
+test('其他图完成下落时，钉住的连块保持原位', () => {
+  const s=state([[0,0],[1,1],[8,4],[9,5],[12,6],[15,7]]);
+  s.pinned=[0];
+  const result=R.applyMove(s,15,13);
+  assert.deepEqual(result.state.completed,[1]);
+  assert.equal(result.state.board[0],0);
+  assert.equal(result.state.board[1],1);
+  assert.deepEqual(result.state.pinned,[0]);
+});
+
+test('关卡拒绝无法容纳整图、重叠或重复锁定的钉位', () => {
+  const board=[0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15];
+  const level={id:1,version:4,board,photoIds:['a','b','c','d'],queues:emptyQueues()};
+  assert.throws(()=>R.createState({...level,pinnedTokens:[0,1]}),/INVALID_LEVEL_PIN/);
+  const wrong=board.slice();[wrong[0],wrong[15]]=[wrong[15],wrong[0]];
+  assert.throws(()=>R.createState({...level,board:wrong,pinnedTokens:[0]}),/INVALID_LEVEL_PIN/);
+  const overlap=board.slice();[overlap[1],overlap[2]]=[overlap[2],overlap[1]];
+  assert.throws(()=>R.createState({...level,board:overlap,pinnedTokens:[0,4]}),/INVALID_LEVEL_PIN/);
+  assert.throws(()=>R.createState({...level,pinnedTokens:[0],hiddenTokens:[0]}),/INVALID_LEVEL_MARKS/);
+});

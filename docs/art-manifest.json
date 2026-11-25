@@ -195,369 +195,61 @@
         1024,
         1536
       ]
-    },
-    {
-      "id": "stage-background",
-      "title": "雾蓝舞台背景",
-      "kind": "ui",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: background-extraction\n资产：正式微信照片拼图游戏的独立舞台背景，竖向2:4比例。\n输入图1和图2都仅为已确认的视觉基准，分别是首页和游戏中局。请提取并重建其中完全干净的雾蓝背景底面，色相、饱和度、柔和光照、微细低对比纸面纤维纹理必须严格继承参考。保持参考上方偏左温柔的散射亮区以及边缘略深的层次，整体是参考里的清爽中蓝而非灰白雾色。\n结果必须是一张完整平整、可铺满手机屏幕的背景，仅有材质与光照，没有任何前景对象。彻底去除全部照片、牌、按钮、文字、标志、图标、轮廓残影、粒子、拼图片形和界面阴影。不添加房间、植物、桌面、云朵或装饰图案。不要展示手机或边框。正面视图。输出竖向1024×2048或同等1:2比例，背景不透明。",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-d169-7990-b3c9-4b57f4114c20/exec-28391028-2bc3-47e3-b80b-84f2ed1ab2db.png",
-      "referencePaths": [
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/01-首页.png",
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/04-游戏中局.png"
-      ],
-      "sourceDimensions": [
-        887,
-        1774
-      ],
-      "path": "game/assets/ui/stage-background.jpg",
-      "width": 512,
-      "height": 1024,
-      "bytes": 30729,
-      "sha256": "296e203c111a35547a413eafc772d615e69408bc0ef53cce3e31b1dfa52f2fe8",
-      "transparent": false,
-      "postprocess": "sips 缩放为512×1024，JPEG质量72。",
-      "visualReview": "通过：已与批准目标图对照，并在雾蓝底实际合成查看，形状、材质、透明边缘和柔影正常。"
-    },
-    {
-      "id": "brand-logo",
-      "title": "一拼成画透明品牌标识",
-      "kind": "ui",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: background-extraction\n资产：已确认首页品牌字标的独立透明PNG。\n输入图1是已确认的完整首页。请只提取并高保真重建顶部的“一拼成画”品牌标识：四个汉字必须精确写成“一拼成画”，从左到右，字形不能增减笔画；保留参考的圆润象牙立体字、温润蜜金下沿、深雾蓝不规则字标底形、蓝色细亮边。保留字标上方原有的小蜜金拼图片和小叠照片标识，它们是这个已确认logo的一部分。严格匹配参考比例、造型、材质与左上柔光，不能换成平面字体、书法或另一个logo方案。\n只输出这一个独立logo，水平居中，四周仅必要透明边距和轻微干净柔影；没有蓝色矩形背景、没有游戏照片、没有按钮、没有关卡数字、没有其他内容。真正透明alpha，半透明阴影干净。推荐横向画布，标识整体约3:1宽高，最终最长边约640像素。",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-d169-7990-b3c9-4b57f4114c20/exec-8e74acaa-5465-4565-a9d8-72d6fa9801d5.png",
-      "referencePaths": [
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/01-首页.png"
-      ],
-      "sourceDimensions": [
-        2172,
-        724
-      ],
-      "path": "game/assets/ui/brand-logo.png",
-      "width": 512,
-      "height": 192,
-      "bytes": 136874,
-      "sha256": "e0f578013e29906811a2d1b08387f16d654294280bdf0dc06a539d020ec4a5e9",
-      "transparent": true,
-      "postprocess": "sips 等比缩至640×213，再裁切[x=64,y=4,w=512,h=192]，保留柔影。 导出清理alpha≤3/255的透明噪声，alpha为0的RGB归零。",
-      "visualReview": "通过：已与批准目标图对照，并在雾蓝底实际合成查看，形状、材质、透明边缘和柔影正常。",
-      "text": "一拼成画"
-    },
-    {
-      "id": "card-back",
-      "title": "蜜金拼片浮雕牌背",
-      "kind": "ui",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: style-transfer\n资产：一张独立的正式游戏牌背，透明PNG。\n输入图1是已确认的中局视觉基准。请把其顶部蜜金牌堆的牌背材质派生为唯一一张正视竖向2:3卡牌，完整独立悬在透明画布中。严格继承参考的温润蜜金橙色、象牙细外沿、下沿浅金厚度、角部精巧卷纹和中间浅奶油色拼图片浮雕；全部边缘圆润干净。中间只有一个拼图片浮雕，不出现文字或数字。\n构图为正面正视的单张卡牌，四角对称，长边竖直，不能透视倾斜，不能是牌堆。卡牌占画布大部分，四周留足完整微弱柔影的透明空白。左上高光、右下柔影与参考一致。不添加背景、桌面、手、光粒子或其他对象。保持2:3竖向外观，最终消费尺寸256×384。真正透明背景及半透明阴影。",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-d169-7990-b3c9-4b57f4114c20/exec-45069fa1-4203-46db-8aab-b03c63de93c7.png",
-      "referencePaths": [
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/04-游戏中局.png"
-      ],
-      "sourceDimensions": [
-        1024,
-        1536
-      ],
-      "path": "game/assets/ui/card-back.png",
-      "width": 227,
-      "height": 310,
-      "bytes": 84500,
-      "sha256": "b43a9843a0b31f42901dc31d221cd3cae4f7b1cc934e290fe91bbe60635e79ec",
-      "transparent": true,
-      "postprocess": "sips 缩放为256×384，再裁切[x=15,y=34,w=227,h=310]，保留柔影。 导出清理alpha≤3/255的透明噪声，alpha为0的RGB归零。",
-      "visualReview": "通过：已与批准目标图对照，并在雾蓝底实际合成查看，形状、材质、透明边缘和柔影正常。"
-    },
-    {
-      "id": "primary-button",
-      "title": "无字蜜金主按钮",
-      "kind": "ui",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: precise-object-edit\n资产：正式游戏可复用的空白主按钮，透明PNG。\n输入图1是已确认首页，图2是已确认个人页；它们仅提供已定材质与边缘。请派生一个空白、正视、长横向蜜金胶囊按钮。严格匹配首页“开始拼图”按钮的温暖浅蜜金中心、奶油象牙多层细边、蜜金下沿厚度和四角微小卷纹，左上柔光，右下短柔影。按钮外观宽高约4:1，中央保留干净宽阔空白供运行时绘制文字。\n彻底去掉全部汉字、数字、标签和图形。不要保留首页顶部“第4关”蓝色小牌，不要保留左右两枚拼图片图标，不要添加字母或符号。只保留长胶囊本身和小角纹。形状水平对称、不倾斜、不透视，透明画布中只有一个完整按钮，四周尽量紧凑，柔影完整且不裁切。真正透明背景与干净alpha，不要黑色底色、虚假的棋盘格或灰色矩形。最终按钮资源约640×160；输出足够高分辨率便于缩小。",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-d169-7990-b3c9-4b57f4114c20/exec-3f67f55e-3979-43b9-bb90-946e0442fbf5.png",
-      "referencePaths": [
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/01-首页.png",
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/07-个人设置.png"
-      ],
-      "sourceDimensions": [
-        2172,
-        724
-      ],
-      "path": "game/assets/ui/primary-button.png",
-      "width": 582,
-      "height": 159,
-      "bytes": 103804,
-      "sha256": "0257a07b9bec9531aefcadc0af376a447e3ae1c658f513b80978564791d1648f",
-      "transparent": true,
-      "postprocess": "sips 等比缩至640×213，再裁切[x=30,y=34,w=582,h=159]，保留柔影。 导出清理alpha≤3/255的透明噪声，alpha为0的RGB归零。",
-      "visualReview": "通过：已与批准目标图对照，并在雾蓝底实际合成查看，形状、材质、透明边缘和柔影正常。",
-      "bakedText": false
-    },
-    {
-      "id": "controls-atlas",
-      "title": "九格蓝釉圆钮图集",
-      "kind": "ui",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: style-transfer\n资产：游戏运行时使用的一张透明PNG控件图集，严格3列×3行等大正方形单元，正方形画布。\n输入图1游戏中局、图2个人页、图3首页都是已确认的同一套视觉基准。只从这些参考派生圆钮，不能另创风格：蓝釉圆形按钮、细象牙奶油边和细蜜金下沿，温柔高光来自左上，柔和阴影向右下；精致可触摸的立体休闲游戏质感，正面平视，圆盘必须是真圆，不倾斜。\n画布严格均匀3×3网格。每格中心处放一个同尺寸圆钮；每个圆盘直径约单元宽的70%，包括阴影的总外观不超过单元82%，所有对象和阴影完全留在自己的单元内，格间透明。位置对齐、半径、边框粗细、光照、阴影长度必须一致。\n九个图形按从左到右、从上到下的精确顺序：第1行[向左返回箭头,两根暂停竖条,蜜金灯泡]；第2行[两张叠放的风景照片,蜜金奖杯,象牙齿轮]；第3行[循环重玩箭头,象牙小房子,带象牙勾的蓝云图形]。图形都放在统一蓝色圆盘中，语义简洁、精致立体，继承参考中的相册、灯泡、奖杯、设置和返回图形设计语言。不要给任一图标加选中发光圈。\n真正透明背景保留干净alpha和半透明柔影，无文字、无数字、无标签、无网格线、无背景面板、无多余图标。推荐1536×1536，最终将缩放为768×768，每格256×256。",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-d169-7990-b3c9-4b57f4114c20/exec-01fa65a2-360b-4570-861b-cd1869768dbf.png",
-      "referencePaths": [
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/04-游戏中局.png",
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/07-个人设置.png",
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/01-首页.png"
-      ],
-      "sourceDimensions": [
-        1254,
-        1254
-      ],
-      "path": "game/assets/ui/controls-atlas.png",
-      "width": 768,
-      "height": 768,
-      "bytes": 194027,
-      "sha256": "022b864a2939520fab13a3e19d2e77dde2e8820b4977494ec2d9e37fa3afb96a",
-      "transparent": true,
-      "postprocess": "按原始3×3单元机械裁切/等比缩放，以主体宽192px、中心(128,128)归一到256px单元，再用libimagequant 256色误差扩散压缩，保留alpha。图标没有手绘或重绘。 导出清理alpha≤3/255的透明噪声，alpha为0的RGB归零。",
-      "visualReview": "通过：已与批准目标图对照，并在雾蓝底实际合成查看，形状、材质、透明边缘和柔影正常。",
-      "atlas": {
-        "file": "controls-atlas.png",
-        "width": 768,
-        "height": 768,
-        "columns": 3,
-        "rows": 3,
-        "cellWidth": 256,
-        "cellHeight": 256,
-        "bodyCenter": [
-          128,
-          128
-        ],
-        "bodyWidth": 192,
-        "order": [
-          "back",
-          "pause",
-          "hint",
-          "album",
-          "trophy",
-          "settings",
-          "replay",
-          "home",
-          "cloud"
-        ],
-        "cropCellFormula": "x=(index%3)*256, y=floor(index/3)*256, width=256, height=256"
-      },
-      "cells": [
-        {
-          "id": "back",
-          "sourceRect": [
-            0,
-            0,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            29,
-            28,
-            233,
-            240
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "pause",
-          "sourceRect": [
-            256,
-            0,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            30,
-            27,
-            235,
-            240
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "hint",
-          "sourceRect": [
-            512,
-            0,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            29,
-            29,
-            234,
-            239
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "album",
-          "sourceRect": [
-            0,
-            256,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            28,
-            28,
-            233,
-            241
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "trophy",
-          "sourceRect": [
-            256,
-            256,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            29,
-            28,
-            234,
-            241
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "settings",
-          "sourceRect": [
-            512,
-            256,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            29,
-            28,
-            234,
-            241
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "replay",
-          "sourceRect": [
-            0,
-            512,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            28,
-            27,
-            233,
-            241
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "home",
-          "sourceRect": [
-            256,
-            512,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            29,
-            28,
-            234,
-            241
-          ],
-          "edgeAlphaMax": 0
-        },
-        {
-          "id": "cloud",
-          "sourceRect": [
-            512,
-            512,
-            256,
-            256
-          ],
-          "visibleBoundsWithinCell": [
-            28,
-            28,
-            234,
-            242
-          ],
-          "edgeAlphaMax": 0
-        }
-      ]
-    },
-    {
-      "id": "hint-hand",
-      "title": "白色指示手",
-      "kind": "ui",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: background-extraction\n资产：拼图交互提示手的独立透明PNG。\n输入图1是已确认的游戏中局。请只提取并重建靠近棋盘中下部正在指向拖动照片的白色指示手，严格匹配原图的精致白色立体手套造型、灰色细轮廓、轻微柔影和象牙袖口。手的食指朝左上方伸出，拇指与其余手指自然收拢，手腕在右下。保持参考视角与比例，不添加手臂、写实皮肤、第二只手或别的物体。\n独立单只手放在透明竖向画布中，四周透明边距紧凑，轮廓与阴影完整，不要照片、金色目标框、背景、文字、光效或箭头。真正透明alpha及干净半透明阴影。最终使用尺寸约128×160，生成清晰高分辨率源文件。",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-d169-7990-b3c9-4b57f4114c20/exec-049576c3-1b92-453d-80d6-0ce3bd5cd997.png",
-      "referencePaths": [
-        "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/outputs/设计图/04-游戏中局.png"
-      ],
-      "sourceDimensions": [
-        1122,
-        1402
-      ],
-      "path": "game/assets/ui/hint-hand.png",
-      "width": 102,
-      "height": 110,
-      "bytes": 12997,
-      "sha256": "8b3cc0af0a5ee1b8362420fc49cd9ae029850765196feba9ca7277f1bdc026a2",
-      "transparent": true,
-      "postprocess": "sips 缩放为128×160，再裁切[x=9,y=28,w=102,h=110]，保留柔影。 导出清理alpha≤3/255的透明噪声，alpha为0的RGB归零。",
-      "visualReview": "通过：已与批准目标图对照，并在雾蓝底实际合成查看，形状、材质、透明边缘和柔影正常。"
-    },
-    {
-      "id": "platform-app-icon",
-      "title": "一拼成画应用图标",
-      "kind": "platform",
-      "generator": "内置 image_gen",
-      "generatedAt": "2026-11-14",
-      "prompt": "Use case: ads-marketing. Create the final square WeChat mini-game APPLICATION ICON for 一拼成画, matching the approved mist-blue / cream-honey art direction of reference 1. Reference 2 is the original sunflower photograph used in the actual game. One crisp readable emblem at small 64-pixel size: a bright beautiful sunflower photographic picture split into four neatly aligned rounded photographic quarters, three quarters connected and the lower-right quarter gently offset a little, so picture assembly is immediately legible. The photograph stays natural, vivid and detailed, not a cartoon flower. Thin ivory and softly honey-colored photographic card edges, a restrained tactile bevel and a clean short shadow, consistent top-left light. Place it on a luminous mist-blue rounded-square enamel field with a refined cream highlight. Main sunflower head must be large, unmistakable, and nearly fill the central icon. Cohesive premium casual-game craft, not a generic flat vector puzzle symbol. No letters, title, numbers, badges, people, phone frame, watermark, or extra decorations. Full square image, opaque background, clean silhouette and high-quality downsampling readability.",
-      "sourcePath": "/Users/lihaoze/.codex/generated_images/01a1d589-482b-78b3-b326-207796297082/exec-325a082a-03d2-42bc-beac-d7819d8e1ffb.png",
-      "referencePaths": [
-        "outputs/设计图/01-首页.png",
-        "game/assets/photos/photo-02.jpg"
-      ],
-      "path": "art/platform/app-icon.png",
-      "width": 512,
-      "height": 512,
-      "transparent": false,
-      "postprocess": "使用sips等比例缩放至512×512；用于平台资料，未打入小游戏运行包。",
-      "visualReview": "通过：主视觉为向日葵照片四分片，雾蓝与奶油蜜金风格一致，小尺寸图形清晰，无文字与水印。",
-      "bytes": 454693,
-      "sha256": "7d264b92ef887db9ee369301b7af32fb1853bbae5cc5b1cdc197dc2c9b995e39"
     }
   ],
-  "uiProduction": {
-    "style": "已批准的雾蓝底面、象牙字蜜金边、蓝釉圆钮与蜜金牌背",
-    "date": "2026-11-14",
-    "totalNewBytes": 562931,
-    "budgetBytes": 800000,
-    "reusedAssets": [],
-    "runtimeContent": [
-      "所有文字和数字（品牌标识除外）",
-      "关卡与计时状态",
-      "微信官方获取的真实头像昵称"
-    ],
-    "sourceMethod": "参考已批准完整目标图，内置image_gen派生；机械裁切缩放、图集排布归一和PNG/JPEG压缩。",
-    "reviewEvidence": [
-      "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/work/ui-qa/controls-atlas-final.jpg",
-      "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/work/ui-qa/brand-logo-final.jpg",
-      "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/work/ui-qa/card-back-final.jpg",
-      "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/work/ui-qa/primary-button-final.jpg",
-      "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/work/ui-qa/hint-hand-final.jpg"
-    ]
-  }
+  "garden": [
+    {
+      "path": "game/assets/ui/garden.jpg",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-655a910f-9381-4529-9d4c-092d64c5bdfd.png",
+      "prompt": "A full-bleed portrait 9:16 background illustration for an original, high-quality cozy picture-book mobile puzzle game. Bright clear airy morning, translucent watercolor washes and opaque gouache painted by hand on fine cold-pressed paper. Looking into a sunlit cottage garden, cornflower-blue and pale turquoise sky with just a few soft rounded cream clouds at top, an arched little mint greenhouse with glass windows at the far left midground, mellow distant wooded hills, winding pale peach stepping-stone path. At the bottom edges soft peach poppies, daisy clusters, blue forget-me-nots and sage leaves. Art directed as a layered landscape: central 55% very quiet pale mint meadow to place photographs above; open light sky upper 30% for title overlay. Gently rounded silhouettes, elegant botanical details at outer edges, delicately tactile, cheerful and warm, sophisticated contemporary children's book illustration. Absolutely no characters, no frames, no text, no letters, no logos, no UI or interface. Colors stay luminous and light, art should subordinate to vivid photos placed on top. Portrait fullscreen game background, not a picture of a phone."
+    },
+    {
+      "path": "game/assets/ui/brand-logo.png",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-ee4187ad-0287-44eb-ab4e-d91cc3bc6149.png",
+      "prompt": "Create a standalone polished bright picture-book garden game wordmark, exact four Chinese characters 一拼成画 in a SINGLE horizontal line. Artisan bold rounded brush lettering in deep forest jade green with a clean warm ivory contour and a small soft muted teal shadow. Playful uneven baseline, refined silhouettes, distinctive natural Chinese strokes, very readable at 220 pixels wide. A little emerging watercolor sprout above the left strokes, tiny white daisies with ochre centers on the right. Whimsical hand painted watercolor-gouache warmth, garden greens and light apricot. No backing plaque, no signboard, no extruded plastic, no large illustration, no separate captions or English. Isolate the lettering and its two small decorations on TRUE TRANSPARENT background, wide horizontal close crop."
+    },
+    {
+      "path": "game/assets/ui/controls-atlas.png",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-214c4990-99d5-4998-b784-d91b7e59466b.png",
+      "prompt": "Create a genuine transparent PNG sprite atlas of NINE icons for a premium soft watercolor picture-book garden mobile puzzle game. Perfectly regular 3 by 3 grid, each icon centered in its equal square cell with lots of transparent space around it. Every icon on an identical round pale ivory watercolor disc with delicate sage outline and soft watercolor cast shadow. Thick dark teal-green legible pictograms, gentle pastel botanical touches; original playful hand-painted, zero glossy plastic, no hard corners, no text. From left to right and top to bottom: back chevron arrow, pause two bars, glowing yellow idea bulb; two little landscape photo prints, a small golden trophy cup, green settings gear; circular replay arrow, tiny warm cottage home, little blue cloud. Nine functional symbols, clean silhouettes and coherent gentle paint texture, no borders between cells."
+    },
+    {
+      "path": [
+        "art/garden-backgrounds/garden-1.jpg",
+        "art/garden-backgrounds/garden-2.jpg",
+        "art/garden-backgrounds/garden-3.jpg",
+        "art/garden-backgrounds/garden-4.jpg"
+      ],
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-ff9d6782-510f-427d-ba46-3681c7df3c2c.png",
+      "prompt": "Create a single landscape watercolor environment atlas with FOUR EXACTLY EQUAL WIDTH PORTRAIT PANELS side by side, no gutters or borders, one distinct continuous scene per panel. All four are soft airy picture book gardens for a serene photography game, gouache + watercolor on fine cold-pressed paper, sunny atmosphere, high key colors, restrained shadows, central 55 percent of every panel deliberately low-contrast open lawn or path to let overlaid photos stay dominant. Far left panel: pale blush cherry blossom courtyard, graceful pink cherry branches, stone path and little wooden trellis, petals at outer edges. Second panel: warm cream sunny citrus cloister with pale plaster arches and lemon vines, distant rolling golden gardens. Third panel: blue sky with a distant lavender field, watercolor purple flowers at the edge and mint rolling hills beyond an open meadow. Fourth panel: high-key winter greenhouse, snow dusted glass conservatory with glowing warm terracotta windows, pale icy sky, pristine snowy foreground. Each panel a wide-open arrangement with architecture near an edge. Luminous, handmade airy elegance, clearly distinct seasons, full bleed. Zero text or figures, zero objects in the central play space, no logos, no UI, no collaged photos."
+    },
+    {
+      "path": "art/platform/app-icon.png",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-07141652-9718-4e2c-8fe0-39ab3f550e6c.png",
+      "prompt": "Square full-bleed original mobile app icon for a serene watercolor garden photo-puzzle game. A single bright photographic sunflower in a creamy print cut into four rounded quarters, three seamlessly assembled and one warm ivory-edged quarter floating slightly out to the lower right. Print large and instantly legible. Behind it: simple airy hand-painted watercolor sage garden and pastel blue sky, a tiny white daisy accent, soft dappled sunlight. Bold clean large shapes, cheerful compact silhouette, suitable at 64 px. Elegant softly rounded corners on the pieces, delicate illustrated botanical style meets vivid realistic photograph; no lettering or numbers, no deep dark colors or metallic edging, no phone. Exactly square."
+    },
+    {
+      "path": "设计参考/绘本花园三屏示意.png",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-8f2cac45-59f8-4228-8e3f-8eca69c8c635.png",
+      "prompt": "A cohesive horizontal concept-art triptych for an original premium casual mobile puzzle game '一拼成画'. THREE adjacent portrait 9:19 game screens from left to right with a slim cream gutter, filling the sheet, NOT physical phones. Art direction: a luminous, clear Chinese picture-book watercolor garden, soft gouache and watercolor washes, light mint / butter yellow / pale sky blue and apricot wildflowers, warm ivory rounded pill controls, large breathing room. Vivid TRUE photographic puzzle pictures remain the clearest primary focal point; environment is soft hand drawn. LEFT home: whimsical hand-painted 一拼成画 title over sunny blue garden sky, a small greenhouse at left, central cheerful golden puppy photo with one detached quadrant floating toward its rounded print, green rounded primary start button, two mode cards with little flower and leaf for daily and free play. MIDDLE game screen: tranquil quiet pale mint garden, slim cream timer/status chips and pause, top-aligned card reserve, dominant clear 4 by 4 rectangular-tile puzzle assembling multiple photographic portraits of real flowers, animals, seashore and food; each tile about 2:3, a gentle mint-colored frame, low-key hint and picture buttons at bottom. RIGHT victory: airy golden meadow and sunny greenhouse, congratulatory ribbon with three warm painted stars arching above a real vivid puppy photographic postcard shown large, cream rounded score card and large green next-stage button, a few tiny petals. Aim for store-feature-worthy family-friendly crafted visual design. Original watercolor UI, no imitating a specific artist, no fat plastic/neon, no dark room, no square text boxes. Mockup design, art director mood and proportions, not final screenshots."
+    },
+    {
+      "path": "game/assets/ui/garden-badges.jpg",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207af-4aae-7bc2-93c2-b0f307dd4a85/exec-8554b515-4a29-4d3a-9672-d43d49bf48bd.png",
+      "prompt": "Production icon sheet: six beautiful handcrafted watercolor storybook garden medallions, exactly THREE COLUMNS x TWO ROWS on a genuine transparent background. Regular equal square cells, 3:2 landscape format, each entire icon fits in the central 78% of its own cell. Every medallion has the same warm ivory watercolor cotton-paper circular disk, delicate pale sage ring and tiny painted watercolor shadow. Functional pictograms are bold, charming, large and recognizable at 35px: top left an open folded watercolor map with a winding peach footpath and tiny signpost (route); top center a green botanical photo album with a pressed pink wildflower on its cover (gallery); top right a warm golden trophy cup with a sprig (rank). Bottom left a friendly illustrated straw gardening hat with teal ribbon and a little peach daisy, resting on two sage leaves (player/profile badge; no human face); bottom center a peach envelope with an emerging coral wildflower and warm sunlight (daily flower letter); bottom right a sky blue and cream butterfly flying above a small mint leaf (free play). Thick natural pigment shapes, light soft cream interiors, fine paper texture, vivid but airy (no dark outline). Paint delicate botanicals at bottom of each disk to unify. NO letters, numbers, words, captions or lines between cells."
+    },
+    {
+      "path": "game/assets/ui/result-ribbon.png",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207be-39c9-7860-b633-3fe82bf84523/exec-bc01de9c-204e-43d8-87bf-4dd6bf1b7396.png",
+      "generator": "ChatGPT 内置 image_gen",
+      "sha256": "e301251d8fcae8f216a7aec993cedb10f149808252e01c7afe74004b405f7c1e"
+    },
+    {
+      "path": "game/assets/ui/result-stars.png",
+      "source": "/Users/lihaoze/.codex/generated_images/01a207be-39c9-7860-b633-3fe82bf84523/exec-715dbbea-4b60-4449-91f2-d05e89cacdcf.png",
+      "generator": "ChatGPT 内置 image_gen",
+      "sha256": "6a56302c22eb4d3655f194f4b7f12267b5bc8c1008424b93e3cee9a3c58eff7c"
+    }
+  ],
+  "additionalPhotography": "拾光图库生成清单.json"
 }

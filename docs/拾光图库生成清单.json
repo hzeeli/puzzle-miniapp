@@ -1,0 +1,2055 @@
+{
+  "生成工具": "ChatGPT image_gen",
+  "原始图集目录": "/Users/lihaoze/Documents/Codex/2026-11-13/ego-1-demo-https-www-scenario-2/work/拾光图库原片",
+  "生成提示词通则": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:",
+  "原稿": {
+    "album-02.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "91eb59ea0cc92e15618e9e7544eaf43a20f7158e164fff7b71f8d41c7c0ac54f",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-2134ff2f-00c3-44ea-b5c4-6790b306a62b.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – red-and-ivory striped lighthouse on a shale headland under clear pink dawn, winding cliff path | single orange hermit crab in a spiral shell crawling over emerald tidal moss, macro side view | yellow wooden kayak beached beside opal-turquoise sea, overhead diagonal composition | one silver dolphin arcing over saturated cobalt waves with white splash below\nROW 2 (left to right) – coral-red metal beach pail with little blue spade and one sandcastle, close-up sandy beach | five weathered fishing floats in blue, terracotta and ivory tied to the side of an old teal dock | large vivid orange sea star resting on silver sand and ripple lines in shallow water | pastel mint ice-cream tricycle with striped awning at seaside, orange deck steps, no signs\nROW 3 (left to right) – crimson triangular sail of a small white dinghy against glittering golden harbor, blue rope foreground | school of bright yellow fish threading a lavender coral reef under turquoise sunbeams | a brown pelican perched on a bleached piling, soft turquoise bay behind, pale orange bill contrasting | translucent aqua and emerald sea glass pebbles on wet black sand, sunlight and tiny foam patterns\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    },
+    "album-03a.png": {
+      "图集尺寸": [
+        1254,
+        1254
+      ],
+      "原件SHA256": "f25c0652401591cedd6c9b8ef08d585031065ceacc0c58ddc73b7aed4ead1603",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        3,
+        2
+      ],
+      "生成原名": "exec-c731c9b5-bd80-4acc-b09d-d459bb657f5f.png",
+      "完整提示词": "A SQUARE CANVAS contact sheet of precisely SIX stunning highly realistic editorial wildlife/lifestyle documentary photographs, arranged in a perfectly regular 3-column 2-row grid. The OVERALL contact sheet is strictly SQUARE; each individual photo within it is a vertical 2:3 portrait. Three photographs on top row, three photographs directly below. Use full-bleed photographs in every cell; no border or margin or gutter or labels. Exactly one distinct scene in each of the six panels. Completely independent visually distinctive scenes, exquisitely vivid natural light, believable tactile texture, sharp subject with breathing room, vibrant yet natural individual palette and meaningful background details reaching every corner to make a great picture puzzle for all ages. Photographs, not illustration. NO text, branding, signage or numbers. Top row, left to right: one black toucan with brilliant lemon and orange beak perched in tropical leaves, scarlet berries | brown squirrel holding a textured pinecone on cinnamon tree bark, autumn yellow leaves | young spotted fawn framed by vertical white birch trunks, fern green forest floor. Bottom row, left to right: sleek river otter surfacing from a deep blue stream among smooth grey stones | red fox walking over fresh white snow, blue spruce shadows diagonally behind | vibrant lime tree frog clinging to mossy ochre branch with droplets, close macro. Single perfectly square image, 3 images across, two down."
+    },
+    "album-03b.png": {
+      "图集尺寸": [
+        1254,
+        1254
+      ],
+      "原件SHA256": "07c6aeb885d1a6618c2b53a735a78673b12b0ceefefaf1d7757b1bebd09d527a",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        3,
+        2
+      ],
+      "生成原名": "exec-0fec9326-3c57-488d-acd3-dfe208b7d166.png",
+      "完整提示词": "A SQUARE CANVAS contact sheet of precisely SIX stunning highly realistic editorial wildlife/lifestyle documentary photographs, arranged in a perfectly regular 3-column 2-row grid. The OVERALL contact sheet is strictly SQUARE; each individual photo within it is a vertical 2:3 portrait. Three photographs on top row, three photographs directly below. Use full-bleed photographs in every cell; no border or margin or gutter or labels. Exactly one distinct scene in each of the six panels. Completely independent visually distinctive scenes, exquisitely vivid natural light, believable tactile texture, sharp subject with breathing room, vibrant yet natural individual palette and meaningful background details reaching every corner to make a great picture puzzle for all ages. Photographs, not illustration. NO text, branding, signage or numbers. Top row, left to right: peacock opening a deep indigo teal feather fan in a sunlit shady clearing | beaver on a muddy river bank with a chewed silver log and copper water reflections | hedgehog peeking between small yellow buttercups and rough tan leaves, ground level. Bottom row, left to right: red panda resting on a bamboo fork, bright chartreuse bamboo leaves around tail | orange-spotted black salamander on golden oak leaf surrounded by moss, close-up | amber-eyed tawny owl nesting in a dark rough tree hollow, honey sunlight on feathers. Single perfectly square image, 3 images across, two down."
+    },
+    "album-04.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "ef6dde03bda3095cfaec491021397e7dd7e29e9e69716c6364fec89ef20fb034",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-cff2db65-9002-423d-a997-2f100d1d99dc.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – heaped bright oranges with green leaves in a turquoise enamel handcart at market, diagonal sunlight | one ruby pomegranate split open showing glowing seeds on a pale pink linen cloth | fresh purple figs with one pink cut face arranged inside a small wooden produce crate | red yellow and green bell peppers tumbling from wicker basket, indigo apron beneath\nROW 2 (left to right) – one plump bunch of blue-purple grapes with leaf and tendril on a grapevine, yellow sun behind | golden peaches with one green leaf peeking out of creased brown paper bag, blue table | sliced starfruit in yellow-green five-point stars on deep navy ceramic, full fruit beside | blackberries glistening in a small pale blue woven berry basket and one red not-yet-ripe berry\nROW 3 (left to right) – a single enormous cabbage head with spiraling jade and lavender veins, wooden stall edge | red cherries and stems on an antique brass weighing pan, soft aqua fruit stall behind | bright orange cantaloupe half with seed cavity and two wedges on cream butcher paper | three white daikon radishes with prominent long bright green leaves and roots across earthy orange soil\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    },
+    "album-05.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "ec99e3f955ce055c3194b44a9b362ac64b68942cf8235f3f6ce2dcbb41bcb847",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-808ba86d-90d9-412a-bfb3-9aa5ea3897c6.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – one large striped saffron hot air balloon rising over salmon rock mountains at dawn | close wooden footbridge over a clear alpine stream with snow peak in distance and yellow railing | pair of red hiking boots perched on a slate boulder with bright turquoise stream below | tall mountain waterfall overflowing mossy cliff into dark emerald plunge pool with fern foreground\nROW 2 (left to right) – sinuous slender human footprints crossing golden wind-sculpted sand dune under blue sky | a hillside of small purple alpine wildflowers with one big white blossom, layers of green peaks | aerial-looking green rice terraces full of reflected blue water in curving steps, a golden farmhouse | single glowing ochre tent on green alpine meadow beneath a brilliant violet-blue dusk, stars just emerging\nROW 3 (left to right) – dramatic turquoise river bend cutting ochre-rock canyon and pine branches in foreground | weathered wooden boardwalk and red life ring leading into a glassy teal mountain lake | one scarlet cable car hanging above a valley of evergreens and hazy distant yellow crags | deep path arch of vivid orange and gold maple leaves, pale blue bicycle leaning on a tree\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    },
+    "album-06.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "5b292a65aa39a4bb6da9048030834c45c6ded4f6025e5e9b8737610ea0506752",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-a63b3809-22e3-4d2b-9e26-5559576475e4.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – a single sage-green arched wooden door surrounded by a dusty pink stucco wall with copper door knocker | golden yellow vintage streetcar winding along a hilly city lane, smooth body no letters or digits | a vivid cobalt blue bicycle leaning against a mustard wall, white woven wicker front basket | outdoor book stall with old clothbound books seen spine-in, warm yellow awning, no legible print\nROW 2 (left to right) – one curved park bench tiled in cheerful turquoise and terracotta geometric mosaic in a sunny square | close view of bright open umbrella display in purple pink and tangerine on a rainy flower street | arched red brick pedestrian bridge spanning jade water in a little canal town with wall lantern | round scarlet freestanding vintage post box with mail slot in leafy lane, plain no writing\nROW 3 (left to right) – tight upward photo of a spiral staircase with yellow walls, black curving steel railing and blue skylight | bright red geraniums spilling over a deep blue window box and sage shutters on cream wall | white sheets and a coral scarf drying on sunlit clothesline between honey-colored houses | small sculptural real stone fountain with blue tiles and sparkling water, lavender shadows\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    },
+    "album-07.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "f5b1fc9e56ee45516eaf85ad10f55fc06475cfb3b2b9f3f2c89ccb2d958a8928",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-8b5b937b-d4c5-4c66-abc9-e229e041350a.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – overhead view of one freshly thrown russet earthenware bowl on a spinning pottery wheel, wet clay spirals | indigo shibori tie-dyed fabric unrolled on a pale maple table, visible white geometric pattern and folds | gleaming curved brass trumpet resting on dark burgundy velvet with a ray of daylight, close detail | array of vivid red yellow violet cotton thread bobbins with one trailing thread on pale blue workbench\nROW 2 (left to right) – glowing orange molten glass orb attached to a glassblower rod against a deep blue workshop background | one unfinished small pale wooden bird sculpture amid curled cedar shavings and blank-handled chisel | authentic botanical cyanotype print of white fern fronds coming out of a shallow dark blue water tray | hand-stitched multi-coloured leather ball, one open seam being sewn with waxed cream thread, green cutting mat\nROW 3 (left to right) – messy realistic porcelain watercolor palette with emerald ultramarine and vermilion paint, three brushes | close view of honey bamboo strips being woven into the circular base of a basket, sage cloth under it | curl of yellow wood shaving emerging from a red art pencil beside a tiny brass pencil sharpener | unfolded paper hand fan with warm gold leaf in a sunburst pattern on black lacquer table, no lettering\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    },
+    "album-08.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "0fb59d4428f654953fa422a4bbda67066e6b7c95bd346a500c5ec8d3230db903",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-844242ae-2685-4e0e-8487-cbed5ee69b82.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – brilliant red ladybug on diagonally slanted dew-soaked sage leaf, velvety green background macro | yellow-and-black swallowtail butterfly with wings open on a tall pink coneflower, blue sky detail | electric cobalt dragonfly resting on ochre reed, translucent wing veins over turquoise pond bokeh | rosette of an echeveria succulent, blue-green fleshy spiral leaves with red edges top-down\nROW 2 (left to right) – white dandelion seed head with a few parachutes lifting against deep plum shadow and sunlit stem | fuzzy golden bumblebee hovering next to hanging clusters of lilac wisteria flowers | empty spiral ochre snail shell nestled into a jungle of tiny chartreuse moss shoots, soft pink rock | one lush sky-blue hydrangea mophead with deep green serrated leaves in dappled light\nROW 3 (left to right) – three tiny coral-capped mushrooms on damp velvety forest moss, macro low angle | extreme close-up sunflower center, spiraling black and amber seeds below vivid petals | delicate circular garden spiderweb strung with dew pearls after dawn, lavender and silver background | single fan-shaped yellow ginkgo leaf with one crystal raindrop on wet dark grey slate, veins emphasized\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    },
+    "album-09.png": {
+      "图集尺寸": [
+        1182,
+        1330
+      ],
+      "原件SHA256": "5d378877648c54fbc40f211ae3fa977ef0266892c2564ceffb0f82d112c19de3",
+      "生成工具": "ChatGPT 内置 image_gen",
+      "排布": [
+        4,
+        3
+      ],
+      "生成原名": "exec-60b701fb-58db-417b-8201-70ec7a3ea5cc.png",
+      "完整提示词": "Create ONE production photographic contact sheet for a premium mobile photo puzzle. ENTIRE canvas PORTRAIT WIDTH:HEIGHT = 8:9 (e.g. 1536×1728), needed for exact geometry: FOUR EQUAL COLUMNS and THREE EQUAL ROWS, for 12 separate full-bleed rectangular PHOTOGRAPHS, each a 2:3 portrait. Rows each exactly one-third of full image; cols each exactly one-quarter. Edge-to-edge hard cuts; absolutely NO gutters, frames, margins or gaps. No text, typography, words, numbers, iconography, game UI, watermark or superimposed decorations. Do not connect scenes. All cells are exquisite, playful natural editorial PHOTOGRAPHY (not paintings/illustrations), luminous colors and tactile surfaces, clear silhouette and distinct subject from neighbors. Each separate image is art directed as an appealing full standalone photograph cropped into a later 2-by-2 puzzle. Each quadrant should show meaningful visual clues; strong contrasting contours and a little foreground/background detail; main subject with breathing space. Follow the exact 12 subjects in reading order, four complete cells per row:\nROW 1 (left to right) – scarlet diamond kite with long ribbon tail flying above joyful bright green spring meadow and a blue sky | ornate painted turquoise and golden dragon boat prow above emerald water, red silk streamer, no words | wicker Easter basket of hand-painted pastel eggs on violet cloth beside white daisies | a cluster of luminous Moroccan colored-glass and brass festival lanterns hanging in a warm courtyard\nROW 2 (left to right) – single white and red carousel horse on gold pole, mint-trimmed canopy in sunny fair, no riders | one traditional handmade ivory rabbit-shaped lantern on wooden wheels, glowing against plum blossom | colorful folded paper pinwheels turning in a line on a grassy summer fairground, orange and cyan | circular wreath made from crimson maple leaves and small pinecones on an aged teal wooden gate\nROW 3 (left to right) – one carved glowing orange pumpkin with smiling triangular cutouts on a rustic porch with rust-red leaves | festive Chinese lion-dance head with striking blue and white fur, silver mirror and vivid coral ribbons | one dramatic golden chrysanthemum firework bursting in deep cobalt night above river reflections | a miniature snow sculpture of a cozy cottage with two snowy pine trees, rosy twilight and cool icy shadows\nReminder: perfectly aligned regular 4 columns by 3 rows on an 8:9 canvas. Entire image covered in photographs."
+    }
+  },
+  "图片": [
+    {
+      "id": "photo-13",
+      "name": "条纹灯塔",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-13.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 61410,
+      "SHA256": "5f6e06a36f7d44089082ef7d3a5e35d1b51913b6fa9bdbe295c8703aea9054d6",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        4,
+        7,
+        290,
+        436
+      ]
+    },
+    {
+      "id": "photo-14",
+      "name": "礁石里的寄居蟹",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-14.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 61217,
+      "SHA256": "02f575be6c315319fe0e226ee0d1bd4bfb28395efb2667ddf618127b0b83aa82",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        298,
+        5,
+        586,
+        437
+      ]
+    },
+    {
+      "id": "photo-15",
+      "name": "蓝湾独木舟",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-15.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 74896,
+      "SHA256": "de8b04f284177b820597c1594ee92a4098c5dc573d762f2fef071cc8e092b6d5",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        594,
+        5,
+        882,
+        437
+      ]
+    },
+    {
+      "id": "photo-16",
+      "name": "浪中的海豚",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-16.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 70554,
+      "SHA256": "15103cc519cc56d7a6b3c11fc7964fed102b8bc225f0c0279b96362a5f518821",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        890,
+        5,
+        1178,
+        437
+      ]
+    },
+    {
+      "id": "photo-17",
+      "name": "赶海小桶",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-17.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 65503,
+      "SHA256": "c1cf792735e689be1d1413e5cfdde7371268d0251538f44498c22e0152a7deb9",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        4,
+        450,
+        290,
+        879
+      ]
+    },
+    {
+      "id": "photo-18",
+      "name": "船坞彩浮球",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-18.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 71350,
+      "SHA256": "cbd827076544a5f52e36cbe831f3bce4db8631bcfbb0ddead111acde2da1cd79",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        298,
+        448,
+        586,
+        880
+      ]
+    },
+    {
+      "id": "photo-19",
+      "name": "银沙上的海星",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-19.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 77154,
+      "SHA256": "3cd158006603b5e92a1f9a8892c9b48607d1165a877b9f66078a12aa70378754",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        595,
+        450,
+        881,
+        879
+      ]
+    },
+    {
+      "id": "photo-20",
+      "name": "海岸冰车",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-20.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 59469,
+      "SHA256": "45efbac8ef004a8fc1e87b8362835f7fe7098fb0131b64a0ab2300c10c56b17c",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        890,
+        448,
+        1178,
+        880
+      ]
+    },
+    {
+      "id": "photo-21",
+      "name": "帆影归港",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-21.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 60912,
+      "SHA256": "aaee2e36748359df77380d38e26d43a3f9371bbe59bd429549e38ad513797719",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        4,
+        893,
+        290,
+        1322
+      ]
+    },
+    {
+      "id": "photo-22",
+      "name": "阳光鱼群",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-22.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 71718,
+      "SHA256": "1e75c1a481b0fbbe7e5ce5534b15eaaedca4a1c4eb67819a8751504c6ded59ef",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        298,
+        892,
+        586,
+        1324
+      ]
+    },
+    {
+      "id": "photo-23",
+      "name": "海湾鹈鹕",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-23.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 43864,
+      "SHA256": "9c796e19e7c4c4dfff3e568aaf01d8df5df88e6b771a236d99ec61918e181cc7",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        595,
+        892,
+        883,
+        1324
+      ]
+    },
+    {
+      "id": "photo-24",
+      "name": "海玻璃",
+      "theme": "潮汐海岸",
+      "pack": "album-02",
+      "path": "game/packs/album-02/photo-24.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 71362,
+      "SHA256": "49f87d2a1e49f771adcf07e55d54313d3d548fefeff3dbd5f55fe030a08bfdb1",
+      "来源图集": "album-02.png",
+      "原片裁切像素": [
+        891,
+        893,
+        1177,
+        1322
+      ]
+    },
+    {
+      "id": "photo-25",
+      "name": "雨林巨嘴鸟",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-25.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 73292,
+      "SHA256": "e2e37094489d066b22e35db6a6faae9e14f52813c9816581e21f27166d06b64c",
+      "来源图集": "album-03a.png",
+      "原片裁切像素": [
+        4,
+        6,
+        414,
+        621
+      ]
+    },
+    {
+      "id": "photo-26",
+      "name": "松果小松鼠",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-26.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 80545,
+      "SHA256": "8a79eb394c32781d44dd978498fad1ce643899afa42bcf2437ae5e08cc34674b",
+      "来源图集": "album-03a.png",
+      "原片裁切像素": [
+        422,
+        6,
+        832,
+        621
+      ]
+    },
+    {
+      "id": "photo-27",
+      "name": "白桦间的小鹿",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-27.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 83527,
+      "SHA256": "1711e0ec4d62987ed78d3b638146eea22131c0ec2f3e63ddec59ab9b62aa9117",
+      "来源图集": "album-03a.png",
+      "原片裁切像素": [
+        840,
+        6,
+        1250,
+        621
+      ]
+    },
+    {
+      "id": "photo-28",
+      "name": "溪边水獭",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-28.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 72741,
+      "SHA256": "d280d24d2cff74733589451e8fa7ff131ede4c081a12749fe550aafdc4de7ace",
+      "来源图集": "album-03a.png",
+      "原片裁切像素": [
+        4,
+        633,
+        414,
+        1248
+      ]
+    },
+    {
+      "id": "photo-29",
+      "name": "雪地红狐",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-29.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 66916,
+      "SHA256": "7559fb4d683a4ca694e1506d036af2282925d21b3913a6ad73e05e027bf23db3",
+      "来源图集": "album-03a.png",
+      "原片裁切像素": [
+        422,
+        633,
+        832,
+        1248
+      ]
+    },
+    {
+      "id": "photo-30",
+      "name": "苔上的树蛙",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-30.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 69952,
+      "SHA256": "48f4c29ada59fddc681dce4cbd6ecdef5aaed81609084da91368cc9072f44e89",
+      "来源图集": "album-03a.png",
+      "原片裁切像素": [
+        840,
+        633,
+        1250,
+        1248
+      ]
+    },
+    {
+      "id": "photo-31",
+      "name": "藏蓝孔雀",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-31.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 94466,
+      "SHA256": "91c8b7fea9c340f687180152302f642df7d007be5a2dea4eea7bc91f6a39ddcc",
+      "来源图集": "album-03b.png",
+      "原片裁切像素": [
+        4,
+        6,
+        414,
+        621
+      ]
+    },
+    {
+      "id": "photo-32",
+      "name": "坝旁海狸",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-32.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 85741,
+      "SHA256": "9c0e8a496c5f4084d3d263080969d16bc8e7f21839712755cf367779cb1e227a",
+      "来源图集": "album-03b.png",
+      "原片裁切像素": [
+        422,
+        6,
+        832,
+        621
+      ]
+    },
+    {
+      "id": "photo-33",
+      "name": "花丛刺猬",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-33.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 69021,
+      "SHA256": "5a4526aff3b51bb2f8ddb1d83ed07ea734cfe69fa2d7dd982f86cda4fa24060a",
+      "来源图集": "album-03b.png",
+      "原片裁切像素": [
+        840,
+        6,
+        1250,
+        621
+      ]
+    },
+    {
+      "id": "photo-34",
+      "name": "竹叶红熊猫",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-34.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 74977,
+      "SHA256": "bf3af7eb1e6d7f316df7ef0f54230fc73e1781e9f9a23370898b5303f96c2569",
+      "来源图集": "album-03b.png",
+      "原片裁切像素": [
+        4,
+        633,
+        414,
+        1248
+      ]
+    },
+    {
+      "id": "photo-35",
+      "name": "斑点蝾螈",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-35.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 82157,
+      "SHA256": "a9c0aa104f0e9a60fef7f11bf89a5d587530a9661e46ad6f4ae46effabf7506c",
+      "来源图集": "album-03b.png",
+      "原片裁切像素": [
+        422,
+        633,
+        832,
+        1248
+      ]
+    },
+    {
+      "id": "photo-36",
+      "name": "琥珀色猫头鹰",
+      "theme": "森林邻居",
+      "pack": "album-03",
+      "path": "game/packs/album-03/photo-36.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 89509,
+      "SHA256": "ca3c51d99549404c84e487619294fbf87dcd84102dfde8565f4a80b2919f6e0a",
+      "来源图集": "album-03b.png",
+      "原片裁切像素": [
+        840,
+        633,
+        1250,
+        1248
+      ]
+    },
+    {
+      "id": "photo-37",
+      "name": "橙色手推车",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-37.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 70444,
+      "SHA256": "9586cf62cb545fa87c40881fe2f7fdb9a0e06eb340813943b3721fedd0c726e4",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        7,
+        5,
+        295,
+        437
+      ]
+    },
+    {
+      "id": "photo-38",
+      "name": "石榴剖面",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-38.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 59968,
+      "SHA256": "fd50488b6a9f4bdeaed86ec0e133fb02e9f92154d64cd742d21ab09532e8cd38",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        306,
+        11,
+        586,
+        431
+      ]
+    },
+    {
+      "id": "photo-39",
+      "name": "无花果木盒",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-39.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 56262,
+      "SHA256": "e39c036337cffdf508888c75b82383b23de4369953f5b7ff81172e4fc6e400e2",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        595,
+        8,
+        879,
+        434
+      ]
+    },
+    {
+      "id": "photo-40",
+      "name": "彩椒摊",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-40.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 57152,
+      "SHA256": "0e69e0a9976439a729972f8c44d6cebea4eca5300d0e7131878cd8a3925b6934",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        889,
+        5,
+        1177,
+        437
+      ]
+    },
+    {
+      "id": "photo-41",
+      "name": "一串紫葡萄",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-41.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 60122,
+      "SHA256": "b3ffa8b870558c7ef554ff14002da217c6bb68d637e3cfbc5e0fc09a1ba87b85",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        6,
+        446,
+        296,
+        881
+      ]
+    },
+    {
+      "id": "photo-42",
+      "name": "黄桃纸袋",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-42.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 52921,
+      "SHA256": "940504383b5ce2b6c0ae77c9165e4f771a5d4bb811a291e579074de4e4566bb5",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        306,
+        453,
+        586,
+        873
+      ]
+    },
+    {
+      "id": "photo-43",
+      "name": "杨桃星片",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-43.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 60502,
+      "SHA256": "cb219e346cd4779f3820c1e89919e15a14340b3143088821dc0846ad71e4ac84",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        595,
+        450,
+        879,
+        876
+      ]
+    },
+    {
+      "id": "photo-44",
+      "name": "黑莓篮",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-44.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 63111,
+      "SHA256": "072129b80d4c480872cc8e628f31c6c8d1e1e5ca53524ee66793f2dfe0541138",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        888,
+        446,
+        1178,
+        881
+      ]
+    },
+    {
+      "id": "photo-45",
+      "name": "卷心菜叶",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-45.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 64706,
+      "SHA256": "4f3fc952cfe4452dce2d570151bc29d30fda79e55cdb3b2e97537065a261b9b6",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        6,
+        890,
+        296,
+        1325
+      ]
+    },
+    {
+      "id": "photo-46",
+      "name": "樱桃秤盘",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-46.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 61169,
+      "SHA256": "a77e37feeb41a92db3ac2f7c53f70a575528fb91bb4c35c8189378922f684c7f",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        306,
+        897,
+        586,
+        1317
+      ]
+    },
+    {
+      "id": "photo-47",
+      "name": "蜜瓜瓜瓤",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-47.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 54631,
+      "SHA256": "b779276b2c1c3d51090233b880d5f6f6253f4d33b0d66cf1946b7343f6a11666",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        595,
+        894,
+        879,
+        1320
+      ]
+    },
+    {
+      "id": "photo-48",
+      "name": "白萝卜小径",
+      "theme": "果园集市",
+      "pack": "album-04",
+      "path": "game/packs/album-04/photo-48.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 76358,
+      "SHA256": "8378966efe68fd3bfb7d190f2415854d30da794e38c4654bc6ceb093282ac8a8",
+      "来源图集": "album-04.png",
+      "原片裁切像素": [
+        888,
+        890,
+        1178,
+        1325
+      ]
+    },
+    {
+      "id": "photo-49",
+      "name": "高原热气球",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-49.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 51384,
+      "SHA256": "db5205ee3d2452c6724224a2fcd316896cdb369c6ba3a9d5f0dbfad6c710a397",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        4,
+        7,
+        290,
+        436
+      ]
+    },
+    {
+      "id": "photo-50",
+      "name": "雪峰木桥",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-50.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 76300,
+      "SHA256": "a8072168391e2ce10ea122737cb2a6a6312eef640d4842d464948f6573cfc36f",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        299,
+        5,
+        587,
+        437
+      ]
+    },
+    {
+      "id": "photo-51",
+      "name": "红色溯溪鞋",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-51.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 68734,
+      "SHA256": "557301bdb81bd10796adf4c28accf62083d1ba73260c8eb0a1e9bee3286fa6a0",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        595,
+        7,
+        881,
+        436
+      ]
+    },
+    {
+      "id": "photo-52",
+      "name": "山谷瀑布",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-52.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 70345,
+      "SHA256": "94b7b585e4c20cc11bb92d184ba911d27f010c6b8904106af2090522145d9161",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        890,
+        5,
+        1178,
+        437
+      ]
+    },
+    {
+      "id": "photo-53",
+      "name": "沙丘足迹",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-53.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 46287,
+      "SHA256": "2a53c7309634da0509101c48cb5f2130f97b402a5ef995bb1a17bd326e8c1fae",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        4,
+        450,
+        290,
+        879
+      ]
+    },
+    {
+      "id": "photo-54",
+      "name": "紫色花坡",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-54.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 79272,
+      "SHA256": "628a81b15645089a28d1a9d72c0239e1c55709ace61f847db8a38219a806c6da",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        299,
+        448,
+        587,
+        880
+      ]
+    },
+    {
+      "id": "photo-55",
+      "name": "翡翠梯田",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-55.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 90529,
+      "SHA256": "b1ae4ff8aa9031e81b4d2dad22e4596e146e35ab2335443aefe04091a50a8713",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        595,
+        450,
+        881,
+        879
+      ]
+    },
+    {
+      "id": "photo-56",
+      "name": "夜宿帐篷",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-56.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 53913,
+      "SHA256": "93c37495ba52f25a90ecb58d4277f8f018c302830bbe3907e55ce9ddefb3a3ce",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        890,
+        448,
+        1178,
+        880
+      ]
+    },
+    {
+      "id": "photo-57",
+      "name": "峡谷河弯",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-57.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 82340,
+      "SHA256": "8cdb72a07d50e89e8757aa65539a73be411d908cefcdd78fdcb779843b7e68e4",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        4,
+        893,
+        290,
+        1322
+      ]
+    },
+    {
+      "id": "photo-58",
+      "name": "湖上栈桥",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-58.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 65146,
+      "SHA256": "b44c55c626e9f674884f5a28ed58596fa31990976b0c1c016ef68700ac5a984a",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        299,
+        892,
+        587,
+        1324
+      ]
+    },
+    {
+      "id": "photo-59",
+      "name": "高山缆车",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-59.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 70363,
+      "SHA256": "f4c76b2746e911a879689915b20d601d227d0abd233e3f9f5197a9d2e447ea5d",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        595,
+        893,
+        881,
+        1322
+      ]
+    },
+    {
+      "id": "photo-60",
+      "name": "金色枫道",
+      "theme": "山野远行",
+      "pack": "album-05",
+      "path": "game/packs/album-05/photo-60.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 98388,
+      "SHA256": "4e4b478236bdb4fc7fab3c3426b3ecc8ee3a229bf605a6681d6b6f3d100180b1",
+      "来源图集": "album-05.png",
+      "原片裁切像素": [
+        890,
+        892,
+        1178,
+        1324
+      ]
+    },
+    {
+      "id": "photo-61",
+      "name": "粉墙绿门",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-61.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 61110,
+      "SHA256": "3268f7e370656cac6aea955d931240e7549a4befa534dcf95c401148a8da151c",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        6,
+        4,
+        296,
+        439
+      ]
+    },
+    {
+      "id": "photo-62",
+      "name": "黄轨电车",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-62.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 74000,
+      "SHA256": "83d33bd2ec41c1294a45e61185b7815ca6d8bbab0f584025f4290d76fb64012c",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        307,
+        11,
+        587,
+        431
+      ]
+    },
+    {
+      "id": "photo-63",
+      "name": "蓝色单车",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-63.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 79471,
+      "SHA256": "1c57fd59c2b4631ae01eb9e57586c2a2234e136d606fc098c4ad327d2c1cfb38",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        595,
+        7,
+        881,
+        436
+      ]
+    },
+    {
+      "id": "photo-64",
+      "name": "暖光书摊",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-64.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 70638,
+      "SHA256": "4eb67415fcb3046b77fa8234cbdf694f58c32e74775505c4177e92c7372e4232",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        889,
+        5,
+        1177,
+        437
+      ]
+    },
+    {
+      "id": "photo-65",
+      "name": "马赛克长椅",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-65.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 81298,
+      "SHA256": "ba851fa93941acbd6c77409855278447d303b2b89a763838a9ddc61d45bdc019",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        4,
+        448,
+        292,
+        880
+      ]
+    },
+    {
+      "id": "photo-66",
+      "name": "雨中伞架",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-66.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 78516,
+      "SHA256": "c8647e2dd04c6968f94edbc505688377263331ad59efd7202f629f14285bc1f2",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        301,
+        450,
+        587,
+        879
+      ]
+    },
+    {
+      "id": "photo-67",
+      "name": "水城小桥",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-67.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 82460,
+      "SHA256": "b2883ef912c29bc14fd89ac2c703052ba17d7ffb048e495a98c129a9604e664a",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        595,
+        450,
+        881,
+        879
+      ]
+    },
+    {
+      "id": "photo-68",
+      "name": "红邮筒",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-68.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 73373,
+      "SHA256": "8ead3653e4be29da74c2e11cc1fef8de38305516f949527b74db06f6e8aaf5de",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        889,
+        448,
+        1177,
+        880
+      ]
+    },
+    {
+      "id": "photo-69",
+      "name": "弧形旋梯",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-69.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 53390,
+      "SHA256": "915fecd032221e7840afb79407271bbc86824c450e3125e4f17e1701a192ea27",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        4,
+        892,
+        292,
+        1324
+      ]
+    },
+    {
+      "id": "photo-70",
+      "name": "窗台天竺葵",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-70.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 64249,
+      "SHA256": "6b3b816f61a636b6706fdd2ce927f7ccb06c3c01f2a541923ce88563df33b64f",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        301,
+        893,
+        587,
+        1322
+      ]
+    },
+    {
+      "id": "photo-71",
+      "name": "阳光晾衣绳",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-71.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 66243,
+      "SHA256": "a74a0a6e8d4dc9200d2f91d345c22c4247ed752759400cc70bd10bcc5bbc364b",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        595,
+        893,
+        881,
+        1322
+      ]
+    },
+    {
+      "id": "photo-72",
+      "name": "雾蓝喷泉",
+      "theme": "缤纷街角",
+      "pack": "album-06",
+      "path": "game/packs/album-06/photo-72.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 90043,
+      "SHA256": "60133fac9e4fc9863dce4416e8e8953bb614000508ee7763af6c19cf41080372",
+      "来源图集": "album-06.png",
+      "原片裁切像素": [
+        889,
+        892,
+        1177,
+        1324
+      ]
+    },
+    {
+      "id": "photo-73",
+      "name": "陶轮上的碗",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-73.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 41734,
+      "SHA256": "56741c11e8d09cc6b2a9fb5c374e6b065500c651012938b76a8c7faefbcd1ebe",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        4,
+        7,
+        290,
+        436
+      ]
+    },
+    {
+      "id": "photo-74",
+      "name": "靛蓝染布",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-74.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 62605,
+      "SHA256": "43517b479cf484e7192d49b2d6777407916f1b3784a81d51876ea9d4ba0601a0",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        299,
+        5,
+        587,
+        437
+      ]
+    },
+    {
+      "id": "photo-75",
+      "name": "黄铜小号",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-75.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 55830,
+      "SHA256": "f16a1af8cff99064e4763b6305f1d83d6e7a0fd7888f65aac75b86451ecee75f",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        595,
+        5,
+        883,
+        437
+      ]
+    },
+    {
+      "id": "photo-76",
+      "name": "彩色线轴",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-76.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 57553,
+      "SHA256": "b0f4e7b5767590eafc5edc1f4ab638c894b1e2b46aee8c436f30aa12df7ce303",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        891,
+        7,
+        1177,
+        436
+      ]
+    },
+    {
+      "id": "photo-77",
+      "name": "玻璃吹制",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-77.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 48475,
+      "SHA256": "4485345536853c56996ca1e708bded13c45966b22dbc43e80a8f02bb16218e63",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        4,
+        449,
+        290,
+        878
+      ]
+    },
+    {
+      "id": "photo-78",
+      "name": "木雕小鸟",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-78.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 49303,
+      "SHA256": "f8e3c2c676fb9f683e8ab6f9a8966cee150c2a2ddbc575f20cffb7372479efd2",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        299,
+        448,
+        587,
+        880
+      ]
+    },
+    {
+      "id": "photo-79",
+      "name": "蓝晒蕨叶",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-79.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 63384,
+      "SHA256": "cfdbdb15ac13fcc3fcf240a9face7a06c92c844f36458f3f332bc5cb3ae9e57b",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        595,
+        448,
+        883,
+        880
+      ]
+    },
+    {
+      "id": "photo-80",
+      "name": "拼花皮球",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-80.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 57291,
+      "SHA256": "85615e71feb30d4e80db1a1f86400cd27a301e7aa0d4f8895bb3ab0c33136fe0",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        891,
+        449,
+        1177,
+        878
+      ]
+    },
+    {
+      "id": "photo-81",
+      "name": "水彩调色盘",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-81.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 71404,
+      "SHA256": "da4ff8e37e5bcf9b54c10f0cd2fbbc0514bdd11f6bc99851942e3a0651cc4c27",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        4,
+        893,
+        290,
+        1322
+      ]
+    },
+    {
+      "id": "photo-82",
+      "name": "竹编篮底",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-82.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 65149,
+      "SHA256": "d5b69b9838be0b002dd7729ee80f347d4ba75fa75a3b8b941e79038af0ada52d",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        299,
+        891,
+        587,
+        1323
+      ]
+    },
+    {
+      "id": "photo-83",
+      "name": "铅笔削花",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-83.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 47742,
+      "SHA256": "a92bd861e1390f26dc2ac0b87ccd87ad27a4ae7dc2e85204a1229be12f5245fa",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        595,
+        891,
+        883,
+        1323
+      ]
+    },
+    {
+      "id": "photo-84",
+      "name": "金箔扇面",
+      "theme": "匠人工作台",
+      "pack": "album-07",
+      "path": "game/packs/album-07/photo-84.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 65085,
+      "SHA256": "5fd448dfff11724124b55bcc16325975fa50e1ab8572440ba68ce3c4001808f2",
+      "来源图集": "album-07.png",
+      "原片裁切像素": [
+        891,
+        893,
+        1177,
+        1322
+      ]
+    },
+    {
+      "id": "photo-85",
+      "name": "露珠瓢虫",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-85.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 48205,
+      "SHA256": "7cede00a6eb4ce14f2594e36bcb6cb3b5b4ac809974299a989d7d9e6c2f5ee27",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        4,
+        7,
+        290,
+        436
+      ]
+    },
+    {
+      "id": "photo-86",
+      "name": "凤蝶花冠",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-86.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 58984,
+      "SHA256": "fa2c012b3d727b88a6ec3696d906ebe424818b5a0560c0f81ef0cfb265a86552",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        298,
+        5,
+        586,
+        437
+      ]
+    },
+    {
+      "id": "photo-87",
+      "name": "钴蓝蜻蜓",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-87.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 47686,
+      "SHA256": "70aabb7c951a982e48e36b3ba7303fe15934d2b3eb092789420563fe14190c04",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        595,
+        5,
+        883,
+        437
+      ]
+    },
+    {
+      "id": "photo-88",
+      "name": "多肉玫瑰",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-88.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 60119,
+      "SHA256": "ba770295b8dddb7ec9a88a5c094ce47f1db548da98c547fc58d0905302bacfcc",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        892,
+        7,
+        1178,
+        436
+      ]
+    },
+    {
+      "id": "photo-89",
+      "name": "黑底蒲公英",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-89.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 40358,
+      "SHA256": "d4b2a293dbc344c107f4fc663308973e650526177baaa6fb6b13427e757b2126",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        4,
+        450,
+        290,
+        879
+      ]
+    },
+    {
+      "id": "photo-90",
+      "name": "紫藤蜂影",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-90.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 45606,
+      "SHA256": "dc289f256460c6d5bc2f9f4d4f338c0264121bb8319c3688428d4733b1963546",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        298,
+        448,
+        586,
+        880
+      ]
+    },
+    {
+      "id": "photo-91",
+      "name": "空壳蜗牛",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-91.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 75923,
+      "SHA256": "98c04a1d44e39eeeeedad85711e7ea1da658281ee1da90c680846b6858f0ea64",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        595,
+        448,
+        883,
+        880
+      ]
+    },
+    {
+      "id": "photo-92",
+      "name": "蓝绣球",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-92.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 65708,
+      "SHA256": "4fb5106809a6275b4652994731b369e814d63435dc2c69e55e3e57741c3294e0",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        892,
+        450,
+        1178,
+        879
+      ]
+    },
+    {
+      "id": "photo-93",
+      "name": "菇伞森林",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-93.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 55287,
+      "SHA256": "ad9ff4e9dd5ed1169152a351993d6da80b7b648e77393e27fb12fc1857611a59",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        4,
+        893,
+        290,
+        1322
+      ]
+    },
+    {
+      "id": "photo-94",
+      "name": "菊心螺旋",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-94.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 77592,
+      "SHA256": "cd7fba41811fbf18e5d073c43d57bf042f944ace27a43fc75a8782199c7dd9da",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        298,
+        892,
+        586,
+        1324
+      ]
+    },
+    {
+      "id": "photo-95",
+      "name": "蛛网珍珠",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-95.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 61882,
+      "SHA256": "d1f6da208d53edaf1826bf5911fc9e1e0d9d88d389a01e1e9a7a0b2223093b85",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        595,
+        892,
+        883,
+        1324
+      ]
+    },
+    {
+      "id": "photo-96",
+      "name": "雨后银杏",
+      "theme": "微观花园",
+      "pack": "album-08",
+      "path": "game/packs/album-08/photo-96.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 62743,
+      "SHA256": "3785cdef99dbf18fe7f3e9ee60ee9bae232ed54a46438e1179f5d80c79358469",
+      "来源图集": "album-08.png",
+      "原片裁切像素": [
+        892,
+        893,
+        1178,
+        1322
+      ]
+    },
+    {
+      "id": "photo-97",
+      "name": "纸鸢升空",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-97.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 59795,
+      "SHA256": "859f0c9b1b936dab503b5cd1cfeae375248415e75977b0265b68c356d951f909",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        4,
+        7,
+        290,
+        436
+      ]
+    },
+    {
+      "id": "photo-98",
+      "name": "龙舟船首",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-98.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 73786,
+      "SHA256": "2dd690591f008475554d91faa63b68337cdedabc2de095fad7caa34e512343d6",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        298,
+        5,
+        586,
+        437
+      ]
+    },
+    {
+      "id": "photo-99",
+      "name": "彩蛋花篮",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-99.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 67021,
+      "SHA256": "0fbed376765bd9f8ae996b4243187c3a0a23604c8de5808e43c6431c9064a53d",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        595,
+        5,
+        883,
+        437
+      ]
+    },
+    {
+      "id": "photo-100",
+      "name": "万花筒灯",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-100.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 65651,
+      "SHA256": "c33e59182f97f38d41ac1eebaac7d601af03a40d5a4d205a87c2c74a05ff7633",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        892,
+        7,
+        1178,
+        436
+      ]
+    },
+    {
+      "id": "photo-101",
+      "name": "旋转木马",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-101.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 66333,
+      "SHA256": "386a3268efd1996154714c60ffcf5b42bb135b22ee14d134dbf86abc45eac2c9",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        4,
+        450,
+        290,
+        879
+      ]
+    },
+    {
+      "id": "photo-102",
+      "name": "元宵兔灯",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-102.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 61253,
+      "SHA256": "992442a1c3cae5529ad60c1098fc9208afc433e26c314a8b858297c654e21867",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        298,
+        448,
+        586,
+        880
+      ]
+    },
+    {
+      "id": "photo-103",
+      "name": "草地风车",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-103.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 64046,
+      "SHA256": "dfb0b4ae639de7eccf1140fe26a491a418dee4ef2adaa88d8d21c13aac4d2e33",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        595,
+        448,
+        883,
+        880
+      ]
+    },
+    {
+      "id": "photo-104",
+      "name": "枫叶花环",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-104.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 82728,
+      "SHA256": "9ecbe6decd1aa4cc0a9768d0d35759a2bed97c92c0a144a340e0870bcb66335c",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        891,
+        450,
+        1177,
+        879
+      ]
+    },
+    {
+      "id": "photo-105",
+      "name": "南瓜小灯",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-105.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 63012,
+      "SHA256": "23dab92af9617530decf70c867699e611db7ac2da121d6fe45206192add22fe6",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        4,
+        893,
+        290,
+        1322
+      ]
+    },
+    {
+      "id": "photo-106",
+      "name": "舞狮醒狮",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-106.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 77094,
+      "SHA256": "48e293db01fadab5ab262688438849943955c72643a129c62199f4a5932cca91",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        298,
+        892,
+        586,
+        1324
+      ]
+    },
+    {
+      "id": "photo-107",
+      "name": "蓝夜烟火",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-107.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 85566,
+      "SHA256": "a7aed669385ca36887cfab6d29352a1c13d6a583cae56a8d0c6c66bf89ddcee8",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        595,
+        892,
+        883,
+        1324
+      ]
+    },
+    {
+      "id": "photo-108",
+      "name": "雪雕小屋",
+      "theme": "四季节会",
+      "pack": "album-09",
+      "path": "game/packs/album-09/photo-108.jpg",
+      "尺寸": [
+        280,
+        420
+      ],
+      "JPEG字节": 44221,
+      "SHA256": "6a2aa11c2d5d0772438d01da676e65b59887a8a93482a22591199820ff301628",
+      "来源图集": "album-09.png",
+      "原片裁切像素": [
+        891,
+        893,
+        1177,
+        1322
+      ]
+    }
+  ]
+}

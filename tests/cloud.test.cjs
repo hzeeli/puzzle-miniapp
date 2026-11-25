@@ -3,6 +3,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createGameService, RUN_TTL_MS, MAX_MOVES } = require('../cloudfunctions/gameApi/service');
 const { createRepository } = require('../cloudfunctions/gameApi/repository');
+const Journey = require('../shared/journey');
+const Rules = require('../shared/rules');
+const {replay: storyReplay} = require('../shared/story-replay');
+const {STORY_START,STORY_END} = require('../cloudfunctions/gameApi/story-rank-key');
 const { CONSENT_VERSION } = require('../shared/profile-options');
 
 const copy = (value) => value === undefined ? undefined : structuredClone(value);
@@ -32,6 +36,11 @@ function memoryRepository() {
       try { const result = await work(documents(draft)); data = draft; return result; }
       finally { release(); }
     },
+    async topStory() {
+      return [...data.bestScores].filter(([key])=>key>=STORY_START && key<STORY_END)
+        .sort(([a],[b])=>a<b?-1:1).slice(0,10).map(([,row])=>copy(row));
+    },
+    async storyRank(key) { return [...data.bestScores.keys()].filter(k=>k>=STORY_START && k<key).length+1; },
     async listBest(owner) { return [...data.bestScores.values()].filter((score) => score.owner === owner).map(copy); },
     async topScores(levelId, levelVersion) {
       return [...data.bestScores.values()].filter((score) => score.levelId === levelId && score.levelVersion === levelVersion).sort(order).slice(0, 10).map(copy);
@@ -47,8 +56,11 @@ function memoryRepository() {
 }
 function setup() {
   const repo = memoryRepository(); let now = 100000, sequence = 0, replayCalls = 0;
-  const levels = { levels: Array.from({ length: 10 }, (_, i) => ({ id: i + 1, version: 1 })) };
-  levels.getLevel = (id) => levels.levels.find((level) => level.id === id) || null;
+  const levels = {
+    legacyLevels: Array.from({length:10}, (_,i) => ({id:i+1,version:3})),
+    levels: Array.from({length:12}, (_,i) => ({id:i+1,version:4})),
+  };
+  levels.getLevel = (id,version) => [...levels.legacyLevels,...levels.levels].find(l => l.id === id && l.version === version) || null;
   const rules = {
     replay(level, moves) {
       replayCalls++;
@@ -57,7 +69,7 @@ function setup() {
     },
     isSolved: (state) => state.solved,
   };
-  const service = createGameService({ repository: repo, levels, rules, clock: () => now,
+  const service = createGameService({ repository: repo, levels, rules, journey: Journey, storyReplay, clock: () => now,
     id: () => `player-${String(++sequence).padStart(8, '0')}`, appId: 'wx-test' });
   const context = (user) => ({ openid: user, appid: 'wx-test' });
   const call = (action, payload = {}, user = 'alice') => service.handle({ action, payload }, context(user));
@@ -120,9 +132,9 @@ test('恢复挑战校验所有权、版本和24小时有效期', async () => {
   s.advance(3000);
   const resumed = await s.call('resumeRun', { runId: run.runId });assert.equal(resumed.data.startedAt, run.startedAt);
   error(await s.call('resumeRun', { runId: run.runId }, 'bob'), 'RUN_FORBIDDEN');
-  s.levels.levels[0].version = 2;
+  s.levels.legacyLevels[0].version = 0;
   error(await s.call('resumeRun', { runId: run.runId }), 'LEVEL_CHANGED');
-  s.levels.levels[0].version = 1;s.advance(RUN_TTL_MS);
+  s.levels.legacyLevels[0].version = 3;s.advance(RUN_TTL_MS);
   error(await s.call('resumeRun', { runId: run.runId }), 'RUN_EXPIRED');
   assert.equal((await s.bootstrap()).data.activeRun, null);
 });
@@ -192,12 +204,26 @@ test('预置资料更新请求作为不支持的操作拒绝，不修改匿名�
   error(await s.call('updateProfile', { avatarId: 'leaf', nicknameId: 'forest' }), 'INVALID_ACTION');
   assert.deepEqual(s.repo.all('players'), before);
 });
-test('关卡升级后旧成绩不混入新榜，旧活跃会话不能提交', async () => {
-  const s = setup();await s.bootstrap();let run = await s.start();s.advance(4000);await s.finish(run);
-  run = await s.start('old-version-run');s.advance(2000);s.levels.levels[0].version = 2;
-  error(await s.finish(run), 'LEVEL_CHANGED');
-  const result = await s.call('leaderboard', { levelId: 1 });assert.deepEqual(result.data.entries, []);assert.equal(result.data.ownBest, null);
-  assert.deepEqual((await s.bootstrap()).data.bestScores, []);
+test('未声明版本的旧客户端与显式 v4 客户端能并行开局、续玩和独立排名', async () => {
+  const s=setup();await s.bootstrap();
+  const old=await s.start('classic-round',10);assert.equal(old.levelVersion,3);
+  s.advance(1000);
+  const current=await s.call('startRun',{levelId:12,levelVersion:4,requestId:'atelier-round'});
+  assert.equal(current.data.levelVersion,4);
+  error(await s.call('startRun',{levelId:10,levelVersion:4,requestId:'classic-round'}),'REQUEST_CONFLICT');
+  error(await s.call('startRun',{levelId:1,levelVersion:5,requestId:'future-round'}),'LEVEL_CHANGED');
+  assert.equal((await s.call('resumeRun',{runId:old.runId})).data.levelVersion,3);
+  assert.equal((await s.call('resumeRun',{runId:current.data.runId})).data.levelVersion,4);
+  s.advance(3000);
+  assert.equal((await s.finish(current.data)).data.unlockedLevel,12);
+  assert.equal((await s.finish(old)).data.unlockedLevel,10);
+  const v4=await s.call('bootstrap',{levelVersion:4,consentVersion:CONSENT_VERSION});
+  assert.deepEqual(v4.data.bestScores.map(row=>row.levelVersion),[4]);
+  assert.deepEqual(v4.data.legacyBestScores.map(row=>row.levelVersion),[3]);
+  assert.deepEqual((await s.bootstrap()).data.bestScores.map(row=>row.levelVersion),[3]);
+  assert.equal((await s.call('leaderboard',{levelId:10,levelVersion:4})).data.entries.length,0);
+  assert.equal((await s.call('leaderboard',{levelId:10})).data.entries.length,1);
+  await s.call('deleteAccount',{confirm:true});assert.equal(s.repo.all('bestScores').length,0);
 });
 test('结算事务中断时全部回滚，重试不会留下半条榜单', async () => {
   const s = setup();await s.bootstrap();const run = await s.start();s.advance(4000);s.repo.failPut = 'runs';
@@ -281,30 +307,30 @@ test('原型键、不支持的action及错误参数只返回稳定公共错误',
   error(await s.call('bootstrap', null), 'INVALID_ARGUMENT');
 });
 
-test('正式十关解法通过真实共享规则进入服务端结算，逐关仅保留本人最佳', async () => {
+test('正式十二关解法通过真实共享规则进入服务端结算，逐关仅保留本人最佳', async () => {
   const realLevels = require('../shared/levels');
   const realRules = require('../shared/rules');
   const solutions = require('./fixtures/level-solutions.json');
-  assert.equal(realLevels.levels.length, 10);assert.equal(solutions.length, 10);
+  assert.equal(realLevels.levels.length, 12);assert.equal(solutions.length, 12);
   const repo = memoryRepository();let now = 2000000;
   const service = createGameService({ repository: repo, levels: realLevels, rules: realRules,
     clock: () => now, id: () => 'production-rules-player', appId: 'wx-real-rules' });
   const call = (action, payload) => service.handle({ action, payload }, { openid: 'trusted-real-rules-user', appid: 'wx-real-rules' });
-  assert.equal((await call('bootstrap', { consentVersion: CONSENT_VERSION })).ok, true);
+  assert.equal((await call('bootstrap', { consentVersion: CONSENT_VERSION, levelVersion: 4 })).ok, true);
   for (const solution of solutions) {
     const level = realLevels.getLevel(solution.levelId);assert.equal(level.version, solution.version);
-    const started = await call('startRun', { levelId: level.id, requestId: `actual-level-${level.id}` });
+    const started = await call('startRun', { levelId: level.id, levelVersion: 4, requestId: `actual-level-${level.id}` });
     assert.equal(started.ok, true, JSON.stringify(started));
     const duration = 10000 + solution.moves.length * 500;now += duration;
     const completed = await call('finishRun', { runId: started.data.runId, moves: solution.moves });
     assert.equal(completed.ok, true, `第${level.id}关: ${JSON.stringify(completed)}`);
     assert.equal(completed.data.durationMs, duration);assert.equal(completed.data.rank, 1);
-    const ranking = await call('leaderboard', { levelId: level.id });
+    const ranking = await call('leaderboard', { levelId: level.id, levelVersion: 4 });
     assert.equal(ranking.data.entries.length, 1);assert.equal(ranking.data.entries[0].durationMs, duration);
   }
-  const state = await call('bootstrap', { consentVersion: CONSENT_VERSION });
-  assert.equal(state.data.bestScores.length, 10);assert.equal(state.data.activeRun, null);assert.equal(state.data.unlockedLevel, 10);
-  assert.equal(repo.all('bestScores').length, 10);
+  const state = await call('bootstrap', { consentVersion: CONSENT_VERSION, levelVersion: 4 });
+  assert.equal(state.data.bestScores.length, 12);assert.equal(state.data.activeRun, null);assert.equal(state.data.unlockedLevel, 12);
+  assert.equal(repo.all('bestScores').length, 12);
 });
 
 test('正式关卡校验拒绝伪造终局与缺少最后一步的动作日志', async () => {
@@ -314,11 +340,127 @@ test('正式关卡校验拒绝伪造终局与缺少最后一步的动作日志',
   const service = createGameService({ repository: repo, levels: realLevels, rules: realRules,
     clock: () => now, id: () => 'real-check-player', appId: 'wx-real-rules' });
   const call = (action, payload) => service.handle({ action, payload }, { openid: 'trusted-rule-check', appid: 'wx-real-rules' });
-  await call('bootstrap', { consentVersion: CONSENT_VERSION });
-  const started = await call('startRun', { levelId: 1, requestId: 'invalid-actual-level' });now += 10000;
+  await call('bootstrap', { consentVersion: CONSENT_VERSION, levelVersion: 4 });
+  const started = await call('startRun', { levelId: 1, levelVersion: 4, requestId: 'invalid-actual-level' });now += 10000;
   const incomplete = await call('finishRun', { runId: started.data.runId, moves: solution.moves.slice(0, -1), success: true, state: { solved: true, completed: [0, 1], board: Array(16).fill(-1) } });
   error(incomplete, 'UNSOLVED_RUN');
   const illegal = await call('finishRun', { runId: started.data.runId, moves: [{ from: 0, to: 999 }], durationMs: 1 });
   error(illegal, 'INVALID_MOVES');
   assert.equal(repo.all('bestScores').length, 0);assert.equal(repo.all('runs')[0].status, 'active');
+});
+
+test('同一第八关两册真实棋面各自重放，旧局结算重试不会引用新版名次', async () => {
+  const levels=require('../shared/levels'),rules=require('../shared/rules');
+  const oldMoves=require('./fixtures/level-solutions-v3.json').find(s=>s.levelId===8).moves;
+  const newMoves=require('./fixtures/level-solutions.json').find(s=>s.levelId===8).moves;
+  const repo=memoryRepository();let now=500000;
+  const service=createGameService({repository:repo,levels,rules,clock:()=>now,id:()=>'dual-player',appId:'wx-dual'});
+  const call=(action,payload)=>service.handle({action,payload},{openid:'single-player',appid:'wx-dual'});
+  await call('bootstrap',{consentVersion:CONSENT_VERSION,levelVersion:4});
+  const old=await call('startRun',{levelId:8,requestId:'legacy-eight'});now+=1000;
+  const current=await call('startRun',{levelId:8,levelVersion:4,requestId:'atelier-eight'});now+=10000;
+  const invalid=await call('finishRun',{runId:current.data.runId,moves:oldMoves});
+  assert.equal(invalid.ok,false);
+  const classic=await call('finishRun',{runId:old.data.runId,moves:oldMoves});assert.equal(classic.ok,true,JSON.stringify(classic));
+  now+=5000;
+  const atelier=await call('finishRun',{runId:current.data.runId,moves:newMoves});assert.equal(atelier.ok,true,JSON.stringify(atelier));
+  assert.deepEqual((await call('leaderboard',{levelId:8})).data.entries.map(e=>e.durationMs),[11000]);
+  assert.deepEqual((await call('leaderboard',{levelId:8,levelVersion:4})).data.entries.map(e=>e.durationMs),[15000]);
+  assert.deepEqual((await call('finishRun',{runId:old.data.runId,moves:oldMoves})).data,classic.data);
+});
+
+function storyProof(index, version=3, tools=false) {
+  const level=Journey.buildLevel(Journey.storySession(index,version));
+  let state=Rules.createState(level);
+  const moves=[],toolHistory=[];
+  if(tools && state.hidden.length){
+    const result=Rules.applyBreeze(state);
+    assert.equal(result.ok,true);
+    toolHistory.push({id:'breeze',at:0});
+    state=result.state;
+  }
+  if(tools)toolHistory.push({id:'snap',at:0});
+  while(!Rules.isSolved(state) && moves.length<120){
+    const move=Rules.findHint(state);
+    assert.ok(move);
+    moves.push(move);
+    state=Rules.applyMove(state,move.from,move.to).state;
+  }
+  assert.equal(Rules.isSolved(state),true);
+  return {level:index,sessionVersion:version,moves,toolHistory};
+}
+async function storyAccount(s,user) {
+  const result=await s.call('storyBootstrap',{consentVersion:CONSENT_VERSION},user);
+  assert.equal(result.ok,true);
+  assert.equal(result.data.rankingVersion,1);
+  return result.data.publicProfile.id;
+}
+
+test('主线只能按云端已验证的前缀接续，离线重传和跨设备重复提交均幂等',async()=>{
+  const s=setup(),first=storyProof(1),second=storyProof(2,3,true);
+  error(await s.call('storyBootstrap',{}),'CONSENT_REQUIRED');
+  error(await s.call('storyLeaderboard'),'PROFILE_REQUIRED');
+  const playerId=await storyAccount(s,'alice');
+  const submit=proof=>s.call('submitStoryClear',{playerId,...proof},'alice');
+  assert.deepEqual((await s.call('storyLeaderboard')).data,{rankingVersion:1,entries:[],own:null});
+  error(await submit(second),'PREVIOUS_REQUIRED');
+  error(await submit({...first,moves:[] ,finished:true}),'UNSOLVED_RUN');
+  error(await submit({...first,moves:[{from:0,to:16}]}),'INVALID_MOVES');
+  error(await submit({...first,toolHistory:[{id:'snap',at:0},{id:'snap',at:0}]}),'INVALID_MOVES');
+  error(await submit({...first,playerId:'wrong-profile'}),'PROFILE_CHANGED');
+  error(await submit({...first,sessionVersion:999}),'INVALID_ARGUMENT');
+  const race=await Promise.all([submit(first),submit(first)]);
+  assert.ok(race.every(r=>r.ok && r.data.highestLevel===1));
+  s.advance(37);
+  s.repo.failPut='players';
+  error(await submit(second),'SERVICE_UNAVAILABLE');
+  assert.deepEqual((await s.call('storyLeaderboard')).data.own,{level:1,rank:1,achievedAt:100000});
+  assert.equal((await submit({...second,score:98765,durationMs:-8,achievedAt:1})).data.highestLevel,2);
+  assert.equal((await submit(first)).data.highestLevel,2);
+  assert.deepEqual((await s.call('storyLeaderboard')).data.own,{level:2,rank:1,achievedAt:100037});
+  assert.equal(s.repo.all('bestScores').length,1);
+  assert.equal((await s.call('bootstrap',{consentVersion:CONSENT_VERSION})).data.bestScores.length,0);
+});
+
+test('主线总榜前十去重，最高关优先，同关按服务器达成时间和公开身份稳定排序',async()=>{
+  const s=setup(),first=storyProof(1),second=storyProof(2),users=[];
+  for(let i=0;i<13;i++){
+    const user='u'+i,playerId=await storyAccount(s,user);
+    users.push({user,playerId});
+    s.advance(1);
+    assert.ok((await s.call('submitStoryClear',{...first,playerId},user)).ok);
+  }
+  s.advance(100);
+  for(const {user,playerId} of [users[10],users[9],users[12]]){
+    assert.ok((await s.call('submitStoryClear',{...second,playerId},user)).ok);
+  }
+  const a=(await s.call('storyLeaderboard',{},'u11')).data;
+  assert.equal(a.entries.length,10);assert.equal(new Set(a.entries.map(e=>e.id)).size,10);
+  assert.deepEqual(a.entries.slice(0,3).map(e=>e.id),[9,10,12].map(i=>users[i].playerId));
+  assert.equal(a.own.rank,13);assert.ok(a.entries.every(e=>!e.isSelf && !('owner' in e)));
+  const leader=(await s.call('storyLeaderboard',{},'u9')).data;
+  assert.ok(leader.entries[0].isSelf);assert.equal(leader.own.rank,1);
+  assert.ok((await s.call('deleteAccount',{confirm:true},'u9')).ok);
+  const reopened=await storyAccount(s,'u9');
+  assert.notEqual(reopened,users[9].playerId);
+  error(await s.call('submitStoryClear',{...first,playerId:users[9].playerId},'u9'),'PROFILE_CHANGED');
+  assert.deepEqual((await s.call('storyLeaderboard',{},'u9')).data.own,null);
+  assert.equal((await s.call('storyLeaderboard',{},'u11')).data.own.rank,12);
+});
+
+test('新编排前百关及后续关全部从可信种子重放，本地雾片工具与旧在局日志均可验证',async()=>{
+  const s=setup(),playerId=await storyAccount(s,'long-run');
+  const classic=storyProof(1,1);
+  assert.equal((await s.call('submitStoryClear',{...classic,playerId},'long-run')).data.highestLevel,1);
+  let sawBreeze=false;
+  for(let i=2;i<=101;i++){
+    const proof=storyProof(i,3,!sawBreeze);
+    if(proof.toolHistory.some(t=>t.id==='breeze'))sawBreeze=true;
+    const result=await s.call('submitStoryClear',{...proof,playerId},'long-run');
+    assert.ok(result.ok,JSON.stringify({i,result}));
+    assert.equal(result.data.highestLevel,i);
+  }
+  assert.ok(sawBreeze);
+  assert.equal((await s.call('storyLeaderboard',{},'long-run')).data.entries[0].level,101);
+  assert.equal(s.repo.all('bestScores').length,1);
 });

@@ -1,5 +1,44 @@
 {
   "deviceOrientation": "portrait",
   "showStatusBar": false,
-  "networkTimeout": {"request":12000,"connectSocket":12000,"uploadFile":20000,"downloadFile":20000}
+  "networkTimeout": {
+    "request": 12000,
+    "connectSocket": 12000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "subpackages": [
+    {
+      "name": "album-02",
+      "root": "packs/album-02/"
+    },
+    {
+      "name": "album-03",
+      "root": "packs/album-03/"
+    },
+    {
+      "name": "album-04",
+      "root": "packs/album-04/"
+    },
+    {
+      "name": "album-05",
+      "root": "packs/album-05/"
+    },
+    {
+      "name": "album-06",
+      "root": "packs/album-06/"
+    },
+    {
+      "name": "album-07",
+      "root": "packs/album-07/"
+    },
+    {
+      "name": "album-08",
+      "root": "packs/album-08/"
+    },
+    {
+      "name": "album-09",
+      "root": "packs/album-09/"
+    }
+  ]
 }

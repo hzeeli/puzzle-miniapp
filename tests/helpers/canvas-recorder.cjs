@@ -20,7 +20,7 @@ class CanvasRecorder{
   arc(x,y,r){this.rect(x-r,y-r,r*2,r*2);}
   ellipse(x,y,rx,ry){this.rect(x-rx,y-ry,rx*2,ry*2);}
   closePath(){}
-  clip(){const bounds=union(this.path.map(p=>({...p,w:0,h:0})));this.clipRect=this.clipRect?intersect(this.clipRect,bounds):bounds;}
+  clip(){const bounds=union(this.path.map(p=>({...p,w:0,h:0})));this.clipRect=this.clipRect?(intersect(this.clipRect,bounds)||{x:0,y:0,w:0,h:0}):bounds;}
   fill(){}
   stroke(){}
   setLineDash(){}

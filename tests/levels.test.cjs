@@ -1,7 +1,7 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { levels, getLevel } = require('../shared/levels');
+const { levels, legacyLevels, getLevel } = require('../shared/levels');
 const R = require('../shared/rules');
 const proofs = require('./fixtures/level-solutions.json');
 const { solve, measure, validate } = require('../scripts/generate-levels.cjs');
@@ -15,19 +15,35 @@ function availablePhotos(board) {
   return [...counts.values()].filter(n => n === 4).length;
 }
 
-test('十关使用真实的十二张素材、独立版本和不同难度结构', () => {
+test('三卷十二关的难度锯齿、照片数量和机制按节奏递进', () => {
   validate(levels, proofs);
-  assert.deepEqual(levels.map(l => l.photoIds.length), [4, 4, 4, 8, 8, 8, 8, 8, 8, 8]);
-  assert.deepEqual(levels.slice(3).map(l => l.difficulty.initialAvailablePhotos), [4, 3, 3, 2, 2, 1, 1]);
-  let previous = 0;
+  assert.deepEqual(levels.map(l => l.photoIds.length), [4,4,4,8,4,8,8,6,8,8,8,8]);
+  assert.deepEqual(levels.map(l => l.difficulty.verifiedMoves), [2,5,8,14,6,17,15,11,18,20,21,23]);
+  assert.deepEqual(levels.map(l => l.hiddenTokens.length), [0,0,0,0,2,3,2,0,2,3,0,4]);
+  assert.deepEqual(levels.map(l => l.pinnedTokens.length), [0,0,0,0,0,0,0,1,1,1,2,2]);
+  assert.equal(new Set(levels.map(l => l.featuredPhotoId)).size,12);
   for (const level of levels) {
     assert.equal(getLevel(level.id), level);
-    assert.ok(level.difficulty.verifiedMoves > previous);
+    assert.equal(getLevel(level.id,4),level);
     assert.ok(!('referenceSolution' in level));
     assert.deepEqual(tokens(R.createState(level)), Array.from({ length: level.photoIds.length * 4 }, (_, i) => i));
-    previous = level.difficulty.verifiedMoves;
+    assert.equal(R.starsFor(level,level.goldMoves),3);
+    assert.equal(R.starsFor(level,level.goldMoves + 1),2);
+    assert.equal(R.starsFor(level,level.parMoves + 1),1);
   }
-  assert.equal(getLevel('1'), null); assert.equal(getLevel(0), null); assert.equal(getLevel(11), null);
+  assert.equal(getLevel('1'), null); assert.equal(getLevel(0), null); assert.equal(getLevel(13), null);
+  assert.equal(getLevel(1, 5), null);
+});
+
+test('历史十关仍按原版操作序列完成，旧成绩只在自身版本解释', () => {
+  const originals = require('./fixtures/level-solutions-v3.json');
+  for (const proof of originals) {
+    const level = getLevel(proof.levelId,3);
+    assert.equal(level,legacyLevels[proof.levelId-1]);
+    assert.equal(level.version,3);
+    assert.ok(R.replay(level,proof.moves).solved);
+  }
+  assert.equal(getLevel(11,3),null);
 });
 
 test('前三关以完整棋盘呈现玩法，首关首步完成并练习双图反馈', () => {
@@ -51,7 +67,7 @@ test('第二关的教学解包含横向与纵向连块整体移动', () => {
   assert.ok(proof.moves.length >= 5 && proof.moves.length <= 6);
   let state = R.createState(level), horizontal = false, vertical = false;
   for (const move of proof.moves) {
-    const group = R.groups(state.board).find(g => g.includes(move.from));
+    const group = R.groups(state.board, state.hidden).find(g => g.includes(move.from));
     if (group.length > 1) {
       horizontal ||= group.every(i => Math.floor(i / 4) === Math.floor(group[0] / 4));
       vertical ||= group.every(i => i % 4 === group[0] % 4);
@@ -108,14 +124,18 @@ for (const level of levels) test('第 ' + level.id + ' 关随机合法操作后�
         if (candidate.ok) { result = candidate; break; }
       }
       assert.ok(result, '随机操作必须找到合法移动');
-      const source = R.groups(state.board).find(g => g.includes(move.from));
+      const source = R.groups(state.board, state.hidden).find(g => g.includes(move.from));
       const moved = result.events[0].after.board;
       for (const a of source) for (const b of source) {
         const nextA = moved.indexOf(state.board[a]), nextB = moved.indexOf(state.board[b]);
         assert.equal(nextB % 4 - nextA % 4, b % 4 - a % 4);
         assert.equal(Math.floor(nextB / 4) - Math.floor(nextA / 4), Math.floor(b / 4) - Math.floor(a / 4));
       }
-      for (const event of result.events) assert.deepEqual(tokens(event.after), all);
+      for (const event of result.events) {
+        assert.deepEqual(tokens(event.after), all);
+        for (const t of event.after.pinned) assert.equal(event.before.board.indexOf(t),event.after.board.indexOf(t));
+        assert.ok(event.after.hidden.length <= event.before.hidden.length);
+      }
       state = result.state; moves.push(move);
       assert.ok(R.isSolved(state) || availablePhotos(state.board) > 0, '不能出现只有牌库里才有缺片的死局');
     }

@@ -1,5 +1,6 @@
 'use strict';
 const crypto = require('node:crypto');
+const {storyRankKey} = require('./story-rank-key');
 const { CONSENT_VERSION, AVATAR_OPTIONS, NICKNAME_OPTIONS } = require('./shared/profile-options');
 
 const RUN_TTL_MS = 24 * 60 * 60 * 1000;
@@ -28,12 +29,20 @@ function bestSummary(score) {
   return { levelId: score.levelId, levelVersion: score.levelVersion, durationMs: score.durationMs, achievedAt: score.achievedAt };
 }
 
-function createGameService({ repository: repo, levels, rules, verifyWechatProfile, clock = Date.now, id = crypto.randomUUID, appId, logger = () => {} }) {
-  const levelList = levels.levels;
-  const lastLevelId = Math.max(...levelList.map((level) => level.id));
-  function levelFor(value) {
+function createGameService({ repository: repo, levels, rules, journey, storyReplay, verifyWechatProfile, clock = Date.now, id = crypto.randomUUID, appId, logger = () => {} }) {
+  const editions = new Map([
+    [3, { list: levels.legacyLevels, active: 'activeRunId', unlocked: 'unlockedLevel' }],
+    [4, { list: levels.levels, active: 'activeRunIdV4', unlocked: 'unlockedLevelV4' }],
+  ]);
+  function editionFor(version = 3) {
+    const edition = editions.get(version);
+    if (!edition) fail('LEVEL_CHANGED', '云端暂不支持这个关卡版本');
+    return edition;
+  }
+  function levelFor(value, version = 3) {
     if (!Number.isInteger(value)) fail('INVALID_ARGUMENT', '关卡参数不正确');
-    const level = levels.getLevel(value);
+    editionFor(version);
+    const level = levels.getLevel(value, version);
     if (!level) fail('LEVEL_NOT_FOUND', '这道关卡暂不可用');
     return level;
   }
@@ -52,10 +61,11 @@ function createGameService({ repository: repo, levels, rules, verifyWechatProfil
   function validateRun(run, owner, player, now) {
     if (!run) fail('RUN_NOT_FOUND', '未找到这次挑战');
     if (run.owner !== owner) fail('RUN_FORBIDDEN', '无法访问这次挑战');
-    if (run.status !== 'active' || player.activeRunId !== run.runId) fail('RUN_NOT_ACTIVE', '这次挑战已结束，请重新开始');
+    const edition = editionFor(run.levelVersion);
+    if (run.status !== 'active' || player[edition.active] !== run.runId) fail('RUN_NOT_ACTIVE', '这次挑战已结束，请重新开始');
     if (now - run.startedAt > RUN_TTL_MS) fail('RUN_EXPIRED', '这次排名挑战已超过24小时，可保留本地进度继续练习');
-    const level = levelFor(run.levelId);
-    if (run.levelVersion !== level.version) fail('LEVEL_CHANGED', '关卡已更新，请重新开始排名挑战');
+    const level = levels.getLevel(run.levelId, run.levelVersion);
+    if (!level || run.levelVersion !== level.version) fail('LEVEL_CHANGED', '关卡已更新，请重新开始排名挑战');
     return level;
   }
   function runSummary(run, now) {
@@ -65,58 +75,120 @@ function createGameService({ repository: repo, levels, rules, verifyWechatProfil
   async function currentBest(owner, level) {
     return repo.get(COLLECTIONS.scores, scoreId(owner, level.id, level.version));
   }
+  async function openPlayer(owner) {
+    const now = clock(), playerId = id();
+    return repo.transaction(async (tx) => {
+      let value = await tx.get(COLLECTIONS.players, owner);
+      if (value && value.status === 'deleting') fail('ACCOUNT_DELETING', '个人记录正在清理，请稍后重试', true);
+      if (!value) {
+        const nickname = NICKNAME_OPTIONS[parseInt(owner.slice(0, 2), 16) % NICKNAME_OPTIONS.length];
+        value = { owner, playerId, nicknameId: nickname.id,
+          nickname: `${nickname.label}·${playerId.replace(/-/g, '').slice(-4).toUpperCase()}`,
+          avatarId: AVATAR_OPTIONS[parseInt(owner.slice(2, 4), 16) % AVATAR_OPTIONS.length].id, profileSource: 'guest', avatarUrl: '',
+          unlockedLevel: 1, activeRunId: null, status: 'active', createdAt: now,
+          consentVersion: CONSENT_VERSION, consentedAt: now, updatedAt: now };
+        await tx.put(COLLECTIONS.players, owner, value);
+      } else if (value.consentVersion !== CONSENT_VERSION) {
+        value = { ...value, consentVersion: CONSENT_VERSION, consentedAt: now, updatedAt: now };
+        await tx.put(COLLECTIONS.players, owner, value);
+      }
+      return value;
+    });
+  }
   const actions = {
     async bootstrap(payload, owner) {
       if (payload.consentVersion !== CONSENT_VERSION) fail('CONSENT_REQUIRED', '请先阅读并同意隐私说明');
-      const now = clock(), playerId = id();
-      const player = await repo.transaction(async (tx) => {
-        let value = await tx.get(COLLECTIONS.players, owner);
-        if (value && value.status === 'deleting') fail('ACCOUNT_DELETING', '个人记录正在清理，请稍后重试', true);
-        if (!value) {
-          const nickname = NICKNAME_OPTIONS[parseInt(owner.slice(0, 2), 16) % NICKNAME_OPTIONS.length];
-          value = { owner, playerId, nicknameId: nickname.id,
-            nickname: `${nickname.label}·${playerId.replace(/-/g, '').slice(-4).toUpperCase()}`,
-            avatarId: AVATAR_OPTIONS[parseInt(owner.slice(2, 4), 16) % AVATAR_OPTIONS.length].id, profileSource: 'guest', avatarUrl: '',
-            unlockedLevel: 1, activeRunId: null, status: 'active', createdAt: now,
-            consentVersion: CONSENT_VERSION, consentedAt: now, updatedAt: now };
-          await tx.put(COLLECTIONS.players, owner, value);
-        } else if (value.consentVersion !== CONSENT_VERSION) {
-          value = { ...value, consentVersion: CONSENT_VERSION, consentedAt: now, updatedAt: now };
-          await tx.put(COLLECTIONS.players, owner, value);
-        }
-        return value;
-      });
-      const scores = await repo.listBest(owner, levelList.map((level) => ({ levelId: level.id, levelVersion: level.version })));
-      const bestScores = scores.filter((score) => levelList.some((level) => level.id === score.levelId && level.version === score.levelVersion))
-        .sort((a, b) => a.levelId - b.levelId).map(bestSummary);
+      const version = payload.levelVersion === undefined ? 3 : payload.levelVersion;
+      const edition = editionFor(version), levelList = edition.list;
+      const player = await openPlayer(owner);
+      const summaries = async (list) => {
+        const keys = list.map(level => ({ levelId: level.id, levelVersion: level.version }));
+        const scores = await repo.listBest(owner, keys);
+        return scores.filter(score => keys.some(key => key.levelId === score.levelId && key.levelVersion === score.levelVersion))
+          .sort((a,b) => a.levelId - b.levelId).map(bestSummary);
+      };
+      const [bestScores, legacyBestScores] = await Promise.all([
+        summaries(levelList), version === 4 ? summaries(levels.legacyLevels) : [],
+      ]);
+      const now = clock();
       let activeRun = null;
-      if (player.activeRunId) {
-        const run = await repo.get(COLLECTIONS.runs, player.activeRunId);
+      if (player[edition.active]) {
+        const run = await repo.get(COLLECTIONS.runs, player[edition.active]);
         if (run && run.owner === owner && run.status === 'active' && now - run.startedAt <= RUN_TTL_MS &&
           levelList.some((level) => level.id === run.levelId && level.version === run.levelVersion)) activeRun = runSummary(run, clock());
       }
-      return { publicProfile: publicProfile(player), unlockedLevel: player.unlockedLevel, bestScores, activeRun, serverNow: clock() };
+      return { publicProfile: publicProfile(player), levelVersion: version, unlockedLevel: player[edition.unlocked] || 1, bestScores, ...(version === 4 ? { legacyBestScores } : {}), activeRun, serverNow: now };
+    },
+    async storyBootstrap(payload, owner) {
+      if (payload.consentVersion !== CONSENT_VERSION) fail('CONSENT_REQUIRED', '请先阅读并同意隐私说明');
+      const player = await openPlayer(owner);
+      return {rankingVersion: 1, publicProfile: publicProfile(player), highestLevel: player.storyScore?.level || 0};
+    },
+    async submitStoryClear(payload, owner) {
+      const {level, sessionVersion, moves, toolHistory = [], playerId} = payload;
+      if (!Number.isSafeInteger(level) || level < 1 || !Number.isSafeInteger(level * 8) ||
+          !(sessionVersion === 3 || sessionVersion === 1 && level <= 60) || !validString(playerId, 1, 128)) {
+        fail('INVALID_ARGUMENT', '关卡或档案版本无效');
+      }
+      if (!Array.isArray(moves) || moves.length > MAX_MOVES || !Array.isArray(toolHistory) || toolHistory.length > 5) {
+        fail('INVALID_MOVES', '通关记录格式不正确');
+      }
+      const checkFrontier = player => {
+        if (player.playerId !== playerId) fail('PROFILE_CHANGED', '云档案已变化，请重新连接');
+        const previous = player.storyScore?.level || 0;
+        if (level > previous + 1) fail('PREVIOUS_REQUIRED', '请先同步前一关的通关记录');
+        return previous;
+      };
+      const previous = checkFrontier(await playerFor(repo, owner));
+      if (level <= previous) return {highestLevel: previous};
+      const board = journey.buildLevel(journey.storySession(level, sessionVersion));
+      const result = storyReplay(board, moves, toolHistory);
+      if (!result.ok) fail('INVALID_MOVES', '操作与本关棋盘不一致');
+      if (!result.solved) fail('UNSOLVED_RUN', '本关尚未拼完');
+      return repo.transaction(async tx => {
+        const player = await playerFor(tx, owner), current = checkFrontier(player);
+        if (level <= current) return {highestLevel: current};
+        const achievedAt = clock();
+        const key = storyRankKey(level, achievedAt, playerId);
+        if (player.storyScore) await tx.remove(COLLECTIONS.scores, player.storyScore.key);
+        await tx.put(COLLECTIONS.scores, key, {owner, playerId, level, achievedAt});
+        await tx.put(COLLECTIONS.players, owner, {...player, storyScore:{level, achievedAt, key}, updatedAt:achievedAt});
+        return {highestLevel: level};
+      });
+    },
+    async storyLeaderboard(payload, owner) {
+      const player = await playerFor(repo, owner), scores = await repo.topStory();
+      const entries = (await Promise.all(scores.map(async score => {
+        const p = score.owner === owner ? player : await repo.get(COLLECTIONS.players, score.owner);
+        if (!p || p.status !== 'active' || p.playerId !== score.playerId) return null;
+        return {...publicProfile(p), level:score.level, achievedAt:score.achievedAt, isSelf:score.owner === owner};
+      }))).filter(Boolean).map((entry, i) => ({...entry, rank:i+1}));
+      const self = entries.find(entry => entry.isSelf);
+      const score = self || player.storyScore;
+      const own = score ? {level:score.level, achievedAt:score.achievedAt, rank:self ? self.rank : await repo.storyRank(score.key)} : null;
+      return {rankingVersion: 1, entries, own};
     },
     async startRun(payload, owner) {
-      const level = levelFor(payload.levelId);
+      const level = levelFor(payload.levelId, payload.levelVersion);
+      const edition = editionFor(level.version);
       if (!validString(payload.requestId, 8, 96) || !/^[a-zA-Z0-9_-]+$/.test(payload.requestId)) fail('INVALID_ARGUMENT', '挑战请求标识不正确');
       const runId = hash(`${owner}\0${payload.requestId}`), now = clock();
       const run = await repo.transaction(async (tx) => {
         const player = await playerFor(tx, owner);
         const existing = await tx.get(COLLECTIONS.runs, runId);
         if (existing) {
-          if (existing.levelId !== level.id) fail('REQUEST_CONFLICT', '这个请求标识已用于其他关卡');
+          if (existing.levelId !== level.id || existing.levelVersion !== level.version) fail('REQUEST_CONFLICT', '这个请求标识已用于其他关卡');
           return existing;
         }
         if (player.lastStartedAt !== undefined && now - player.lastStartedAt < START_COOLDOWN_MS) fail('TOO_MANY_REQUESTS', '开始得太快啦，请稍后再试', true);
-        if (player.activeRunId) {
-          const previous = await tx.get(COLLECTIONS.runs, player.activeRunId);
+        if (player[edition.active]) {
+          const previous = await tx.get(COLLECTIONS.runs, player[edition.active]);
           if (previous && previous.status === 'active') await tx.put(COLLECTIONS.runs, previous.runId, { ...previous, status: 'abandoned', closedAt: now });
         }
         const value = { runId, owner, playerId: player.playerId, levelId: level.id, levelVersion: level.version,
           startedAt: now, status: 'active', requestId: payload.requestId };
         await tx.put(COLLECTIONS.runs, runId, value);
-        await tx.put(COLLECTIONS.players, owner, { ...player, activeRunId: runId, lastStartedAt: now, updatedAt: now });
+        await tx.put(COLLECTIONS.players, owner, { ...player, [edition.active]: runId, lastStartedAt: now, updatedAt: now });
         return value;
       });
       return runSummary(run, clock());
@@ -157,18 +229,19 @@ function createGameService({ repository: repo, levels, rules, verifyWechatProfil
         const isPersonalBest = !previous || durationMs < previous.durationMs;
         if (isPersonalBest) await tx.put(COLLECTIONS.scores, bestId, { owner, playerId: currentPlayer.playerId,
           levelId: level.id, levelVersion: level.version, durationMs, achievedAt: now, runId: currentRun.runId });
-        const unlockedLevel = Math.min(lastLevelId, Math.max(currentPlayer.unlockedLevel, level.id + 1));
+        const edition = editionFor(level.version);
+        const unlockedLevel = Math.min(edition.list.length, Math.max(currentPlayer[edition.unlocked] || 1, level.id + 1));
         const value = { durationMs, isPersonalBest, unlockedLevel, bestMs: isPersonalBest ? durationMs : previous.durationMs };
         await tx.put(COLLECTIONS.runs, currentRun.runId, { ...currentRun, status: 'finished', finishedAt: now,
           moveCount: payload.moves.length, moves: payload.moves.map(({ from, to }) => ({ from, to })), result: value });
-        await tx.put(COLLECTIONS.players, owner, { ...currentPlayer, unlockedLevel, activeRunId: null, updatedAt: now });
+        await tx.put(COLLECTIONS.players, owner, { ...currentPlayer, [edition.unlocked]: unlockedLevel, [edition.active]: null, updatedAt: now });
         return value;
       });
-      const currentLevel = levelFor(run.levelId), best = await currentBest(owner, currentLevel);
+      const currentLevel = levelFor(run.levelId, run.levelVersion), best = await currentBest(owner, currentLevel);
       return { ...result, rank: best ? await repo.rankOf(best) : null };
     },
     async leaderboard(payload, owner) {
-      const level = levelFor(payload.levelId);
+      const level = levelFor(payload.levelId, payload.levelVersion);
       const [scores, best] = await Promise.all([repo.topScores(level.id, level.version), currentBest(owner, level)]);
       const entries = [];
       for (const score of scores) {
@@ -177,7 +250,7 @@ function createGameService({ repository: repo, levels, rules, verifyWechatProfil
         entries.push({ rank: entries.length + 1, ...publicProfile(player), durationMs: score.durationMs,
           achievedAt: score.achievedAt, isSelf: score.owner === owner });
       }
-      return { entries, ownBest: best ? { ...bestSummary(best), rank: await repo.rankOf(best) } : null, serverNow: clock() };
+      return { levelVersion: level.version, entries, ownBest: best ? { ...bestSummary(best), rank: await repo.rankOf(best) } : null, serverNow: clock() };
     },
     async syncWechatProfile(payload, owner, context) {
       if (!validString(payload.cloudID, 1, 1024)) fail('INVALID_ARGUMENT', '请通过微信官方按钮获取头像昵称');
@@ -204,7 +277,8 @@ function createGameService({ repository: repo, levels, rules, verifyWechatProfil
         if (player.status === 'deleting') return { id: player.deletionId, playerId: player.playerId };
         await tx.put(COLLECTIONS.players, owner, { ...player, status: 'deleting', deletionId, updatedAt: clock() });
         // 当前榜单与删除状态一并提交，清理历史会话期间不会留下不可见名次。
-        for (const level of levelList) {
+        if (player.storyScore) await tx.remove(COLLECTIONS.scores, player.storyScore.key);
+        for (const level of [...levels.legacyLevels, ...levels.levels]) {
           const bestId = scoreId(owner, level.id, level.version);
           if (await tx.get(COLLECTIONS.scores, bestId)) await tx.remove(COLLECTIONS.scores, bestId);
         }

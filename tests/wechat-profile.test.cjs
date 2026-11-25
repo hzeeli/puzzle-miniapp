@@ -38,7 +38,7 @@ function serviceFixture(verifyWechatProfile) {
     async removeOwned(c, owner, playerId) { for (const [key, row] of data[c]) if (row.owner === owner && row.playerId === playerId) data[c].delete(key); },
   };
   const level = { id: 1, version: 3 };
-  const service = createGameService({ repository: repo, levels: { levels: [level], getLevel: () => level },
+  const service = createGameService({ repository: repo, levels: { legacyLevels:[level], levels:[{...level,version:4}], getLevel: () => level },
     rules: {}, verifyWechatProfile, clock: () => NOW, id: () => 'profile-' + (++sequence), appId: trusted.appid });
   const call = (action, payload = {}) => service.handle({ action, payload }, trusted);
   return { data, call, bootstrap: () => call('bootstrap', { consentVersion: CONSENT_VERSION }) };

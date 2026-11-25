@@ -1,4 +1,5 @@
 'use strict';
+const {STORY_START, STORY_END} = require('./story-rank-key');
 
 function createRepository(db) {
   function documents(source) {
@@ -20,6 +21,20 @@ function createRepository(db) {
   return {
     ...direct,
     transaction: (work) => db.runTransaction((tx) => work(documents(tx))),
+    async topStory() {
+      const _ = db.command;
+      const result = await db.collection('bestScores').where({
+        _id: _.gte(STORY_START).and(_.lt(STORY_END))
+      }).orderBy('_id', 'asc').limit(10).get();
+      return result.data;
+    },
+    async storyRank(key) {
+      const _ = db.command;
+      const result = await db.collection('bestScores').where({
+        _id: _.gte(STORY_START).and(_.lt(key))
+      }).count();
+      return result.total + 1;
+    },
     async listBest(owner, activeLevels) {
       const _ = db.command;
       const result = await db.collection('bestScores').where(_.and([{ owner }, _.or(activeLevels)])).limit(activeLevels.length).get();

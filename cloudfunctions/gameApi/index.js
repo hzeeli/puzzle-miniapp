@@ -5,11 +5,13 @@ const { createGameService } = require('./service');
 const { createWechatProfileVerifier } = require('./wechat-profile');
 const levels = require('./shared/levels');
 const rules = require('./shared/rules');
+const journey = require('./shared/journey');
+const {replay: storyReplay} = require('./shared/story-replay');
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database({ throwOnNotFound: false });
 const service = createGameService({
-  repository: createRepository(db), levels, rules,
+  repository: createRepository(db), levels, rules, journey, storyReplay,
   verifyWechatProfile: createWechatProfileVerifier(cloud, (entry) => console.warn('微信资料校验失败', entry)),
   appId: 'wxc2add44d840ca728',
   logger: (entry) => console.error('gameApi 调用失败', entry),

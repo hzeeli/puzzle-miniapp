@@ -1,7 +1,7 @@
 [
   {
     "levelId": 1,
-    "version": 3,
+    "version": 4,
     "seed": 260929,
     "metrics": {
       "verifiedMoves": 2,
@@ -29,7 +29,7 @@
   },
   {
     "levelId": 2,
-    "version": 3,
+    "version": 4,
     "seed": 3488937,
     "metrics": {
       "verifiedMoves": 5,
@@ -71,7 +71,7 @@
   },
   {
     "levelId": 3,
-    "version": 3,
+    "version": 4,
     "seed": 508449,
     "metrics": {
       "verifiedMoves": 8,
@@ -125,7 +125,7 @@
   },
   {
     "levelId": 4,
-    "version": 3,
+    "version": 4,
     "seed": 822265,
     "metrics": {
       "verifiedMoves": 14,
@@ -207,97 +207,53 @@
   },
   {
     "levelId": 5,
-    "version": 3,
-    "seed": 961863,
+    "version": 4,
+    "seed": 898511,
     "metrics": {
-      "verifiedMoves": 16,
-      "groupMoves": 4,
+      "verifiedMoves": 6,
+      "groupMoves": 2,
       "horizontalGroupMoves": 1,
-      "verticalGroupMoves": 3,
+      "verticalGroupMoves": 1,
       "splitMoves": 0,
-      "refillEvents": 6,
+      "refillEvents": 0,
       "availability": [
+        4,
         3,
         2,
-        1,
-        2,
-        3,
-        2,
-        1,
         1,
         0
       ]
     },
     "moves": [
       {
+        "from": 2,
+        "to": 13
+      },
+      {
         "from": 8,
         "to": 7
       },
       {
         "from": 9,
-        "to": 3
-      },
-      {
-        "from": 8,
-        "to": 0
+        "to": 7
       },
       {
         "from": 13,
-        "to": 1
+        "to": 6
       },
       {
-        "from": 9,
-        "to": 8
-      },
-      {
-        "from": 15,
+        "from": 14,
         "to": 12
       },
       {
-        "from": 4,
-        "to": 10
-      },
-      {
-        "from": 8,
-        "to": 11
-      },
-      {
-        "from": 13,
-        "to": 4
-      },
-      {
-        "from": 7,
-        "to": 10
-      },
-      {
-        "from": 12,
-        "to": 11
-      },
-      {
-        "from": 12,
-        "to": 10
-      },
-      {
-        "from": 15,
+        "from": 14,
         "to": 9
-      },
-      {
-        "from": 0,
-        "to": 5
-      },
-      {
-        "from": 8,
-        "to": 9
-      },
-      {
-        "from": 12,
-        "to": 8
       }
     ]
   },
   {
     "levelId": 6,
-    "version": 3,
+    "version": 4,
     "seed": 824296,
     "metrics": {
       "verifiedMoves": 17,
@@ -391,224 +347,272 @@
   },
   {
     "levelId": 7,
-    "version": 3,
-    "seed": 900542,
+    "version": 4,
+    "seed": 1621171,
     "metrics": {
-      "verifiedMoves": 18,
-      "groupMoves": 4,
+      "verifiedMoves": 15,
+      "groupMoves": 5,
       "horizontalGroupMoves": 1,
-      "verticalGroupMoves": 1,
+      "verticalGroupMoves": 3,
       "splitMoves": 0,
-      "refillEvents": 4,
+      "refillEvents": 6,
       "availability": [
-        2,
         3,
         2,
-        3,
-        4,
-        3,
+        1,
         2,
+        2,
+        2,
+        1,
         1,
         0
       ]
     },
     "moves": [
       {
-        "from": 6,
-        "to": 0
+        "from": 3,
+        "to": 5
+      },
+      {
+        "from": 12,
+        "to": 6
       },
       {
         "from": 8,
-        "to": 4
+        "to": 6
       },
       {
-        "from": 0,
-        "to": 5
+        "from": 9,
+        "to": 10
       },
       {
-        "from": 5,
-        "to": 4
-      },
-      {
-        "from": 3,
-        "to": 12
-      },
-      {
-        "from": 3,
-        "to": 13
+        "from": 14,
+        "to": 7
       },
       {
         "from": 6,
-        "to": 1
+        "to": 8
       },
       {
-        "from": 11,
+        "from": 8,
         "to": 5
       },
       {
-        "from": 1,
+        "from": 8,
+        "to": 2
+      },
+      {
+        "from": 2,
         "to": 10
+      },
+      {
+        "from": 15,
+        "to": 10
+      },
+      {
+        "from": 8,
+        "to": 1
+      },
+      {
+        "from": 12,
+        "to": 0
       },
       {
         "from": 13,
         "to": 5
       },
       {
-        "from": 9,
-        "to": 15
-      },
-      {
-        "from": 14,
-        "to": 13
-      },
-      {
-        "from": 7,
-        "to": 6
-      },
-      {
-        "from": 11,
-        "to": 7
-      },
-      {
-        "from": 15,
-        "to": 2
-      },
-      {
-        "from": 4,
+        "from": 8,
         "to": 1
       },
       {
-        "from": 8,
+        "from": 0,
         "to": 4
-      },
-      {
-        "from": 12,
-        "to": 5
       }
     ]
   },
   {
     "levelId": 8,
-    "version": 3,
-    "seed": 1024302,
+    "version": 4,
+    "seed": 1459847,
     "metrics": {
-      "verifiedMoves": 20,
-      "groupMoves": 5,
-      "horizontalGroupMoves": 1,
-      "verticalGroupMoves": 4,
-      "splitMoves": 0,
-      "refillEvents": 5,
+      "verifiedMoves": 11,
+      "groupMoves": 2,
+      "horizontalGroupMoves": 0,
+      "verticalGroupMoves": 2,
+      "splitMoves": 1,
+      "refillEvents": 3,
       "availability": [
-        2,
-        3,
         4,
         3,
-        3,
         2,
-        2,
+        1,
+        1,
         1,
         0
       ]
     },
     "moves": [
       {
-        "from": 8,
-        "to": 2
-      },
-      {
-        "from": 10,
-        "to": 6
-      },
-      {
-        "from": 15,
+        "from": 0,
         "to": 3
       },
       {
-        "from": 3,
-        "to": 0
-      },
-      {
-        "from": 5,
-        "to": 11
-      },
-      {
         "from": 7,
-        "to": 5
+        "to": 2
       },
       {
-        "from": 15,
-        "to": 4
+        "from": 13,
+        "to": 7
       },
       {
         "from": 8,
-        "to": 9
+        "to": 15
       },
       {
-        "from": 10,
-        "to": 13
+        "from": 1,
+        "to": 6
       },
       {
-        "from": 15,
-        "to": 14
-      },
-      {
-        "from": 10,
-        "to": 9
-      },
-      {
-        "from": 15,
+        "from": 4,
         "to": 5
-      },
-      {
-        "from": 11,
-        "to": 8
-      },
-      {
-        "from": 9,
-        "to": 13
-      },
-      {
-        "from": 0,
-        "to": 12
-      },
-      {
-        "from": 0,
-        "to": 13
       },
       {
         "from": 4,
         "to": 9
       },
       {
-        "from": 7,
-        "to": 0
+        "from": 5,
+        "to": 14
       },
       {
-        "from": 3,
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 8,
         "to": 5
       },
       {
-        "from": 15,
+        "from": 12,
         "to": 1
       }
     ]
   },
   {
     "levelId": 9,
-    "version": 3,
-    "seed": 1607364,
+    "version": 4,
+    "seed": 1060953,
     "metrics": {
-      "verifiedMoves": 22,
+      "verifiedMoves": 18,
+      "groupMoves": 3,
+      "horizontalGroupMoves": 0,
+      "verticalGroupMoves": 2,
+      "splitMoves": 0,
+      "refillEvents": 4,
+      "availability": [
+        2,
+        3,
+        3,
+        3,
+        2,
+        1,
+        2,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 2,
+        "to": 10
+      },
+      {
+        "from": 11,
+        "to": 9
+      },
+      {
+        "from": 5,
+        "to": 4
+      },
+      {
+        "from": 7,
+        "to": 5
+      },
+      {
+        "from": 0,
+        "to": 7
+      },
+      {
+        "from": 7,
+        "to": 1
+      },
+      {
+        "from": 3,
+        "to": 5
+      },
+      {
+        "from": 14,
+        "to": 10
+      },
+      {
+        "from": 15,
+        "to": 6
+      },
+      {
+        "from": 12,
+        "to": 9
+      },
+      {
+        "from": 15,
+        "to": 13
+      },
+      {
+        "from": 3,
+        "to": 2
+      },
+      {
+        "from": 11,
+        "to": 3
+      },
+      {
+        "from": 2,
+        "to": 8
+      },
+      {
+        "from": 7,
+        "to": 14
+      },
+      {
+        "from": 7,
+        "to": 10
+      },
+      {
+        "from": 0,
+        "to": 5
+      },
+      {
+        "from": 12,
+        "to": 4
+      }
+    ]
+  },
+  {
+    "levelId": 10,
+    "version": 4,
+    "seed": 1184713,
+    "metrics": {
+      "verifiedMoves": 20,
       "groupMoves": 0,
       "horizontalGroupMoves": 0,
       "verticalGroupMoves": 0,
-      "splitMoves": 0,
+      "splitMoves": 1,
       "refillEvents": 6,
       "availability": [
-        1,
         2,
-        1,
-        2,
+        3,
+        3,
+        3,
         3,
         2,
         1,
@@ -618,51 +622,173 @@
     },
     "moves": [
       {
-        "from": 4,
-        "to": 5
-      },
-      {
-        "from": 8,
-        "to": 1
-      },
-      {
         "from": 9,
-        "to": 4
+        "to": 10
       },
       {
-        "from": 11,
-        "to": 5
+        "from": 12,
+        "to": 11
       },
       {
         "from": 14,
+        "to": 7
+      },
+      {
+        "from": 9,
+        "to": 13
+      },
+      {
+        "from": 11,
+        "to": 10
+      },
+      {
+        "from": 11,
+        "to": 0
+      },
+      {
+        "from": 12,
+        "to": 4
+      },
+      {
+        "from": 0,
+        "to": 5
+      },
+      {
+        "from": 11,
         "to": 9
       },
       {
         "from": 3,
-        "to": 8
+        "to": 10
       },
       {
-        "from": 11,
+        "from": 15,
+        "to": 6
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 13,
         "to": 9
       },
       {
         "from": 15,
-        "to": 12
+        "to": 13
+      },
+      {
+        "from": 12,
+        "to": 10
+      },
+      {
+        "from": 13,
+        "to": 6
+      },
+      {
+        "from": 15,
+        "to": 5
+      },
+      {
+        "from": 0,
+        "to": 9
       },
       {
         "from": 4,
+        "to": 5
+      },
+      {
+        "from": 12,
+        "to": 4
+      }
+    ]
+  },
+  {
+    "levelId": 11,
+    "version": 4,
+    "seed": 1260959,
+    "metrics": {
+      "verifiedMoves": 21,
+      "groupMoves": 5,
+      "horizontalGroupMoves": 0,
+      "verticalGroupMoves": 4,
+      "splitMoves": 0,
+      "refillEvents": 5,
+      "availability": [
+        2,
+        3,
+        2,
+        3,
+        2,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "moves": [
+      {
+        "from": 4,
+        "to": 3
+      },
+      {
+        "from": 10,
+        "to": 2
+      },
+      {
+        "from": 4,
+        "to": 15
+      },
+      {
+        "from": 4,
+        "to": 10
+      },
+      {
+        "from": 12,
+        "to": 11
+      },
+      {
+        "from": 1,
+        "to": 9
+      },
+      {
+        "from": 10,
+        "to": 5
+      },
+      {
+        "from": 14,
+        "to": 8
+      },
+      {
+        "from": 1,
+        "to": 13
+      },
+      {
+        "from": 9,
+        "to": 7
+      },
+      {
+        "from": 7,
+        "to": 6
+      },
+      {
+        "from": 14,
+        "to": 12
+      },
+      {
+        "from": 15,
+        "to": 8
+      },
+      {
+        "from": 1,
+        "to": 9
+      },
+      {
+        "from": 9,
         "to": 2
       },
       {
         "from": 8,
-        "to": 7
-      },
-      {
-        "from": 12,
-        "to": 6
-      },
-      {
-        "from": 6,
         "to": 15
       },
       {
@@ -670,61 +796,41 @@
         "to": 11
       },
       {
-        "from": 10,
-        "to": 14
-      },
-      {
-        "from": 5,
-        "to": 4
-      },
-      {
-        "from": 5,
-        "to": 13
-      },
-      {
         "from": 12,
-        "to": 9
+        "to": 10
       },
       {
-        "from": 14,
-        "to": 12
-      },
-      {
-        "from": 15,
+        "from": 0,
         "to": 8
       },
       {
-        "from": 2,
-        "to": 11
+        "from": 0,
+        "to": 5
       },
       {
-        "from": 10,
-        "to": 7
-      },
-      {
-        "from": 14,
-        "to": 10
+        "from": 12,
+        "to": 4
       }
     ]
   },
   {
-    "levelId": 10,
-    "version": 3,
-    "seed": 2269616,
+    "levelId": 12,
+    "version": 4,
+    "seed": 11679419,
     "metrics": {
       "verifiedMoves": 23,
-      "groupMoves": 3,
-      "horizontalGroupMoves": 2,
-      "verticalGroupMoves": 1,
-      "splitMoves": 0,
+      "groupMoves": 4,
+      "horizontalGroupMoves": 1,
+      "verticalGroupMoves": 3,
+      "splitMoves": 1,
       "refillEvents": 6,
       "availability": [
-        1,
+        2,
+        3,
+        2,
         2,
         1,
         2,
-        2,
-        1,
         1,
         1,
         0
@@ -733,91 +839,91 @@
     "moves": [
       {
         "from": 0,
-        "to": 6
-      },
-      {
-        "from": 3,
-        "to": 9
-      },
-      {
-        "from": 11,
-        "to": 5
-      },
-      {
-        "from": 12,
-        "to": 10
-      },
-      {
-        "from": 6,
-        "to": 1
-      },
-      {
-        "from": 15,
-        "to": 6
-      },
-      {
-        "from": 3,
-        "to": 9
-      },
-      {
-        "from": 9,
-        "to": 6
+        "to": 7
       },
       {
         "from": 13,
-        "to": 2
+        "to": 6
       },
       {
-        "from": 9,
-        "to": 5
+        "from": 14,
+        "to": 3
       },
       {
         "from": 10,
-        "to": 1
+        "to": 11
       },
       {
-        "from": 13,
-        "to": 2
-      },
-      {
-        "from": 13,
-        "to": 5
-      },
-      {
-        "from": 15,
-        "to": 6
-      },
-      {
-        "from": 11,
+        "from": 10,
         "to": 14
       },
       {
         "from": 12,
+        "to": 10
+      },
+      {
+        "from": 4,
         "to": 15
       },
       {
+        "from": 14,
+        "to": 13
+      },
+      {
         "from": 12,
+        "to": 9
+      },
+      {
+        "from": 1,
+        "to": 6
+      },
+      {
+        "from": 8,
+        "to": 9
+      },
+      {
+        "from": 15,
         "to": 10
       },
       {
         "from": 0,
-        "to": 9
+        "to": 1
+      },
+      {
+        "from": 13,
+        "to": 0
+      },
+      {
+        "from": 15,
+        "to": 4
       },
       {
         "from": 4,
         "to": 5
       },
       {
+        "from": 0,
+        "to": 8
+      },
+      {
         "from": 12,
         "to": 4
       },
       {
-        "from": 4,
-        "to": 1
+        "from": 8,
+        "to": 9
+      },
+      {
+        "from": 15,
+        "to": 8
       },
       {
         "from": 0,
-        "to": 4
+        "to": 1
+      },
+      {
+        "from": 8,
+        "to": 5
       },
       {
         "from": 12,
